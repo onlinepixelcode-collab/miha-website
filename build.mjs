@@ -67,6 +67,7 @@ const nav = () => `
     <a href="story.html">Our Story</a>
     <a href="drinks.html">Drinks</a>
     <a href="catering.html">Catering</a>
+    <a href="games.html">Games</a>
     <a href="contact.html">Contact</a>
   </nav>
   <div class="nav__right">
@@ -86,8 +87,9 @@ const nav = () => `
     <a href="drinks.html"><small>06</small>Drinks</a>
     <a href="catering.html"><small>07</small>Catering</a>
     <a href="bakery.html"><small>08</small>Bakery</a>
-    <a href="contact.html"><small>09</small>Contact</a>
-    <a href="reserve.html#book"><small>10</small>Reserve</a>
+    <a href="games.html"><small>09</small>MiHa Games</a>
+    <a href="contact.html"><small>10</small>Contact</a>
+    <a href="reserve.html#book"><small>11</small>Reserve</a>
   </nav>
   <p class="drawer__foot">Melrose Arch · Centurion<br>Strictly Halaal · Alcohol-free</p>
 </div>`;
@@ -134,7 +136,7 @@ const footer = () => `${join()}
     </div>
     <div class="footer__grid">
       <div><h3>Explore</h3><p><a href="menu.html">Menu</a></p><p><a href="whats-on.html">What’s On</a></p><p><a href="events.html">Events</a></p><p><a href="story.html">Our Story</a></p></div>
-      <div><h3>More</h3><p><a href="drinks.html">Drinks</a></p><p><a href="catering.html">Catering</a></p><p><a href="bakery.html">Clenergy Bakery</a></p><p><a href="contact.html">Contact</a></p></div>
+      <div><h3>More</h3><p><a href="drinks.html">Drinks</a></p><p><a href="catering.html">Catering</a></p><p><a href="bakery.html">Clenergy Bakery</a></p><p><a href="games.html">MiHa Games</a></p><p><a href="contact.html">Contact</a></p></div>
       <div><h3>Order &amp; book</h3><p><a href="reserve.html#book">Book a table</a></p><p><a href="${UBER}" target="_blank" rel="noopener">Uber Eats</a></p><p><a href="${MRD}" target="_blank" rel="noopener">Mr D</a></p><p><a href="${PDF}" target="_blank" rel="noopener">Menu (PDF)</a></p></div>
       <div><h3>Connect</h3>
         <div class="fsocial">
@@ -164,6 +166,7 @@ const footer = () => `${join()}
 <script src="picks.js?v=${V}"></script>
 <script src="catering.js?v=${V}"></script>
 <script src="whatson.js?v=${V}"></script>
+<script src="games.js?v=${V}"></script>
 </body>
 </html>`;
 
@@ -390,6 +393,14 @@ ${nav()}
       <a class="order__card" href="${UBER}" target="_blank" rel="noopener" data-cursor="Order"><b>Uber Eats</b><span>MiHa Melrose Arch · ★ 4.4 (1,000+)</span><i aria-hidden="true">↗</i></a>
       <a class="order__card" href="${MRD}" target="_blank" rel="noopener" data-cursor="Order"><b>Mr D</b><span>MiHa X Lenasia</span><i aria-hidden="true">↗</i></a>
     </div>
+  </div>
+</section>
+
+<section class="gplay">
+  <div class="led led--edge" aria-hidden="true"></div>
+  <div class="wrap gplay__in">
+    <div><p class="eyebrow"><span class="dot"></span> MiHa Games</p><p class="gplay__t">Waiting on your order? <em>Play a game.</em></p><p class="muted">Seven free games for one player or the whole table, right on your phone.</p></div>
+    <a class="btn btn--gold btn--lg" href="games.html"><span>Play MiHa Games</span></a>
   </div>
 </section>
 
@@ -1151,6 +1162,169 @@ ${pdfPage([byId('sweet'), EXTRAS[0], Object.assign({ compact: true }, EXTRAS[1])
 <div class="led"></div></div>
 </body></html>`;
 
+/* =========================== GAMES =========================== */
+const HOW = steps => `<div class="how"><p class="how__t">How to play</p><ol>${steps.map(s => `<li>${s}</li>`).join('')}</ol></div>`;
+const GLIST = [
+  ['stack', '01', 'Stack the Burger', 'Solo', 'Drop each layer on the bun. Stack it as high as you can.'],
+  ['memory', '02', 'MiHa Memory', '1–4 players', 'Flip cards, find matching dishes. Most pairs wins.'],
+  ['mivsha', '03', 'Mi vs Ha', '2 players or vs MiHa', 'Noughts and crosses with a MiHa twist. Three in a row wins.'],
+  ['tap', '04', 'Tap the Dish', 'Solo · 30 seconds', 'Tap the dishes as they pop up. Golden plates are worth 3.'],
+  ['quiz', '05', 'The Food Quiz', '1 player or the table', 'Ten quick questions about food and MiHa. How many can you get?'],
+  ['talk', '06', 'Would You Rather?', 'The whole table', 'Draw a card, everyone answers. No wrong answers, lots of debate.'],
+  ['chooser', '07', 'Who’s Choosing Dessert?', 'The whole table', 'Fingers on the circle. The LED ring picks one of you.'],
+];
+const games = `${head('MiHa Games · Play While You Wait', 'Seven free games to play while your order is on its way: Stack the Burger, MiHa Memory, Mi vs Ha, Tap the Dish, The Food Quiz, Would You Rather? and Who’s Choosing Dessert? On your phone, no app needed.')}
+${nav()}
+<main id="main">
+
+<section class="shero ghero">
+  <div class="wrap shero__grid">
+    <div class="shero__copy">
+      <p class="crumbs"><a href="index.html">MiHa</a> &nbsp;/&nbsp; MiHa Games</p>
+      <h1 class="display phero__title"><span class="line"><span>Play while</span></span><span class="line"><span><em>you wait.</em></span></span></h1>
+      <p class="lead">Your order is on its way. Pass the time with one of seven games, alone or with the whole table. Free, right here on your phone, no app to download.</p>
+      <div class="ghero__btns"><a class="btn btn--gold btn--lg" href="#games"><span>Choose a game</span></a><a class="btn btn--ghost btn--lg" href="menu.html"><span>See the menu</span></a></div>
+    </div>
+    <div class="shero__arches">
+      <figure class="arch arch--tall" data-clip><img src="${I('g-burger')}" alt="A MiHa burger" loading="lazy"></figure>
+      <figure class="arch arch--small" data-clip><img src="${I('g-dessert-choc')}" alt="A MiHa chocolate dessert" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--line gindex" id="games">
+  <div class="wrap">
+    <p class="eyebrow"><span class="dot"></span> Seven games</p>
+    <h2 class="h2">Pick a game, <em>any game.</em></h2>
+    <div class="led gindex__led" aria-hidden="true"></div>
+    <div class="gcards">
+      ${GLIST.map(([id, n, name, who, rule]) => `<a class="gcard" href="#${id}"><span class="gcard__n">${n}</span><b class="gcard__name">${name}</b><span class="gcard__who">${who}</span><span class="gcard__rule">${rule}</span><span class="gcard__go">Play <span aria-hidden="true">→</span></span></a>`).join('\n      ')}
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--line game" id="stack">
+  <div class="wrap game__grid">
+    <div class="game__copy">
+      <p class="eyebrow"><span class="num">01</span> Solo</p>
+      <h2 class="h2">Stack the <em>Burger.</em></h2>
+      ${HOW(['Tap <b>Start stacking</b>.', 'Each layer swings across the burger. Tap the board (or press space) to drop it.', 'Anything hanging over the edge falls off, so line it up. A perfect drop keeps your burger wide.', 'Miss the burger completely and it’s game over.'])}
+      <dl class="game__stats"><div><dt>Layers</dt><dd class="st-score">0</dd></div><div><dt>Your best</dt><dd class="st-best">0</dd></div></dl>
+    </div>
+    <div class="stage" data-lenis-prevent>
+      <div class="stage__led" aria-hidden="true"></div>
+      <canvas class="st-canvas" width="420" height="560" aria-label="Stack the Burger game board" role="img"></canvas>
+      <div class="stage__overlay st-overlay"><p class="stage__msg st-msg">Ready to build?</p><button class="btn btn--gold btn--lg st-start" type="button"><span>Start stacking</span></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--line game" id="memory">
+  <div class="wrap">
+    <div class="game__head">
+      <div><p class="eyebrow"><span class="num">02</span> 1–4 players</p><h2 class="h2">MiHa <em>Memory.</em></h2>
+      ${HOW(['Choose how many players.', 'On your turn, flip two cards.', 'Same dish? Keep the pair and go again. Different? Next player’s turn.', 'Most pairs wins. Playing solo? Find all eight in as few moves as you can.'])}</div>
+      <div class="mm-setup" role="group" aria-label="Number of players"><span>Players</span><button type="button" data-n="1" class="is-on">1</button><button type="button" data-n="2">2</button><button type="button" data-n="3">3</button><button type="button" data-n="4">4</button><button type="button" class="btn btn--gold mm-new"><span>New game</span></button></div>
+    </div>
+    <div class="mm-score" aria-live="polite"></div>
+    <div class="mm-board" data-lenis-prevent></div>
+    <div class="mm-win" hidden><p class="mm-win__t"></p><button class="btn btn--gold btn--lg mm-again" type="button"><span>Play again</span></button></div>
+  </div>
+</section>
+
+<section class="sec sec--line game" id="mivsha">
+  <div class="wrap game__grid game__grid--rev">
+    <div class="game__copy">
+      <p class="eyebrow"><span class="num">03</span> 2 players or vs MiHa</p>
+      <h2 class="h2">Mi <em>vs</em> Ha.</h2>
+      ${HOW(['Play a friend at the table, or take on MiHa.', '<b>Mi</b> goes first, then <b>Ha</b>. Take turns tapping a square.', 'Get three in a row (across, down or diagonal) to win the round.', 'The scoreboard keeps count. Losers go first next round.'])}
+      <div class="tt-mode" role="group" aria-label="Opponent"><button type="button" data-mode="cpu" class="is-on">vs MiHa</button><button type="button" data-mode="2p">2 players</button></div>
+    </div>
+    <div class="tt-wrap">
+      <div class="tt-score" aria-live="polite"><span class="tt-s tt-s--mi">Mi <b data-s="mi">0</b></span><span class="tt-s tt-s--d">Draws <b data-s="d">0</b></span><span class="tt-s tt-s--ha"><i class="tt-ha-name">MiHa</i> <b data-s="ha">0</b></span></div>
+      <div class="tt-board" data-lenis-prevent role="grid" aria-label="Mi vs Ha board">${Array.from({ length: 9 }, (_, i) => `<button class="tt-cell" type="button" data-i="${i}" aria-label="Square ${i + 1}"></button>`).join('')}</div>
+      <p class="tt-msg" aria-live="polite">Mi to play</p>
+      <button class="btn btn--ghost tt-reset" type="button"><span>New round</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--line game" id="tap">
+  <div class="wrap game__grid">
+    <div class="game__copy">
+      <p class="eyebrow"><span class="num">04</span> Solo · 30 seconds</p>
+      <h2 class="h2">Tap the <em>Dish.</em></h2>
+      ${HOW(['Tap <b>Start</b>. You have 30 seconds.', 'Dishes pop up in the arches. Tap each one before it disappears: <b>+1</b>.', 'A golden MiHa plate is worth <b>+3</b>.', 'Tap an empty arch and you lose a point. It gets faster as you go.'])}
+      <dl class="game__stats"><div><dt>Score</dt><dd class="tp-score">0</dd></div><div><dt>Time</dt><dd class="tp-time">30</dd></div><div><dt>Your best</dt><dd class="tp-best">0</dd></div></dl>
+    </div>
+    <div class="tp-wrap">
+      <div class="tp-grid" data-lenis-prevent>${Array.from({ length: 9 }, (_, i) => `<button class="tp-hole" type="button" data-i="${i}" aria-label="Arch ${i + 1}"><span class="tp-dish"></span></button>`).join('')}</div>
+      <div class="stage__overlay tp-overlay"><p class="stage__msg tp-msg">How fast are you?</p><button class="btn btn--gold btn--lg tp-start" type="button"><span>Start</span></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--line game" id="quiz">
+  <div class="wrap game__grid game__grid--rev">
+    <div class="game__copy">
+      <p class="eyebrow"><span class="num">05</span> 1 player or the table</p>
+      <h2 class="h2">The Food <em>Quiz.</em></h2>
+      ${HOW(['Ten questions about food from around the world, and a few about MiHa.', 'Tap the answer you think is right. You’ll see straight away if you got it.', 'Playing as a table? Read the question out loud and shout your answers before anyone taps.', 'Every game picks new questions, so play again.'])}
+    </div>
+    <div class="qz" aria-live="polite">
+      <div class="qz__top"><span class="qz__n">Question <b>1</b> of 10</span><span class="qz__s">Score <b>0</b></span></div>
+      <div class="qz__bar"><i></i></div>
+      <p class="qz__q">Ready when you are.</p>
+      <div class="qz__a"></div>
+      <button class="btn btn--gold btn--lg qz__go" type="button"><span>Start the quiz</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--line game" id="talk">
+  <div class="wrap game__grid">
+    <div class="game__copy">
+      <p class="eyebrow"><span class="num">06</span> The whole table</p>
+      <h2 class="h2">Would you <em>rather?</em></h2>
+      ${HOW(['Tap <b>Draw a card</b> and read it out.', 'Everyone picks a side and says why.', 'Draw the next card whenever you’re ready. There are no wrong answers.'])}
+    </div>
+    <div class="wyr">
+      <div class="wyr__card" aria-live="polite"><span class="wyr__k">Would you rather…</span><p class="wyr__q">Draw your first card.</p><span class="wyr__n"></span></div>
+      <button class="btn btn--gold btn--lg wyr__go" type="button"><span>Draw a card</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--line game" id="chooser">
+  <div class="wrap game__grid game__grid--rev">
+    <div class="game__copy">
+      <p class="eyebrow"><span class="num">07</span> The whole table</p>
+      <h2 class="h2">Who’s choosing <em>dessert?</em></h2>
+      <div class="how ch-touch"><p class="how__t">How to play</p><ol><li>Everyone puts one finger on the circle.</li><li>Hold still. After a moment the LED ring spins.</li><li>The finger left glowing chooses dessert for the table.</li></ol></div>
+      <div class="how ch-mouse"><p class="how__t">How to play</p><ol><li>Type everyone’s name and tap <b>Add</b>.</li><li>Tap <b>Spin the ring</b>.</li><li>The name it lands on chooses dessert for the table.</li></ol></div>
+      <form class="ch-names" aria-label="Add names">
+        <div class="field"><label for="ch-name">Name</label><input id="ch-name" autocomplete="off" placeholder="e.g. Aisha" maxlength="20"></div>
+        <button class="btn btn--ghost" type="submit"><span>Add</span></button>
+      </form>
+      <ul class="ch-list" aria-live="polite"></ul>
+    </div>
+    <div class="ch-stage" data-lenis-prevent>
+      <div class="ch-ring"><div class="ch-ring__in"><p class="ch-msg">Fingers on the circle</p></div></div>
+      <button class="btn btn--gold btn--lg ch-spin" type="button"><span>Spin the ring</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="bleed bleed--led" aria-label="Your food is on its way">
+  <div class="led led--top" aria-hidden="true"></div>
+  <p class="bleed__quote wrap"><span>Game over?</span><span><em>Your food’s nearly here.</em></span></p>
+  <div class="led led--bottom" aria-hidden="true"></div>
+</section>
+
+${next('menu.html', 'See the Menu')}
+</main>
+${footer()}`;
+
 /* =========================== RESERVE =========================== */
 const reserve = `${head('Reserve a Table · MiHa Eatery', 'Book a table at MiHa Melrose Arch or MiHa Centurion. Trading hours, directions and contact details.', I('g-tart'))}
 ${nav()}
@@ -1181,7 +1355,7 @@ ${next('menu.html', 'See the Menu')}
 </main>
 ${footer()}`;
 
-const out = { 'index.html': home, 'menu.html': menu, 'whats-on.html': whatson, 'events.html': events, 'story.html': story, 'drinks.html': bar, 'catering.html': catering, 'bakery.html': bakery, 'reserve.html': reserve, 'contact.html': contact, 'menu-print.html': menuPrint };
+const out = { 'index.html': home, 'menu.html': menu, 'whats-on.html': whatson, 'events.html': events, 'story.html': story, 'drinks.html': bar, 'catering.html': catering, 'bakery.html': bakery, 'reserve.html': reserve, 'contact.html': contact, 'menu-print.html': menuPrint, 'games.html': games };
 for (const [f, html] of Object.entries(out)) writeFileSync(new URL(f, import.meta.url), html);
 
 // list of MiHa images the pages use

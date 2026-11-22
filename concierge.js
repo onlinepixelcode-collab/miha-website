@@ -93,7 +93,7 @@
     list.forEach(([label, fn]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'cc__chip'; b.textContent = label; b.onclick = () => { wrap.remove(); me(label); fn(); }; wrap.appendChild(b); });
     log.appendChild(wrap); scroll();
   };
-  const main = () => chips([['Book a table', startBooking], ['Suggest something to eat', suggest], ['Order delivery', delivery], ['Buffets', () => { input.value = 'buffet'; form.requestSubmit(); }], ['Opening hours', hours], ['Is it Halaal?', halaal], ['Directions', directions]]);
+  const main = () => chips([['Book a table', startBooking], ['Suggest something to eat', suggest], ['Order delivery', delivery], ['Buffets', () => { input.value = 'buffet'; form.requestSubmit(); }], ['Opening hours', hours], ['Is it Halaal?', halaal], ['Directions', directions], ['Play a game while I wait', games]]);
 
   async function greet() {
     const h = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Johannesburg' })).getHours();
@@ -124,6 +124,14 @@
   async function anything() { await bot('Of course. What else can I help with?', 300); main(); }
 
 
+  /* ---------- games ---------- */
+  async function games() {
+    await bot('Waiting on your food? MiHa Games has seven free games: Stack the Burger, MiHa Memory, Mi vs Ha, Tap the Dish, The Food Quiz, Would You Rather? and Who’s Choosing Dessert?');
+    log.insertAdjacentHTML('beforeend', `<div class="cc__sum"><b>MiHa Games</b><br>For one player or the whole table, right here on your phone.<br><a class="cc__go" href="games.html">Play now</a></div>`);
+    scroll();
+    chips([['Open MiHa Games', () => (location.href = 'games.html')], ['Something else', anything]]);
+  }
+
   /* ---------- delivery ---------- */
   async function delivery() {
     let picks = []; try { picks = JSON.parse(localStorage.getItem('miha-picks') || '[]'); } catch (e) {}
@@ -131,7 +139,7 @@
     await bot('Order MiHa to your door through our delivery partners. The order and payment are completed in their app.' + list);
     log.insertAdjacentHTML('beforeend', `<div class="cc__sum"><b>MiHa Melrose Arch</b><br>Uber Eats · rated 4.4 by 1,000+ guests<br><a class="cc__go" href="https://www.ubereats.com/za/search?q=MiHa%20Melrose%20Arch" target="_blank" rel="noopener">Order on Uber Eats</a><br><br><b>MiHa X Lenasia</b><br>Mr D<br><a class="cc__go" href="https://www.mrdfood.com/" target="_blank" rel="noopener">Order on Mr D</a></div>`);
     scroll();
-    chips([['Build my order from the menu', () => (location.href = 'menu.html')], ['Something else', anything]]);
+    chips([['Build my order from the menu', () => (location.href = 'menu.html')], ['Play a game while I wait', games], ['Something else', anything]]);
   }
 
   /* ---------- suggestions ---------- */
@@ -207,6 +215,7 @@
     if (/share|group|family|platter/.test(q)) return showPicks('share');
     if (/light|salad|veg/.test(q)) return showPicks('light');
     if (/kid|child/.test(q)) return showPicks('kids');
+    if (/\bgames?\b|\bplay\b|\bbored\b/.test(q)) return games();
     if (/buffet|friday|breakfast buffet|weekend/.test(q)) { await bot('At MiHa Melrose Arch:<br><b>Friday Night Dinner Buffet</b>: Fridays 18:30–21:00, R250 per adult, R125 for kids 6–12.<br><b>Weekend Breakfast Buffet</b>: Saturday and Sunday 09:30–12:00, R199 per person.<br>Bookings are essential. <a href="whats-on.html">See what’s on</a>.'); return chips([['Book a buffet', () => { flow = { step: 'branch', data: {} }; setBranch('jhb'); }], ['Something else', anything]]); }
     if (/wedding|engagement|graduation|birthday party|function|private|celebrat|event/.test(q)) { await bot('MiHa hosts corporate events, weddings, engagements, birthdays and graduations at Melrose Arch and Centurion, with decor, setup and Halaal catering taken care of. <a href="events.html#enquire">Plan your event</a>.'); return main(); }
     if (/lenasia|miha x|mihax|trade route/.test(q)) { await bot('<b>MiHa X Lenasia</b> is at Trade Route Mall, Lenasia: gourmet food at exceptional value. Call <a href="tel:+27616014332">061 601 4332</a> or see <a href="https://www.instagram.com/mihax_lenasia/" target="_blank" rel="noopener">@mihax_lenasia</a>.'); return main(); }
