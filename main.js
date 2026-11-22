@@ -90,11 +90,11 @@
   function heroIn() {
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
     tl.to('.phero__media img, .phero__media video', { scale: 1, duration: 2.6, ease: 'power3.out' }, 0)
-      .from('.hero__title .line > span, .phero__title .line > span', { yPercent: 110, duration: 1.4, stagger: .12 }, .1)
-      .from('.hero__eyebrow, .phero .eyebrow, .crumbs', { y: 20, opacity: 0, duration: 1 }, .3)
-      .from('.hero__lead, .hero__actions > *, .phero .lead, .phero__row .btn', { y: 30, opacity: 0, duration: 1.1, stagger: .08 }, .5)
-      .from('.fcard', { y: 60, opacity: 0, scale: .9, duration: 1.4, stagger: .15 }, .6)
-      .from('.nav', { opacity: 0, duration: 1.2, clearProps: 'opacity' }, .2)
+      .from('.hero__title .line > span, .phero__title .line > span', { yPercent: 110, duration: 1, stagger: .08 }, 0)
+      .from('.hero__eyebrow, .phero .eyebrow, .crumbs', { y: 20, opacity: 0, duration: .7 }, .1)
+      .from('.hero__lead, .hero__actions > *, .phero .lead, .phero__row .btn', { y: 30, opacity: 0, duration: .8, stagger: .06 }, .2)
+      .from('.fcard', { y: 60, opacity: 0, scale: .9, duration: 1, stagger: .1 }, .3)
+      .from('.nav', { opacity: 0, duration: .6, clearProps: 'opacity' }, 0)
       .from('.hero__ticker', { yPercent: 100, duration: 1.2 }, .7);
     return tl;
   }
@@ -103,21 +103,24 @@
     sessionStorage.setItem('miha-seen', '1');
     lenis && lenis.stop();
     const counter = { v: 0 };
-    const tl = gsap.timeline({ onComplete: () => { loader.remove(); lenis && lenis.start(); } });
-    tl.to('.loader__mark path', { strokeDashoffset: 0, duration: 1.3, stagger: .18, ease: 'power2.inOut' }, .1)
-      .fromTo('.loader__word', { opacity: 0, letterSpacing: '1.2em' }, { opacity: 1, letterSpacing: '.5em', duration: 1.4, ease: 'expo.out' }, 1.0)
-      .to('.loader__line i', { scaleX: 1, duration: 1.6, ease: 'power2.inOut' }, .4)
-      .to(counter, { v: 100, duration: 1.6, ease: 'power2.inOut', onUpdate: () => { $('.loader__count').textContent = String(Math.round(counter.v)).padStart(2, '0'); } }, .4)
-      .to('.loader__inner', { opacity: 0, y: -20, duration: .6, ease: 'power2.in' }, 2.2)
-      .to('.loader__panel--top', { yPercent: -100, duration: 1.2, ease: 'expo.inOut' }, 2.6)
-      .to('.loader__panel--bottom', { yPercent: 100, duration: 1.2, ease: 'expo.inOut' }, 2.6)
-      .add(heroIn(), 2.9);
+    const tl = gsap.timeline();
+    const release = () => { window.__loaderGone = Math.round(performance.now()); loader.remove(); lenis && lenis.start(); };
+    // ~1.2s total: the monogram draws, the wordmark settles, the panels part
+    tl.to('.loader__mark path', { strokeDashoffset: 0, duration: .6, stagger: .08, ease: 'power2.inOut' }, 0)
+      .fromTo('.loader__word', { opacity: 0, letterSpacing: '1em' }, { opacity: 1, letterSpacing: '.5em', duration: .6, ease: 'expo.out' }, .3)
+      .to('.loader__line i', { scaleX: 1, duration: .7, ease: 'power2.inOut' }, .1)
+      .to(counter, { v: 100, duration: .7, ease: 'power2.inOut', onUpdate: () => { $('.loader__count').textContent = String(Math.round(counter.v)).padStart(2, '0'); } }, .1)
+      .to('.loader__inner', { opacity: 0, y: -14, duration: .3, ease: 'power2.in' }, .85)
+      .to('.loader__panel--top', { yPercent: -100, duration: .6, ease: 'expo.inOut' }, .95)
+      .to('.loader__panel--bottom', { yPercent: 100, duration: .6, ease: 'expo.inOut' }, .95)
+      .add(heroIn(), 1.05)
+      .call(release, null, 1.5);   // page is usable as soon as the panels have parted
   } else {
     loader && loader.remove();
     if (curtain && fromInside) {
       gsap.set(curtain, { yPercent: 0 });
-      gsap.to(curtain, { yPercent: -100, duration: 1.1, ease: 'expo.inOut', delay: .05 });
-      heroIn().delay(.45);
+      gsap.to(curtain, { yPercent: -100, duration: .5, ease: 'expo.inOut' });
+      heroIn().delay(.15);
     } else {
       heroIn();
     }
@@ -136,8 +139,8 @@
       const w = curtain && $('.curtain__word', curtain);
       if (w) w.textContent = label.length < 24 ? label : 'MiHa';
       gsap.timeline({ onComplete: () => (location.href = href) })
-        .fromTo(curtain, { yPercent: 100 }, { yPercent: 0, duration: .9, ease: 'expo.inOut' })
-        .fromTo([$('.curtain__mark', curtain), w], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .5, stagger: .08, ease: 'power3.out' }, .45);
+        .fromTo(curtain, { yPercent: 100 }, { yPercent: 0, duration: .4, ease: 'power3.inOut' })
+        .fromTo([$('.curtain__mark', curtain), w], { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .2, stagger: .04, ease: 'power3.out' }, .2);
     });
   });
   window.addEventListener('pageshow', e => { if (e.persisted && curtain) gsap.set(curtain, { yPercent: 100 }); });

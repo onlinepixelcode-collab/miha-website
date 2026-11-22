@@ -811,3 +811,6 @@ html[data-theme="light"] body:has(.phero) .nav:not(.is-scrolled){--bone:#efe8dd;
 .quote cite a{display:inline-flex;align-items:center;min-height:44px}
 /* safety net: if scripts fail to load, the curtain can never cover the page */
 html.no-js .curtain{display:none}
+/* hard cap: the first-visit loader can never stay longer than ~1.6s, even on a slow connection */
+.loader{animation:loaderCap .35s ease 1.6s forwards}
+@keyframes loaderCap{to{opacity:0;visibility:hidden}}
