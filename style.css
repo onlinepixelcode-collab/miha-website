@@ -809,3 +809,5 @@ html[data-theme="light"] body:has(.phero) .nav:not(.is-scrolled){--bone:#efe8dd;
 }
 @media (max-width:560px){.join__form{grid-template-columns:1fr}.join__form .btn,.join__form .field:nth-child(3){grid-column:1/-1}}
 .quote cite a{display:inline-flex;align-items:center;min-height:44px}
+/* safety net: if scripts fail to load, the curtain can never cover the page */
+html.no-js .curtain{display:none}

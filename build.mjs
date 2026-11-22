@@ -3,7 +3,7 @@ import { writeFileSync, readFileSync } from 'node:fs';
 import { MENU, BUFFETS } from './content.mjs';
 
 const MARK = (cls="") => `<svg class="mh ${cls}" viewBox="40 50 440 430" fill="none" stroke="currentColor" stroke-width="46" aria-hidden="true"><path pathLength="1" d="M73 470V300a79.5 70 0 0 1 159 0v170"/><path pathLength="1" d="M232 300a62 68 0 0 1 72-67"/><path pathLength="1" d="M354 64v406"/><path pathLength="1" d="M354 300a44.5 67 0 0 1 89 0v170"/></svg>`;
-const HI = {"imgs-24-of-118":"g-prawns","imgs-12-of-118":"g-interior-logo","imgs-110-of-118":"g-mojito","imgs-35-of-118":"g-platter","img-141-of-163":"g-crepe","imgs-18-of-118":"g-interior","imgs-99-of-118":"g-platter","imgs-89-of-118":"g-burger","img-131-of-163":"g-crepe","imgs-15-of-118":"g-curry","img-135-of-163":"g-tart","img-161-of-163":"g-dessert-choc","imgs-62-of-118":"g-mojito","img-139-of-163":"g-tart","imgs-1-of-118":"g-burger-board","imgs-29-of-118":"g-prawns","imgs-44-of-118":"g-penne","imgs-88-of-118":"g-burger","img-155-of-163":"g-tart","imgs-57-of-118":"g-fish","imgs-23-of-118":"g-sushi","img-157-of-163":"g-dessert-choc","imgs-41-of-118":"g-pizza","img-98-of-163":"g-bagel","img-163-of-163":"g-curry","imgs-33-of-118":"g-curry","imgs-56-of-118":"g-fish","Clenergy-Breads-3-1":"g-bagel","Clenergy-Breads-3-3":"g-crepe","img-142-of-163":"g-dessert-choc","img-138-of-163":"g-tart","img-144-of-163":"g-crepe","img-160-of-163":"g-dessert-choc","img-127-of-163":"g-bagel","imgs-17-of-118":"g-interior","imgs-77-of-118":"g-mojito"};
+const HI = {"imgs-24-of-118":"g-prawns","imgs-12-of-118":"g-dessert-choc","imgs-110-of-118":"g-mojito","imgs-35-of-118":"g-platter","img-141-of-163":"g-crepe","imgs-18-of-118":"g-prawns","imgs-99-of-118":"g-platter","imgs-89-of-118":"g-burger","img-131-of-163":"g-crepe","imgs-15-of-118":"g-curry","img-135-of-163":"g-tart","img-161-of-163":"g-dessert-choc","imgs-62-of-118":"g-mojito","img-139-of-163":"g-tart","imgs-1-of-118":"g-burger-board","imgs-29-of-118":"g-prawns","imgs-44-of-118":"g-penne","imgs-88-of-118":"g-burger","img-155-of-163":"g-tart","imgs-57-of-118":"g-fish","imgs-23-of-118":"g-sushi","img-157-of-163":"g-dessert-choc","imgs-41-of-118":"g-pizza","img-98-of-163":"g-bagel","img-163-of-163":"g-curry","imgs-33-of-118":"g-curry","imgs-56-of-118":"g-fish","Clenergy-Breads-3-1":"g-bagel","Clenergy-Breads-3-3":"g-crepe","img-142-of-163":"g-dessert-choc","img-138-of-163":"g-tart","img-144-of-163":"g-crepe","img-160-of-163":"g-dessert-choc","img-127-of-163":"g-bagel","imgs-17-of-118":"g-platter","imgs-77-of-118":"g-mojito"};
 const I = n => `img/miha/${HI[n] || n}.jpg`; // MiHa's own photography (miha.co.za media library)
 const DINE_JHB = 'https://www.dineplan.com/restaurants/miha';
 const DINE_PTA = 'https://www.dineplan.com/restaurants/miha-pretoria';
@@ -140,7 +140,7 @@ const branches = () => `
     <h2 class="h2">Find your <em>table.</em></h2>
     <div class="homes__grid">
       <article class="home" data-branch="jhb">
-        <a class="home__img" href="${DINE_JHB}" target="_blank" rel="noopener" data-cursor="Book"><img src="${I('g-interior-logo')}" alt="Inside MiHa Melrose Arch: the backlit MiHa logo portal" loading="lazy"></a>
+        <a class="home__img" href="${DINE_JHB}" target="_blank" rel="noopener" data-cursor="Book"><img src="${I('g-sushi')}" alt="MiHa sushi" loading="lazy"></a>
         <div class="home__body">
           <div class="home__top"><h3>Melrose Arch</h3><span class="status"><i></i><em>Checking hours…</em></span></div>
           <p class="home__addr">Shop HL48, Melrose Arch, Johannesburg</p>
@@ -189,10 +189,10 @@ ${nav()}
   </div>
     <div class="hero__arch">
       <div class="hero__reel">
-    <img class="is-on" src="${I('g-interior-logo')}" alt="MiHa's lounge with the gold MiHa logo and velvet cushions" fetchpriority="high">
-    <img src="${I('g-platter')}" alt="A MiHa sharing platter with samoosas, kebabs and dips" loading="lazy">
+    <img class="is-on" src="${I('g-platter')}" alt="A MiHa tapas board with falafel, kebabs, samoosas and dips" fetchpriority="high">
+    <img src="${I('g-sushi')}" alt="MiHa sushi rolls" loading="lazy">
     <img src="${I('g-prawns')}" alt="MiHa peri-peri prawns with chips and charred lemon" loading="lazy">
-    <img src="${I('g-interior')}" alt="The MiHa dining room" loading="lazy">
+    <img src="${I('g-pizza')}" alt="A stone-fired MiHa pizza" loading="lazy">
     <img src="${I('g-tart')}" alt="A MiHa chocolate tart with chocolate drizzle" loading="lazy">
   </div>
       <div class="hero__float" aria-hidden="true">
@@ -247,12 +247,6 @@ ${nav()}
   </div>
 </section>
 
-<section class="portal" aria-label="Step inside MiHa">
-  <figure class="portal__img"><img src="${I('g-interior-logo')}" alt="MiHa Melrose Arch: the backlit moon portal with the MiHa logo, velvet cushions and gold pendant lights" loading="lazy"></figure>
-  <div class="portal__ring" aria-hidden="true"></div>
-  <div class="portal__copy wrap"><p class="eyebrow">Melrose Arch</p><h2 class="h2">Step <em>inside.</em></h2></div>
-</section>
-
 <section class="day" id="day">
   <div class="day__pin">
     <div class="day__head wrap">
@@ -287,7 +281,7 @@ ${nav()}
 </section>
 
 <section class="bleed" aria-label="The MiHa bar">
-  <figure class="bleed__img"><img src="${I('g-interior')}" alt="The MiHa dining room with white chairs and warm lights" loading="lazy"></figure>
+  <figure class="bleed__img"><img src="${I('g-pizza')}" alt="A stone-fired MiHa pizza" loading="lazy"></figure>
   <p class="bleed__quote wrap"><span>“Where casual café</span><span><em>meets classic dining.”</em></span></p>
 </section>
 
@@ -453,10 +447,10 @@ ${footer()}`;
 
 /* =========================== EVENTS =========================== */
 const occ = (t, d, icon) => `<div class="occ" data-reveal><span class="occ__ic" aria-hidden="true">${icon}</span><h3>${t}</h3><p>${d}</p></div>`;
-const events = `${head('Events & Private Dining · MiHa Eatery', 'Host corporate events, weddings, engagements, birthdays and graduations at MiHa Melrose Arch or Centurion. Decor, setup and Halaal catering.', I('g-interior'))}
+const events = `${head('Events & Private Dining · MiHa Eatery', 'Host corporate events, weddings, engagements, birthdays and graduations at MiHa Melrose Arch or Centurion. Decor, setup and Halaal catering.', I('g-platter'))}
 ${nav()}
 <main id="main">
-${phero({ crumb: 'Events', title: '<span class="line"><span>Your occasion,</span></span><span class="line"><span><em>our care.</em></span></span>', lead: 'Corporate events, weddings, engagements, birthdays and graduations. MiHa takes care of the decor, setup and catering.', img: 'g-interior', cta: '<a class="btn btn--gold btn--lg mag" href="#enquire"><span>Plan your event</span></a>' })}
+${phero({ crumb: 'Events', title: '<span class="line"><span>Your occasion,</span></span><span class="line"><span><em>our care.</em></span></span>', lead: 'Corporate events, weddings, engagements, birthdays and graduations. MiHa takes care of the decor, setup and catering.', img: 'g-platter', cta: '<a class="btn btn--gold btn--lg mag" href="#enquire"><span>Plan your event</span></a>' })}
 <section class="statement"><div class="wrap">
   <p class="eyebrow"><span class="num">01</span> Effortless from start to finish</p>
   <p class="statement__text" data-words>We take care of the decor, the setup and the food, so you can enjoy the moment while we handle the details. Choose one of our packages, or let us curate one around your occasion, style and needs.</p>
@@ -486,7 +480,7 @@ ${phero({ crumb: 'Events', title: '<span class="line"><span>Your occasion,</span
   <p class="eyebrow"><span class="num">04</span> Venues</p>
   <h2 class="h2">Two beautiful <em>rooms.</em></h2>
   <div class="homes__grid">
-    <article class="home"><div class="home__img"><img src="${I('g-interior-logo')}" alt="MiHa Melrose Arch" loading="lazy"></div><div class="home__body"><h3>Melrose Arch</h3><p class="home__addr">Shop HL48, Melrose Arch, Johannesburg</p><a class="link-arrow" href="tel:+27607489464">060 748 9464</a></div></article>
+    <article class="home"><div class="home__img"><img src="${I('g-sushi')}" alt="MiHa sushi" loading="lazy"></div><div class="home__body"><h3>Melrose Arch</h3><p class="home__addr">Shop HL48, Melrose Arch, Johannesburg</p><a class="link-arrow" href="tel:+27607489464">060 748 9464</a></div></article>
     <article class="home"><div class="home__img"><img src="${I('g-platter')}" alt="A MiHa sharing platter" loading="lazy"></div><div class="home__body"><h3>Centurion</h3><p class="home__addr">Golden Point Padel, 134 Baard Rd, Raslouw, Pretoria</p><a class="link-arrow" href="tel:+27780059386">078 005 9386</a></div></article>
   </div>
 </div></section>
@@ -695,10 +689,10 @@ ${next('reserve.html', 'Reserve a table')}
 ${footer()}`;
 
 /* =========================== RESERVE =========================== */
-const reserve = `${head('Reserve a Table · MiHa Eatery', 'Book a table at MiHa Melrose Arch or MiHa Centurion. Trading hours, directions and contact details.', I('img-150-of-163'))}
+const reserve = `${head('Reserve a Table · MiHa Eatery', 'Book a table at MiHa Melrose Arch or MiHa Centurion. Trading hours, directions and contact details.', I('g-tart'))}
 ${nav()}
 <main id="main">
-${phero({ crumb: 'Reserve', title: '<span class="line"><span>Choose</span></span><span class="line"><span><em>your MiHa.</em></span></span>', lead: 'Five quick steps: choose your branch, pick a time, tell us who is coming and confirm.', img: 'g-interior' })}
+${phero({ crumb: 'Reserve', title: '<span class="line"><span>Choose</span></span><span class="line"><span><em>your MiHa.</em></span></span>', lead: 'Five quick steps: choose your branch, pick a time, tell us who is coming and confirm.', img: 'g-tart' })}
 ${readFileSync(new URL('parts/booking-form.html', import.meta.url),'utf8')}
 ${branches()}
 <section class="sec sec--line"><div class="wrap split">

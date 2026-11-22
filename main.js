@@ -83,6 +83,9 @@
   sessionStorage.removeItem('miha-nav');
   const loader = $('.loader');
   const curtain = $('.curtain');
+  // Drive the curtain only with yPercent: clear the CSS translateY so the two never add up
+  // (that stacking left the curtain covering the page after a page change).
+  if (curtain) { curtain.style.transform = 'none'; gsap.set(curtain, { y: 0, yPercent: 100 }); }
 
   function heroIn() {
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });

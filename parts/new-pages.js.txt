@@ -89,10 +89,10 @@ ${footer()}`;
 
 /* =========================== EVENTS =========================== */
 const occ = (t, d, icon) => `<div class="occ" data-reveal><span class="occ__ic" aria-hidden="true">${icon}</span><h3>${t}</h3><p>${d}</p></div>`;
-const events = `${head('Events & Private Dining · MiHa Eatery', 'Host corporate events, weddings, engagements, birthdays and graduations at MiHa Melrose Arch or Centurion. Decor, setup and Halaal catering.', I('g-interior'))}
+const events = `${head('Events & Private Dining · MiHa Eatery', 'Host corporate events, weddings, engagements, birthdays and graduations at MiHa Melrose Arch or Centurion. Decor, setup and Halaal catering.', I('g-platter'))}
 ${nav()}
 <main id="main">
-${phero({ crumb: 'Events', title: '<span class="line"><span>Your occasion,</span></span><span class="line"><span><em>our care.</em></span></span>', lead: 'Corporate events, weddings, engagements, birthdays and graduations. MiHa takes care of the decor, setup and catering.', img: 'g-interior', cta: '<a class="btn btn--gold btn--lg mag" href="#enquire"><span>Plan your event</span></a>' })}
+${phero({ crumb: 'Events', title: '<span class="line"><span>Your occasion,</span></span><span class="line"><span><em>our care.</em></span></span>', lead: 'Corporate events, weddings, engagements, birthdays and graduations. MiHa takes care of the decor, setup and catering.', img: 'g-platter', cta: '<a class="btn btn--gold btn--lg mag" href="#enquire"><span>Plan your event</span></a>' })}
 <section class="statement"><div class="wrap">
   <p class="eyebrow"><span class="num">01</span> Effortless from start to finish</p>
   <p class="statement__text" data-words>We take care of the decor, the setup and the food, so you can enjoy the moment while we handle the details. Choose one of our packages, or let us curate one around your occasion, style and needs.</p>
@@ -122,7 +122,7 @@ ${phero({ crumb: 'Events', title: '<span class="line"><span>Your occasion,</span
   <p class="eyebrow"><span class="num">04</span> Venues</p>
   <h2 class="h2">Two beautiful <em>rooms.</em></h2>
   <div class="homes__grid">
-    <article class="home"><div class="home__img"><img src="${I('g-interior-logo')}" alt="MiHa Melrose Arch" loading="lazy"></div><div class="home__body"><h3>Melrose Arch</h3><p class="home__addr">Shop HL48, Melrose Arch, Johannesburg</p><a class="link-arrow" href="tel:+27607489464">060 748 9464</a></div></article>
+    <article class="home"><div class="home__img"><img src="${I('g-sushi')}" alt="MiHa sushi" loading="lazy"></div><div class="home__body"><h3>Melrose Arch</h3><p class="home__addr">Shop HL48, Melrose Arch, Johannesburg</p><a class="link-arrow" href="tel:+27607489464">060 748 9464</a></div></article>
     <article class="home"><div class="home__img"><img src="${I('g-platter')}" alt="A MiHa sharing platter" loading="lazy"></div><div class="home__body"><h3>Centurion</h3><p class="home__addr">Golden Point Padel, 134 Baard Rd, Raslouw, Pretoria</p><a class="link-arrow" href="tel:+27780059386">078 005 9386</a></div></article>
   </div>
 </div></section>
