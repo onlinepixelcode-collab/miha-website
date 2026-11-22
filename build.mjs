@@ -15,7 +15,8 @@ const pages = [
   ['bar.html', 'The Bar'], ['catering.html', 'Catering'], ['bakery.html', 'Bakery'], ['reserve.html', 'Reserve']
 ];
 
-const head = (title, desc, og = I('imgs-17-of-118')) => `<!doctype html>
+const SITE = 'https://onlinepixelcode-collab.github.io/miha-website/'; // live address, used for link previews
+const head = (title, desc, og) => `<!doctype html>
 <html lang="en-ZA" class="no-js">
 <head>
 <meta charset="utf-8">
@@ -23,10 +24,23 @@ const head = (title, desc, og = I('imgs-17-of-118')) => `<!doctype html>
 <title>${title}</title>
 <meta name="description" content="${desc}">
 <meta name="theme-color" content="#0d0b09">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MiHa Eatery">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${desc}">
-<meta property="og:image" content="${og}">
+<meta property="og:image" content="${SITE}img/brand/share.png?v=2">
+<meta property="og:image:secure_url" content="${SITE}img/brand/share.png?v=2">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MiHa Eatery logo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${title}">
+<meta name="twitter:description" content="${desc}">
+<meta name="twitter:image" content="${SITE}img/brand/share.png?v=2">
 <link rel="icon" type="image/svg+xml" href="img/brand/mh-mark.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="img/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="img/brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
