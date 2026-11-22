@@ -1,0 +1,68 @@
+<section class="sec booking" id="book" style="padding-top:40px"><div class="wrap">
+  <div class="bk" data-booking>
+    <div class="bk-head">
+      <p class="eyebrow"><span class="num">—</span> Book in under a minute</p>
+      <ol class="bk-dots" aria-label="Booking steps">
+        <li class="is-current"><button type="button"><i>1</i><span>Restaurant</span></button></li>
+        <li><button type="button"><i>2</i><span>Date &amp; time</span></button></li>
+        <li><button type="button"><i>3</i><span>Guests</span></button></li>
+        <li><button type="button"><i>4</i><span>Your details</span></button></li>
+        <li><button type="button"><i>5</i><span>Confirm</span></button></li>
+      </ol>
+      <div class="bk-progress" aria-hidden="true"><i></i></div>
+    </div>
+
+    <fieldset class="bk-step">
+      <h3 class="bk-title">Which MiHa?</h3>
+      <div class="bk-branches">
+        <label class="bk-branch"><input type="radio" name="bk-branch" value="jhb"><img src="img/miha/g-interior-logo.jpg" alt="" loading="lazy"><span><b>Melrose Arch</b><small>Shop HL48, Melrose Arch, Johannesburg</small></span></label>
+        <label class="bk-branch"><input type="radio" name="bk-branch" value="pta"><img src="img/miha/g-platter.jpg" alt="" loading="lazy"><span><b>Centurion</b><small>134 Baard Rd, Raslouw, Pretoria</small></span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="bk-step" hidden>
+      <h3 class="bk-title">When would you like to come?</h3>
+      <div class="bk-dates" role="group" aria-label="Choose a day"></div>
+      <div class="bk-times" role="group" aria-label="Choose a time"></div>
+    </fieldset>
+
+    <fieldset class="bk-step" hidden>
+      <h3 class="bk-title">How many guests?</h3>
+      <div class="bk-guests"><button type="button" data-d="-1" aria-label="Fewer guests">−</button><output aria-live="polite">2</output><button type="button" data-d="1" aria-label="More guests">+</button></div>
+      <p class="bk-large bk-hint" hidden>For 9 or more guests MiHa will confirm your table personally after you send the request.</p>
+      <p class="bk-sub">Is it a special occasion?</p>
+      <div class="bk-occ">
+        <label><input type="radio" name="bk-occ" value="" checked><span>Just a meal</span></label>
+        <label><input type="radio" name="bk-occ" value="Birthday"><span>Birthday</span></label>
+        <label><input type="radio" name="bk-occ" value="Anniversary"><span>Anniversary</span></label>
+        <label><input type="radio" name="bk-occ" value="Business"><span>Business</span></label>
+        <label><input type="radio" name="bk-occ" value="Family gathering"><span>Family gathering</span></label>
+        <label><input type="radio" name="bk-occ" value="Date night"><span>Date night</span></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="bk-step" hidden>
+      <h3 class="bk-title">Your details</h3>
+      <div class="form">
+        <div class="field"><label for="bk-name">Full name</label><input id="bk-name" autocomplete="name" required><small class="bk-err">Please enter your name.</small></div>
+        <div class="field"><label for="bk-phone">Mobile number</label><input id="bk-phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="e.g. 082 123 4567"><small class="bk-err">Please enter a valid number.</small></div>
+        <div class="field field--full"><label for="bk-email">Email (optional)</label><input id="bk-email" type="email" autocomplete="email"><small class="bk-err">Please check your email address.</small></div>
+        <div class="field field--full"><label for="bk-notes">Requests (optional)</label><textarea id="bk-notes" placeholder="High chair, allergies, a quiet table…"></textarea></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="bk-step" hidden>
+      <h3 class="bk-title">Check and confirm</h3>
+      <div class="bk-review"></div>
+      <div class="bk-final">
+        <a class="btn btn--gold btn--lg bk-confirm" href="https://www.dineplan.com/restaurants/miha" target="_blank" rel="noopener"><span>Confirm on Dineplan</span></a>
+        <a class="btn btn--ghost btn--lg bk-email" href="mailto:yasin@miha.co.za"><span>Send to MiHa by email</span></a>
+        <button type="button" class="link-arrow bk-ics">Add to my calendar</button>
+        <button type="button" class="link-arrow bk-edit">Change details</button>
+      </div>
+      <p class="bk-done bk-hint" hidden>Your details are copied. Finish on Dineplan to lock in the table.</p>
+    </fieldset>
+
+    <div class="bk-nav"><button type="button" class="btn btn--ghost bk-back" hidden><span>Back</span></button><button type="button" class="btn btn--gold btn--lg bk-next"><span>Continue</span></button></div>
+  </div>
+</div></section>

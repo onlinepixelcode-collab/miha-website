@@ -1,0 +1,43 @@
+<section class="teaser sec--line">
+  <div class="wrap teaser__grid">
+    <figure class="teaser__img" data-clip><img src="${I('g-curry')}" alt="A MiHa curry served for the Friday buffet" loading="lazy"></figure>
+    <div>
+      <p class="eyebrow"><span class="num">—</span> What’s on</p>
+      <h2 class="h2">Friday nights are <em>buffet nights.</em></h2>
+      <ul class="teaser__list">
+        <li><b>Friday Night Dinner Buffet</b><span>Fridays · 18:30–21:00 · R250 adults, R125 kids 6–12</span></li>
+        <li><b>Weekend Breakfast Buffet</b><span>Sat &amp; Sun · 09:30–12:00 · R199 per person</span></li>
+      </ul>
+      <p class="muted">Both at MiHa Melrose Arch. Bookings are essential.</p>
+      <p style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn btn--gold mag" href="reserve.html?branch=jhb#book"><span>Book a buffet</span></a><a class="btn btn--ghost mag" href="whats-on.html"><span>See what’s on</span></a></p>
+    </div>
+  </div>
+</section>
+
+<section class="reviews sec--line" aria-labelledby="rev-title">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">—</span> Guest love</p>
+    <h2 class="h2" id="rev-title">Loved by <em>Johannesburg.</em></h2>
+    <div class="ratings">
+      <div class="rating" data-reveal><b>4.4</b><span class="stars" aria-hidden="true">★★★★★</span><p>Uber Eats<small>1,000+ ratings</small></p></div>
+      <div class="rating" data-reveal><b>4.1</b><span class="stars" aria-hidden="true">★★★★★</span><p>Dineplan<small>1,138 reviews</small></p></div>
+      <div class="rating" data-reveal><b>9.1</b><span class="stars" aria-hidden="true">/10</span><p>Dinestar<small>100% of guests recommend</small></p></div>
+    </div>
+    <div class="quotes">
+      <blockquote class="quote" data-reveal><p>“The food was delicious… the best cheesecake I’ve had by far.”</p><cite>Guest review · <a href="https://dinestar.co.za/" target="_blank" rel="noopener">Dinestar</a></cite></blockquote>
+      <blockquote class="quote" data-reveal><p>“A good spot to host your next alcohol-free family get-together.”</p><cite><a href="https://www.inyourpocket.com/johannesburg" target="_blank" rel="noopener">Johannesburg In Your Pocket</a></cite></blockquote>
+    </div>
+    <p style="margin-top:36px"><a class="link-arrow" href="https://g.page/r/CccsfAQ77eEuEBM/review" target="_blank" rel="noopener">Dined with us? Leave a Google review ↗</a></p>
+  </div>
+</section>
+
+<section class="order sec--line">
+  <div class="wrap order__grid">
+    <div><p class="eyebrow"><span class="num">—</span> Order online</p><h2 class="h2">MiHa, <em>delivered.</em></h2><p class="lead">Your favourites from MiHa Melrose Arch on Uber Eats. MiHa X Lenasia delivers on Mr D.</p></div>
+    <div class="order__cards">
+      <a class="order__card" href="${UBER}" target="_blank" rel="noopener" data-cursor="Order"><b>Uber Eats</b><span>MiHa Melrose Arch · ★ 4.4 (1,000+)</span><i aria-hidden="true">↗</i></a>
+      <a class="order__card" href="${MRD}" target="_blank" rel="noopener" data-cursor="Order"><b>Mr D</b><span>MiHa X Lenasia</span><i aria-hidden="true">↗</i></a>
+    </div>
+  </div>
+</section>
+

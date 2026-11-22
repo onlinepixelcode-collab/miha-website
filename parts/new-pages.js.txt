@@ -1,0 +1,153 @@
+/* =========================== MENU =========================== */
+const dishRow = ([name, desc, price, tags]) => {
+  const t = tags.split(' ').filter(Boolean);
+  const badge = t.includes('sig') ? ' <span class="tag">Signature</span>' : '';
+  const ic = (t.includes('spicy') ? ' <span class="ic" title="Spicy" aria-label="Spicy">🌶</span>' : '') + (t.includes('veg') ? ' <span class="ic ic--veg" title="Vegetarian" aria-label="Vegetarian">V</span>' : '');
+  return `<div class="dish" data-tags="${tags}"><h3>${name}${badge}${ic}</h3><span class="price">${price}</span><p>${desc}</p></div>`;
+};
+const menuSec = (s, i) => `
+<section class="msec" id="${s.id}">
+  <div class="wrap msec__grid${i % 2 ? ' msec__grid--rev' : ''}">
+    <figure class="msec__img" data-clip><img src="${I(s.img)}" alt="${s.alt}" loading="lazy"></figure>
+    <div><h2 class="msec__title">${s.title}</h2>${s.items.map(dishRow).join('')}</div>
+  </div>
+</section>`;
+const orderOnline = () => `
+<section class="order sec--line">
+  <div class="wrap order__grid">
+    <div><p class="eyebrow"><span class="num">—</span> Order online</p><h2 class="h2">MiHa, <em>delivered.</em></h2><p class="lead">Your favourites from MiHa Melrose Arch on Uber Eats, rated 4.4 by more than 1,000 guests. MiHa X Lenasia delivers on Mr D.</p></div>
+    <div class="order__cards">
+      <a class="order__card" href="${UBER}" target="_blank" rel="noopener" data-cursor="Order"><b>Uber Eats</b><span>MiHa Melrose Arch · ★ 4.4 (1,000+)</span><i aria-hidden="true">↗</i></a>
+      <a class="order__card" href="${MRD}" target="_blank" rel="noopener" data-cursor="Order"><b>Mr D</b><span>MiHa X Lenasia</span><i aria-hidden="true">↗</i></a>
+    </div>
+  </div>
+</section>`;
+const menu = `${head('Menu · MiHa Eatery', 'MiHa’s menu: signature 28-day aged steaks, Portuguese prawns, sushi platters, stone-fired pizza, burgers and desserts. Strictly Halaal.', I('g-prawns'))}
+${nav()}
+<main id="main">
+${phero({ crumb: 'Menu', title: '<span class="line"><span>Taste &amp;</span></span><span class="line"><span><em>variety.</em></span></span>', lead: 'From 28-day aged steaks to sushi platters and stone-fired pizza. Every dish strictly Halaal.', img: 'g-prawns', cta: '<a class="btn btn--gold btn--lg mag" href="reserve.html#book"><span>Book a table</span></a>' })}
+<nav class="mtabs" aria-label="Menu sections"><div class="wrap mtabs__in">
+  ${MENU.map(s => `<a href="#${s.id}">${s.title.replace(/<[^>]+>/g, '').replace('&amp;', '&')}</a>`).join('')}
+</div></nav>
+<div class="wrap"><div class="mfilters" role="group" aria-label="Filter dishes">
+  <button aria-pressed="true" data-filter="all">Everything</button><button aria-pressed="false" data-filter="sig">Signature</button><button aria-pressed="false" data-filter="spicy">Spicy</button><button aria-pressed="false" data-filter="veg">Vegetarian</button><button aria-pressed="false" data-filter="share">To share</button>
+</div></div>
+${MENU.map(menuSec).join('')}
+<section class="sec"><div class="wrap menu__note"><p>A selection from MiHa’s menu as listed on Dineplan (July 2025). Dishes and prices may change; ask your server for today’s menu, kids’ menu and specials.</p><a class="link-arrow" href="${PDF}" target="_blank" rel="noopener">Download MiHa’s printed menu (PDF) ↗</a></div></section>
+${orderOnline()}
+${next('whats-on.html', 'What’s On')}
+</main>
+${footer()}`;
+
+/* =========================== WHAT'S ON (buffets) =========================== */
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const weekStrip = () => `<ol class="week" aria-label="This week at MiHa">${[1, 2, 3, 4, 5, 6, 0].map(d => {
+  const b = BUFFETS.filter(x => x.day === d);
+  return `<li class="week__day${b.length ? ' has-event' : ''}" data-day="${d}"><b>${DAYS[d].slice(0, 3)}</b>${b.length ? b.map(x => `<span>${x.name.replace(' Buffet', '')}<small>${x.time}</small></span>`).join('') : '<span class="muted">À la carte</span>'}</li>`;
+}).join('')}</ol>`;
+const buffetCard = (b, label) => `
+<article class="buffet">
+  <figure class="buffet__img" data-clip><img src="${I(b.img)}" alt="" loading="lazy"></figure>
+  <div class="buffet__body">
+    <p class="eyebrow">${label}</p>
+    <h3>${b.name}</h3>
+    <dl class="buffet__facts"><div><dt>When</dt><dd>${label} · ${b.time}</dd></div><div><dt>Where</dt><dd>${b.where}</dd></div><div><dt>Price</dt><dd>${b.price}</dd></div></dl>
+    <p class="muted">${b.note}</p>
+    <div class="buffet__actions"><a class="btn btn--gold mag" href="reserve.html?branch=${b.branch}#book"><span>Book this buffet</span></a><a class="link-arrow" href="tel:+27607489464">Call 060 748 9464</a></div>
+  </div>
+</article>`;
+const whatson = `${head('What’s On · Buffets at MiHa', 'Friday Night Dinner Buffet and Weekend Breakfast Buffet at MiHa Melrose Arch. Prices, times and bookings.', I('g-curry'))}
+${nav()}
+<main id="main">
+${phero({ crumb: 'What’s On', title: '<span class="line"><span>Buffet</span></span><span class="line"><span><em>nights.</em></span></span>', lead: 'Friday dinners and weekend breakfasts at MiHa Melrose Arch. Come hungry; bookings are essential.', img: 'g-curry', cta: '<a class="btn btn--gold btn--lg mag" href="reserve.html?branch=jhb#book"><span>Book a buffet</span></a>' })}
+<section class="sec"><div class="wrap">
+  <div class="next-buffet" data-next-buffet><p class="eyebrow"><span class="dot"></span> Next buffet</p><p class="next-buffet__txt">Checking the calendar…</p></div>
+  <p class="eyebrow" style="margin-top:56px"><span class="num">01</span> This week</p>
+  <h2 class="h2">Your week at <em>MiHa.</em></h2>
+  ${weekStrip()}
+</div></section>
+<section class="sec sec--line"><div class="wrap">
+  <p class="eyebrow"><span class="num">02</span> The buffets</p>
+  <h2 class="h2">Pull up <em>a chair.</em></h2>
+  <div class="buffets">
+    ${buffetCard(BUFFETS[0], 'Every Friday')}
+    ${buffetCard(BUFFETS[1], 'Every Saturday &amp; Sunday')}
+  </div>
+</div></section>
+<section class="sec sec--line"><div class="wrap split">
+  <figure class="split__img" data-clip><img src="${I('g-tart')}" alt="A MiHa chocolate dessert" loading="lazy"></figure>
+  <div class="split__txt">
+    <p class="eyebrow"><span class="num">03</span> Seasonal</p>
+    <h2 class="h2">Ramadan, Eid <em>&amp; special days.</em></h2>
+    <p>MiHa hosts Iftaar buffets during Ramadan and special menus for Eid, Mother’s Day, Father’s Day and more. Dates and prices are announced on Instagram first.</p>
+    <p><a class="btn btn--ghost mag" href="https://www.instagram.com/mihasouthafrica/" target="_blank" rel="noopener"><span>Follow @mihasouthafrica</span></a></p>
+  </div>
+</div></section>
+${next('events.html', 'Host an Event')}
+</main>
+${footer()}`;
+
+/* =========================== EVENTS =========================== */
+const occ = (t, d, icon) => `<div class="occ" data-reveal><span class="occ__ic" aria-hidden="true">${icon}</span><h3>${t}</h3><p>${d}</p></div>`;
+const events = `${head('Events & Private Dining · MiHa Eatery', 'Host corporate events, weddings, engagements, birthdays and graduations at MiHa Melrose Arch or Centurion. Decor, setup and Halaal catering.', I('g-interior'))}
+${nav()}
+<main id="main">
+${phero({ crumb: 'Events', title: '<span class="line"><span>Your occasion,</span></span><span class="line"><span><em>our care.</em></span></span>', lead: 'Corporate events, weddings, engagements, birthdays and graduations. MiHa takes care of the decor, setup and catering.', img: 'g-interior', cta: '<a class="btn btn--gold btn--lg mag" href="#enquire"><span>Plan your event</span></a>' })}
+<section class="statement"><div class="wrap">
+  <p class="eyebrow"><span class="num">01</span> Effortless from start to finish</p>
+  <p class="statement__text" data-words>We take care of the decor, the setup and the food, so you can enjoy the moment while we handle the details. Choose one of our packages, or let us curate one around your occasion, style and needs.</p>
+</div></section>
+<section class="sec sec--line"><div class="wrap">
+  <p class="eyebrow"><span class="num">02</span> Occasions</p>
+  <h2 class="h2">Made for <em>every celebration.</em></h2>
+  <div class="occs">
+    ${occ('Corporate events', 'Launches, team dinners and year-end functions, fully Halaal.', '◆')}
+    ${occ('Weddings', 'An elegant, alcohol-free reception the whole family can share.', '♡')}
+    ${occ('Engagements', 'Intimate or grand, with flowers and a table to remember.', '◇')}
+    ${occ('Birthdays', 'From first birthdays to milestone dinners.', '✦')}
+    ${occ('Graduations', 'Celebrate the achievement with the people who helped.', '★')}
+    ${occ('Family gatherings', 'Eid lunches, Iftaar and long Sunday tables.', '❖')}
+  </div>
+</div></section>
+<section class="sec sec--line"><div class="wrap">
+  <p class="eyebrow"><span class="num">03</span> What we handle</p>
+  <h2 class="h2">You arrive. <em>We’ve done the rest.</em></h2>
+  <div class="steps">
+    <div class="step" data-reveal><b>01</b><h3>Decor</h3><p>Florals, table styling and the details that set the mood.</p></div>
+    <div class="step" data-reveal><b>02</b><h3>Setup</h3><p>Your room arranged, laid and ready before the first guest.</p></div>
+    <div class="step" data-reveal><b>03</b><h3>Catering</h3><p>Strictly Halaal menus from MiHa’s kitchen, plated or buffet.</p></div>
+  </div>
+</div></section>
+<section class="sec sec--line"><div class="wrap">
+  <p class="eyebrow"><span class="num">04</span> Venues</p>
+  <h2 class="h2">Two beautiful <em>rooms.</em></h2>
+  <div class="homes__grid">
+    <article class="home"><div class="home__img"><img src="${I('g-interior-logo')}" alt="MiHa Melrose Arch" loading="lazy"></div><div class="home__body"><h3>Melrose Arch</h3><p class="home__addr">Shop HL48, Melrose Arch, Johannesburg</p><a class="link-arrow" href="tel:+27607489464">060 748 9464</a></div></article>
+    <article class="home"><div class="home__img"><img src="${I('g-platter')}" alt="A MiHa sharing platter" loading="lazy"></div><div class="home__body"><h3>Centurion</h3><p class="home__addr">Golden Point Padel, 134 Baard Rd, Raslouw, Pretoria</p><a class="link-arrow" href="tel:+27780059386">078 005 9386</a></div></article>
+  </div>
+</div></section>
+<section class="sec sec--line" id="enquire"><div class="wrap split">
+  <div class="split__txt split__txt--form">
+    <p class="eyebrow"><span class="num">05</span> Enquire</p>
+    <h2 class="h2">Tell us about <em>your day.</em></h2>
+    <p>Share a few details and the MiHa events team will come back to you with packages and availability.</p>
+  </div>
+  <form class="form split__form" data-mailto="yasin@miha.co.za" data-subject="Event enquiry">
+    <div class="field"><label for="e-name">Name</label><input id="e-name" name="name" required autocomplete="name"></div>
+    <div class="field"><label for="e-phone">Mobile</label><input id="e-phone" name="phone" type="tel" required autocomplete="tel"></div>
+    <div class="field"><label for="e-email">Email</label><input id="e-email" name="email" type="email" required autocomplete="email"></div>
+    <div class="field"><label for="e-type">Occasion</label><select id="e-type" name="occasion"><option>Corporate event</option><option>Wedding</option><option>Engagement</option><option>Birthday</option><option>Graduation</option><option>Family gathering</option><option>Other</option></select></div>
+    <div class="field"><label for="e-venue">Venue</label><select id="e-venue" name="venue"><option>Melrose Arch</option><option>Centurion</option><option>Not sure yet</option></select></div>
+    <div class="field"><label for="e-date">Date</label><input id="e-date" name="date" type="date"></div>
+    <div class="field"><label for="e-guests">Guests</label><input id="e-guests" name="guests" type="number" min="1"></div>
+    <div class="field"><label for="e-budget">Budget (optional)</label><input id="e-budget" name="budget" inputmode="numeric" placeholder="e.g. R15 000"></div>
+    <div class="field field--full"><label for="e-msg">Your vision</label><textarea id="e-msg" name="message" placeholder="Theme, colours, menu ideas…"></textarea></div>
+    <p class="form__note">Sending opens your email app with these details addressed to MiHa.</p>
+    <p><button class="btn btn--gold btn--lg mag" type="submit"><span>Send enquiry</span></button></p>
+    <p class="form__ok" hidden>Thank you. Your email app should now be open with your enquiry ready to send.</p>
+  </form>
+</div></section>
+${next('catering.html', 'Office Catering')}
+</main>
+${footer()}`;
+
