@@ -7,7 +7,7 @@ const HI = {"imgs-24-of-118":"g-prawns","imgs-12-of-118":"g-dessert-choc","imgs-
 const I = n => `img/miha/${HI[n] || n}.jpg`; // MiHa's own photography (miha.co.za media library)
 const DINE_JHB = 'https://www.dineplan.com/restaurants/miha';
 const DINE_PTA = 'https://www.dineplan.com/restaurants/miha-pretoria';
-const PDF = 'MiHa-Menu.pdf'; // MiHa’s menu, designed by Pixel Code (generated from content.mjs)
+const PDF = 'MiHa-Menu.pdf'; // generated from content.mjs (menu-print.html)
 
 const V = Date.now().toString(36); // cache-busting version, changes every build
 const pages = [
@@ -127,7 +127,7 @@ const footer = () => `${join()}
     <div class="footer__lockup sign" aria-hidden="true"><div class="sign__in">${MARK()}<p>MiHa</p></div></div>
     <div class="footer__base">
       <p>All food is strictly Halaal. For religious reasons, no alcohol is served or allowed on the premises.</p>
-      <p>© <span class="year">2026</span> MiHa Eatery · <span class="credit">Made with <span class="credit__heart" aria-label="love">🤍</span> by Pixel Code</span></p>
+      <p>© <span class="year">2026</span> MiHa Eatery</p>
     </div>
   </div>
 </footer>
@@ -139,6 +139,7 @@ const footer = () => `${join()}
 <script src="concierge.js?v=${V}"></script>
 <script src="booking.js?v=${V}"></script>
 <script src="picks.js?v=${V}"></script>
+<script src="catering.js?v=${V}"></script>
 </body>
 </html>`;
 
@@ -686,51 +687,146 @@ ${next('catering.html', 'Catering')}
 ${footer()}`;
 
 /* =========================== CATERING =========================== */
-const catering = `${head('Corporate Catering & Staff Lunches · MiHa Eatery', 'Strictly Halaal corporate catering and staff lunches from MiHa: boardroom meetings, functions and daily team meals.', I('imgs-35-of-118'))}
+const catering = `${head('Catering & Staff Lunches · MiHa Eatery', 'Strictly Halaal catering from MiHa: boardroom meetings, functions and daily staff lunches, made in our own kitchens.')}
 ${nav()}
 <main id="main">
-${phero({ crumb: 'Catering', title: '<span class="line"><span>MiHa,</span></span><span class="line"><span><em>at the office.</em></span></span>', lead: 'Boardroom lunches, special events and daily staff meals, all strictly Halaal and made in our own kitchens.', img: 'imgs-35-of-118', cta: '<a class="btn btn--gold btn--lg mag" href="#enquire"><span>Request a quote</span></a>' })}
-<section class="sec"><div class="wrap split">
-  <figure class="split__img" data-clip><img src="${I('imgs-33-of-118')}" alt="A MiHa chicken platter with rice and chips" loading="lazy"></figure>
-  <div class="split__txt">
-    <p class="eyebrow"><span class="num">01</span> Corporate catering</p>
-    <h2 class="h2">Your meeting, <em>catered.</em></h2>
-    <p>From breakfast meetings to year-end functions, MiHa takes care of the food so you can focus on the room. Platters, plated meals or a full spread.</p>
-    <p><a class="link-arrow" href="https://www.miha.co.za/corporate-catering/" target="_blank" rel="noopener">View the catering brochure ↗</a></p>
+
+<section class="shero cat-hero">
+  <div class="wrap shero__grid">
+    <div class="shero__copy">
+      <p class="crumbs"><a href="index.html">MiHa</a> &nbsp;/&nbsp; Catering</p>
+      <h1 class="display phero__title"><span class="line"><span>MiHa,</span></span><span class="line"><span><em>wherever you meet.</em></span></span></h1>
+      <p class="lead">Boardroom lunches, year-end functions and daily staff meals. Strictly Halaal, made in our own kitchens and delivered ready to enjoy.</p>
+      <p class="cat-hero__ctas"><a class="btn btn--gold btn--lg mag" href="#build"><span>Build your spread</span></a><a class="btn btn--ghost btn--lg mag" href="#occasions"><span>Explore occasions</span></a></p>
+    </div>
+    <div class="shero__arches">
+      <figure class="arch arch--tall" data-clip><img src="${I('g-platter')}" alt="A MiHa tapas platter with falafel, kebabs and dips" loading="lazy"></figure>
+      <figure class="arch arch--small" data-clip><img src="${I('g-sushi')}" alt="MiHa sushi" loading="lazy"></figure>
+    </div>
   </div>
-</div></section>
-<section class="sec sec--line"><div class="wrap split split--rev">
-  <figure class="split__img" data-clip><img src="${I('imgs-56-of-118')}" alt="A MiHa chicken wrap" loading="lazy"></figure>
-  <div class="split__txt">
-    <p class="eyebrow"><span class="num">02</span> Staff lunches</p>
-    <h2 class="h2">Feed the <em>whole team.</em></h2>
-    <p>Daily or weekly lunches for your staff: pastas, wraps, gourmet burgers, salads and more, delivered to the office. Choose the model that suits your company.</p>
-    <p><a class="link-arrow" href="https://www.miha.co.za/staff-lunches/" target="_blank" rel="noopener">See staff lunch options ↗</a></p>
+</section>
+
+<section class="cat-trust" aria-label="Why MiHa catering">
+  <div class="led" aria-hidden="true"></div>
+  <ul class="wrap cat-trust__list">
+    <li><b>Strictly Halaal</b><span>Every dish, every order</span></li>
+    <li><b>Own kitchens</b><span>Made fresh by MiHa</span></li>
+    <li><b>Any size</b><span>From 6 to your whole company</span></li>
+    <li><b>Decor &amp; setup</b><span>For functions, on request</span></li>
+  </ul>
+  <div class="led" aria-hidden="true"></div>
+</section>
+
+<section class="sec" id="occasions">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">01</span> Choose your occasion</p>
+    <h2 class="h2">Three ways to <em>bring MiHa in.</em></h2>
+    <div class="occ-pick" role="tablist" aria-label="Catering occasions">
+      <button class="occ-pick__btn is-on" role="tab" aria-selected="true" aria-controls="occ-boardroom" id="t-boardroom"><span>01</span><b>Boardroom</b><small>Meetings &amp; client lunches</small></button>
+      <button class="occ-pick__btn" role="tab" aria-selected="false" aria-controls="occ-function" id="t-function"><span>02</span><b>Functions</b><small>Launches &amp; year-ends</small></button>
+      <button class="occ-pick__btn" role="tab" aria-selected="false" aria-controls="occ-staff" id="t-staff"><span>03</span><b>Staff lunches</b><small>Daily or weekly meals</small></button>
+    </div>
+    <div class="occ-panels">
+      <article class="occ-panel is-on" role="tabpanel" id="occ-boardroom" aria-labelledby="t-boardroom">
+        <figure class="arch" data-clip><img src="${I('g-sushi')}" alt="A MiHa sushi platter" loading="lazy"></figure>
+        <div><h3>The boardroom, <em>elevated.</em></h3><p>Impress clients and keep meetings moving with sharing platters that look as good as they taste.</p>
+          <ul class="ticks"><li>Sushi, tapas and wrap platters</li><li>Fresh salads and bowls</li><li>Desserts to close the deal</li><li>Delivered and laid out on time</li></ul>
+          <a class="btn btn--gold mag" href="#build" data-occ="Boardroom meeting"><span>Plan a boardroom lunch</span></a></div>
+      </article>
+      <article class="occ-panel" role="tabpanel" id="occ-function" aria-labelledby="t-function" hidden>
+        <figure class="arch" data-clip><img src="${I('g-prawns')}" alt="MiHa Portuguese prawns" loading="lazy"></figure>
+        <div><h3>Functions that <em>feel like MiHa.</em></h3><p>Product launches, year-end parties and celebrations. Platters, buffets and the decor and setup to match.</p>
+          <ul class="ticks"><li>Grills, prawns and family platters</li><li>Buffet or sharing style</li><li>Decor and setup available</li><li>Alcohol-free, so everyone joins in</li></ul>
+          <a class="btn btn--gold mag" href="#build" data-occ="Function or year-end"><span>Plan a function</span></a></div>
+      </article>
+      <article class="occ-panel" role="tabpanel" id="occ-staff" aria-labelledby="t-staff" hidden>
+        <figure class="arch" data-clip><img src="${I('g-burger')}" alt="A MiHa burger" loading="lazy"></figure>
+        <div><h3>Lunch, <em>sorted every day.</em></h3><p>Feed the team without the daily debate. Choose the model that suits your company and we deliver.</p>
+          <ul class="ticks"><li>Pastas, gourmet burgers and wraps</li><li>Salads and healthy Clenergy options</li><li>Daily or weekly schedules</li><li>Simple, predictable per-meal pricing</li></ul>
+          <a class="btn btn--gold mag" href="#build" data-occ="Staff lunches"><span>Set up staff lunches</span></a></div>
+      </article>
+    </div>
   </div>
-</div></section>
-<section class="sec sec--line"><div class="wrap">
-  <p class="eyebrow"><span class="num">03</span> How it works</p>
-  <h2 class="h2">Three steps to <em>lunch.</em></h2>
-  <div class="steps">
-    <div class="step" data-reveal><b>01</b><h3>Tell us</h3><p>Date, headcount, budget and any dietary needs.</p></div>
-    <div class="step" data-reveal><b>02</b><h3>We tailor</h3><p>A Halaal menu built for your team and your event.</p></div>
-    <div class="step" data-reveal><b>03</b><h3>We deliver</h3><p>Fresh from our kitchen to your table, on time.</p></div>
+</section>
+
+<section class="sec sec--line cat-build" id="build">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">02</span> Build your spread</p>
+    <h2 class="h2">Tell us the moment. <em>We’ll suggest the menu.</em></h2>
+    <div class="cb">
+      <form class="cb__form" aria-label="Build your spread">
+        <fieldset><legend>Occasion</legend><div class="chips" data-key="occ">
+          <label><input type="radio" name="occ" value="Boardroom meeting" checked><span>Boardroom</span></label>
+          <label><input type="radio" name="occ" value="Function or year-end"><span>Function</span></label>
+          <label><input type="radio" name="occ" value="Staff lunches"><span>Staff lunches</span></label>
+        </div></fieldset>
+        <fieldset><legend>Guests <output class="cb__guests">20</output></legend><input class="cb__range" type="range" min="6" max="200" step="2" value="20" aria-label="Number of guests"></fieldset>
+        <fieldset><legend>Style</legend><div class="chips" data-key="style">
+          <label><input type="radio" name="style" value="Sharing platters" checked><span>Sharing platters</span></label>
+          <label><input type="radio" name="style" value="Buffet"><span>Buffet</span></label>
+          <label><input type="radio" name="style" value="Individual meals"><span>Individual meals</span></label>
+        </div></fieldset>
+        <fieldset><legend>Dietary needs</legend><div class="chips" data-key="diet">
+          <label><input type="checkbox" name="diet" value="Vegetarian"><span>Vegetarian</span></label>
+          <label><input type="checkbox" name="diet" value="Seafood lovers"><span>Seafood lovers</span></label>
+          <label><input type="checkbox" name="diet" value="Healthy options"><span>Healthy options</span></label>
+        </div></fieldset>
+      </form>
+      <aside class="cb__out" aria-live="polite">
+        <div class="cb__led" aria-hidden="true"></div>
+        <p class="eyebrow">Your MiHa spread</p>
+        <h3 class="cb__title">Boardroom for 20</h3>
+        <ul class="cb__list"></ul>
+        <p class="cb__note">A starting point drawn from MiHa’s menu. The team will tailor quantities and confirm pricing with you.</p>
+        <a class="btn btn--gold btn--lg mag cb__send" href="#enquire"><span>Send this to MiHa</span></a>
+      </aside>
+    </div>
   </div>
-</div></section>
+</section>
+
+<section class="sec sec--line">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">03</span> Signature platters</p>
+    <h2 class="h2">Made for the <em>middle of the table.</em></h2>
+    <div class="plats">
+      <article class="plat" data-reveal><figure class="arch" data-clip><img src="${I('g-platter')}" alt="Tapas board" loading="lazy"></figure><h3>Tapas Board for 2</h3><p>Falafel, sheesh kebab, halloumi, chick ’n cheese bombs, dips and laffa.</p><b>R 299</b></article>
+      <article class="plat" data-reveal><figure class="arch" data-clip><img src="${I('g-sushi')}" alt="Sushi platter" loading="lazy"></figure><h3>Okinawa Tempura Platter</h3><p>Tempura crunch, prawn sushi, crispy sumo and tiger rolls.</p><b>R 780</b></article>
+      <article class="plat" data-reveal><figure class="arch" data-clip><img src="${I('g-prawns')}" alt="Prawn platter" loading="lazy"></figure><h3>Prawn Platter</h3><p>Two dozen queen prawns with rice and chips.</p><b>R 996</b></article>
+      <article class="plat" data-reveal><figure class="arch" data-clip><img src="${I('g-burger-board')}" alt="Steak platter" loading="lazy"></figure><h3>Steak Platter</h3><p>Twelve 100g fillets with chips and onion rings.</p><b>R 1,999</b></article>
+    </div>
+    <p class="cat-small">Restaurant menu prices (Dineplan, July 2025). Catering quotes are tailored to your order.</p>
+  </div>
+</section>
+
+<section class="sec sec--line">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">04</span> How it works</p>
+    <h2 class="h2">From first message <em>to last bite.</em></h2>
+    <ol class="flow">
+      <li data-reveal><span class="flow__dot">1</span><h3>Tell us</h3><p>Date, guests, budget and dietary needs, or use the spread builder above.</p></li>
+      <li data-reveal><span class="flow__dot">2</span><h3>We tailor</h3><p>A Halaal menu built around your team and the moment.</p></li>
+      <li data-reveal><span class="flow__dot">3</span><h3>We prepare</h3><p>Everything made fresh in MiHa’s own kitchens.</p></li>
+      <li data-reveal><span class="flow__dot">4</span><h3>You enjoy</h3><p>Delivered on time, laid out and ready.</p></li>
+    </ol>
+    <div class="led flow__led" aria-hidden="true"></div>
+  </div>
+</section>
+
 <section class="sec sec--line" id="enquire"><div class="wrap split">
   <div class="split__txt split__txt--form">
-    <p class="eyebrow"><span class="num">04</span> Enquire</p>
-    <h2 class="h2">Let's plan <em>your menu.</em></h2>
-    <p>Send us the details and the MiHa team will come back to you with a tailored quote.</p>
+    <p class="eyebrow"><span class="num">05</span> Request a quote</p>
+    <h2 class="h2">Let’s plan <em>your menu.</em></h2>
+    <p>Send us the details and the MiHa team will come back to you with a tailored quote. Your spread from the builder is included automatically.</p>
+    <p class="cside"><a class="link-arrow" href="tel:+27607489464">060 748 9464</a><a class="link-arrow" href="mailto:yasin@miha.co.za">yasin@miha.co.za</a></p>
   </div>
   <form class="form split__form" data-mailto="yasin@miha.co.za" data-subject="Catering enquiry">
     <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" required autocomplete="name"></div>
     <div class="field"><label for="c-company">Company</label><input id="c-company" name="company" autocomplete="organization"></div>
     <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" required autocomplete="email"></div>
     <div class="field"><label for="c-phone">Phone</label><input id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
-    <div class="field"><label for="c-type">What do you need?</label><select id="c-type" name="type"><option>Corporate catering</option><option>Staff lunches</option><option>Special event</option></select></div>
-    <div class="field"><label for="c-guests">Number of guests</label><input id="c-guests" name="guests" type="number" min="1"></div>
-    <div class="field field--full"><label for="c-msg">Tell us more</label><textarea id="c-msg" name="message"></textarea></div>
+    <div class="field"><label for="c-date">Date</label><input id="c-date" name="date" type="date"></div>
+    <div class="field"><label for="c-guests">Guests</label><input id="c-guests" name="guests" type="number" min="1"></div>
+    <div class="field field--full"><label for="c-msg">Your spread &amp; notes</label><textarea id="c-msg" name="message"></textarea></div>
     <p class="form__note">Sending opens your email app with these details addressed to MiHa.</p>
     <p><button class="btn btn--gold btn--lg mag" type="submit"><span>Send enquiry</span></button></p>
     <p class="form__ok" hidden>Thank you. Your email app should now be open with your enquiry ready to send.</p>
