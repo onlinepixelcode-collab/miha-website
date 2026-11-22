@@ -814,3 +814,7 @@ html.no-js .curtain{display:none}
 /* hard cap: the first-visit loader can never stay longer than ~1.6s, even on a slow connection */
 .loader{animation:loaderCap .35s ease 1.6s forwards}
 @keyframes loaderCap{to{opacity:0;visibility:hidden}}
+
+/* hero: no light ring or glow around the photo arch */
+.hero__arch{box-shadow:0 50px 100px -40px rgba(0,0,0,.85)}
+.hero,html[data-theme="light"] .hero{background:var(--ink)}
