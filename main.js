@@ -207,13 +207,16 @@
   if (sig) {
     const disc = $('.wheel__disc'), items = $$('.sig-list li'), plates = $$('.wheel__plate img');
     const n = items.length;
-    const setActive = i => items.forEach((li, k) => li.classList.toggle('is-active', k === i));
+    const now = $('.sig-now');
+    const setActive = i => { items.forEach((li, k) => li.classList.toggle('is-active', k === i)); if (now && items[i]) { now.querySelector('b').textContent = $('h3', items[i]).textContent; now.querySelector('span').textContent = $('p', items[i]).textContent; } };
     const desktop = matchMedia('(min-width: 901px)').matches;
     const st = ScrollTrigger.create({
       trigger: sig, start: 'top top', end: () => '+=' + innerHeight * (desktop ? 2.6 : 1.6), pin: '.signature__pin', scrub: 1,
       onUpdate: self => {
         const p = self.progress;
-        const rot = p * 270; // 4 plates, 90° apart; the active plate faces the copy (left)
+        // 4 plates, 90° apart. Desktop: the active plate faces the copy (left).
+        // Phones: the active plate turns to the top centre, in full view above the fold of the wheel.
+        const rot = desktop ? p * 270 : 90 - p * 270;
         gsap.set(disc, { rotate: rot });
         plates.forEach(img => gsap.set(img, { rotate: -rot * 1.2 }));
         setActive(Math.min(n - 1, Math.round(p * (n - 1))));
