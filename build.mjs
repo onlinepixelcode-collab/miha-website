@@ -9,6 +9,7 @@ const DINE_JHB = 'https://www.dineplan.com/restaurants/miha';
 const DINE_PTA = 'https://www.dineplan.com/restaurants/miha-pretoria';
 const PDF = 'https://www.miha.co.za/wp-content/uploads/2026/10/Melrose-Arch-Main-Menu-A3.pdf';
 
+const V = Date.now().toString(36); // cache-busting version, changes every build
 const pages = [
   ['index.html', 'Home'], ['menu.html', 'Menu'], ['story.html', 'Our Story'],
   ['bar.html', 'The Bar'], ['catering.html', 'Catering'], ['bakery.html', 'Bakery'], ['reserve.html', 'Reserve']
@@ -29,7 +30,7 @@ const head = (title, desc, og = I('imgs-17-of-118')) => `<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=${V}">
 <script>document.documentElement.classList.replace('no-js','js');try{var t=localStorage.getItem('miha-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
@@ -114,12 +115,12 @@ const footer = () => `${join()}
   </div>
 </footer>
 <div class="mbar"><a href="reserve.html#book" class="mbar__main">Reserve</a><a href="tel:+27607489464">Call</a><a href="reserve.html#branches">Directions</a></div>
-<script src="vendor/gsap.min.js"></script>
-<script src="vendor/ScrollTrigger.min.js"></script>
-<script src="vendor/lenis.min.js"></script>
-<script src="main.js"></script>
-<script src="concierge.js"></script>
-<script src="booking.js"></script>
+<script src="vendor/gsap.min.js?v=${V}"></script>
+<script src="vendor/ScrollTrigger.min.js?v=${V}"></script>
+<script src="vendor/lenis.min.js?v=${V}"></script>
+<script src="main.js?v=${V}"></script>
+<script src="concierge.js?v=${V}"></script>
+<script src="booking.js?v=${V}"></script>
 </body>
 </html>`;
 
