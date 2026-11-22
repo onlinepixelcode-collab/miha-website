@@ -137,10 +137,10 @@
       sessionStorage.setItem('miha-nav', '1');
       const label = a.dataset.title || a.textContent.trim().split('\n')[0];
       const w = curtain && $('.curtain__word', curtain);
-      if (w) w.textContent = label.length < 24 ? label : 'MiHa';
+      // the curtain always shows the MiHa logo in its LED disc
       gsap.timeline({ onComplete: () => (location.href = href) })
         .fromTo(curtain, { yPercent: 100 }, { yPercent: 0, duration: .4, ease: 'power3.inOut' })
-        .fromTo([$('.curtain__mark', curtain), w], { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .2, stagger: .04, ease: 'power3.out' }, .2);
+        .fromTo($('.curtain__disc', curtain), { opacity: 0, scale: .9 }, { opacity: 1, scale: 1, duration: .25, ease: 'power3.out' }, .15);
     });
   });
   window.addEventListener('pageshow', e => { if (e.persisted && curtain) gsap.set(curtain, { yPercent: 100 }); });
@@ -283,15 +283,7 @@
     document.addEventListener('mouseleave', () => gsap.to(cur, { opacity: 0 }));
     document.addEventListener('mouseenter', () => gsap.to(cur, { opacity: 1 }));
 
-    // magnetic buttons
-    $$('.mag').forEach(b => {
-      b.addEventListener('mousemove', e => {
-        const r = b.getBoundingClientRect();
-        gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * .25, y: (e.clientY - r.top - r.height / 2) * .35, duration: .6, ease: 'power3.out' });
-        gsap.to($('span', b), { x: (e.clientX - r.left - r.width / 2) * .1, duration: .6, ease: 'power3.out' });
-      });
-      b.addEventListener('mouseleave', () => { gsap.to([b, $('span', b)], { x: 0, y: 0, duration: .9, ease: 'elastic.out(1,.4)' }); });
-    });
+    // buttons stay still on hover (no magnetic drift); the LED glow and fill do the work
   }
 
   initStatus(); initMenuPage(); initForms();
@@ -374,4 +366,10 @@
       const ok = $('.form__ok', f); if (ok) ok.hidden = false;
     }));
   }
+})();
+
+/* footer: back to top + live status on the footer branch cards */
+(() => {
+  const t = document.querySelector('.totop');
+  if (t) t.addEventListener('click', () => (window.__lenis ? window.__lenis.scrollTo(0, { duration: 1.4 }) : window.scrollTo({ top: 0, behavior: 'smooth' })));
 })();

@@ -49,7 +49,11 @@ const head = (title, desc, og) => `<!doctype html>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="curtain" aria-hidden="true">${MARK("curtain__mark")}<p class="curtain__word">MiHa</p></div>
+<div class="loader" aria-hidden="true">
+  <div class="loader__panel loader__panel--top"></div><div class="loader__panel loader__panel--bottom"></div>
+  <div class="loader__inner">${MARK("loader__mark")}<div class="loader__word">MiHa</div><div class="loader__line"><i></i></div><div class="loader__meta"><span>Miya</span><span class="loader__count">00</span><span>Hassim</span></div></div>
+</div>
+<div class="curtain" aria-hidden="true"><div class="curtain__disc">${MARK("curtain__mark")}<p class="curtain__word">MiHa</p></div></div>
 <div class="cursor" aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"><span class="cursor__label"></span></div></div>
 <div class="grain" aria-hidden="true"></div>`;
 
@@ -118,16 +122,35 @@ const join = () => `
 const footer = () => `${join()}
 <footer class="footer">
   <div class="wrap">
+    <div class="fcta">
+      <h2 class="fcta__title">Your table <em>is waiting.</em></h2>
+      <div class="fcta__btns"><a class="btn btn--gold btn--lg" href="reserve.html#book"><span>Reserve a table</span></a><a class="btn btn--ghost btn--lg" href="${UBER}" target="_blank" rel="noopener"><span>Order delivery</span></a></div>
+    </div>
+    <div class="led fcta__led" aria-hidden="true"></div>
+    <div class="fbranches">
+      <a class="fbranch" data-branch="jhb" href="https://www.google.com/maps/search/?api=1&query=MiHa+Eatery+Melrose+Arch" target="_blank" rel="noopener"><span class="status"><i></i><em>…</em></span><b>Melrose Arch</b><small>Shop HL48, Melrose Arch, Johannesburg</small><span class="fbranch__tel">060 748 9464</span></a>
+      <a class="fbranch" data-branch="pta" href="https://www.google.com/maps/search/?api=1&query=MiHa+Eatery+134+Baard+Rd+Raslouw" target="_blank" rel="noopener"><span class="status"><i></i><em>…</em></span><b>Centurion</b><small>134 Baard Rd, Raslouw, Pretoria</small><span class="fbranch__tel">078 005 9386</span></a>
+      <a class="fbranch" href="https://www.instagram.com/mihax_lenasia/" target="_blank" rel="noopener"><span class="status status--new"><i></i><em>MiHa X</em></span><b>Lenasia</b><small>Trade Route Mall, Lenasia</small><span class="fbranch__tel">061 601 4332</span></a>
+    </div>
     <div class="footer__grid">
-      <div><h3>Visit us</h3><p><b>Melrose Arch</b><br>Shop HL48, Melrose Arch, Johannesburg<br><a href="tel:+27607489464">060 748 9464</a></p><p><b>Centurion</b><br>134 Baard Rd, Raslouw, Pretoria<br><a href="tel:+27780059386">078 005 9386</a></p><p><b>MiHa X</b><br>Trade Route Mall, Lenasia<br><a href="tel:+27616014332">061 601 4332</a></p></div>
-      <div><h3>Order online</h3><p><a href="${UBER}" target="_blank" rel="noopener">Uber Eats</a></p><p><a href="${MRD}" target="_blank" rel="noopener">Mr D</a></p><p><a href="reserve.html#book">Book a table</a></p></div>
-      <div><h3>Explore</h3><p><a href="menu.html">Menu</a></p><p><a href="whats-on.html">What’s On</a></p><p><a href="events.html">Events</a></p><p><a href="story.html">Our Story</a></p><p><a href="drinks.html">Drinks</a></p><p><a href="catering.html">Catering</a></p><p><a href="bakery.html">Clenergy Bakery</a></p><p><a href="contact.html">Contact</a></p></div>
-      <div><h3>Say hello</h3><p><a href="mailto:yasin@miha.co.za">yasin@miha.co.za</a></p><p><a href="https://www.instagram.com/mihasouthafrica/" target="_blank" rel="noopener">Instagram</a></p><p><a href="https://www.tiktok.com/@mihasouthafrica" target="_blank" rel="noopener">TikTok</a></p><p><a href="https://g.page/r/CccsfAQ77eEuEBM/review" target="_blank" rel="noopener">Leave a Google review</a></p></div>
+      <div><h3>Explore</h3><p><a href="menu.html">Menu</a></p><p><a href="whats-on.html">What’s On</a></p><p><a href="events.html">Events</a></p><p><a href="story.html">Our Story</a></p></div>
+      <div><h3>More</h3><p><a href="drinks.html">Drinks</a></p><p><a href="catering.html">Catering</a></p><p><a href="bakery.html">Clenergy Bakery</a></p><p><a href="contact.html">Contact</a></p></div>
+      <div><h3>Order &amp; book</h3><p><a href="reserve.html#book">Book a table</a></p><p><a href="${UBER}" target="_blank" rel="noopener">Uber Eats</a></p><p><a href="${MRD}" target="_blank" rel="noopener">Mr D</a></p><p><a href="${PDF}" target="_blank" rel="noopener">Menu (PDF)</a></p></div>
+      <div><h3>Connect</h3>
+        <div class="fsocial">
+          <a href="https://www.instagram.com/mihasouthafrica/" target="_blank" rel="noopener" aria-label="MiHa on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.tiktok.com/@mihasouthafrica" target="_blank" rel="noopener" aria-label="MiHa on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.4 2.1 1.7 3.5 3.9 3.7v3a7.4 7.4 0 01-3.9-1.2v6.3A5.8 5.8 0 1110.8 9v3.1a2.8 2.8 0 102 2.7V3h3.8z"/></svg></a>
+          <a href="https://g.page/r/CccsfAQ77eEuEBM/review" target="_blank" rel="noopener" aria-label="Leave MiHa a Google review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg></a>
+          <a href="mailto:yasin@miha.co.za" aria-label="Email MiHa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg></a>
+        </div>
+        <p class="fsocial__note">@mihasouthafrica · yasin@miha.co.za</p>
+      </div>
     </div>
     <div class="footer__lockup sign" aria-hidden="true"><div class="sign__in">${MARK()}<p>MiHa</p></div></div>
     <div class="footer__base">
       <p>All food is strictly Halaal. For religious reasons, no alcohol is served or allowed on the premises.</p>
       <p>© <span class="year">2026</span> MiHa Eatery</p>
+      <button class="totop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </div>
   </div>
 </footer>
@@ -140,6 +163,7 @@ const footer = () => `${join()}
 <script src="booking.js?v=${V}"></script>
 <script src="picks.js?v=${V}"></script>
 <script src="catering.js?v=${V}"></script>
+<script src="whatson.js?v=${V}"></script>
 </body>
 </html>`;
 
@@ -188,10 +212,6 @@ const branches = () => `
 
 /* =========================== HOME =========================== */
 const home = `${head('MiHa Eatery · Halaal Fine Dining in Melrose Arch & Centurion', 'Family-run, strictly Halaal and alcohol-free. International cuisine with a South African touch in Melrose Arch, Johannesburg and Centurion, Pretoria.')}
-<div class="loader" aria-hidden="true">
-  <div class="loader__panel loader__panel--top"></div><div class="loader__panel loader__panel--bottom"></div>
-  <div class="loader__inner">${MARK("loader__mark")}<div class="loader__word">MiHa</div><div class="loader__line"><i></i></div><div class="loader__meta"><span>Miya</span><span class="loader__count">00</span><span>Hassim</span></div></div>
-</div>
 ${nav()}
 <main id="main">
 <section class="hero" id="top">
@@ -429,7 +449,24 @@ ${phero({ crumb: 'Menu', title: '<span class="line"><span>Taste &amp;</span></sp
 </div></div>
 ${MENU.map(menuSec).join('')}
 <section class="msec"><div class="wrap mextras">${EXTRAS.map(extraSec).join('')}</div></section>
-<section class="sec"><div class="wrap menu__note"><p>A selection from MiHa’s menu as listed on Dineplan (July 2025). Dishes and prices may change; ask your server for today’s menu, kids’ menu and specials.</p><a class="link-arrow" href="${PDF}" target="_blank" rel="noopener">Download the MiHa menu (PDF) ↗</a></div></section>
+<section class="mdl"><div class="wrap mdl__grid">
+  <a class="mdl__book" href="${PDF}" target="_blank" rel="noopener" data-cursor="Open" aria-label="Open the MiHa menu PDF">
+    <span class="mdl__glow" aria-hidden="true"></span>
+    <img src="img/brand/menu-cover.jpg" alt="Cover of the MiHa menu: the MiHa logo in a glowing ring, The Menu" loading="lazy">
+  </a>
+  <div class="mdl__copy">
+    <p class="eyebrow"><span class="num">—</span> The MiHa menu</p>
+    <h2 class="h2">Take the menu <em>with you.</em></h2>
+    <p class="lead">Our full menu, beautifully laid out for your phone, tablet or printer.</p>
+    <ul class="mdl__list">
+      <li><b>8</b><span>pages, from chef’s signatures to sweet endings</span></li>
+      <li><b>R</b><span>every dish with MiHa’s listed price</span></li>
+      <li><b>☎</b><span>tap to call, open the map or book online</span></li>
+    </ul>
+    <p class="mdl__ctas"><a class="btn btn--gold btn--lg mag" href="${PDF}" target="_blank" rel="noopener"><span>View the menu (PDF)</span></a><a class="btn btn--ghost btn--lg mag" href="https://wa.me/?text=${encodeURIComponent('The MiHa menu: ' + SITE + 'MiHa-Menu.pdf')}" target="_blank" rel="noopener"><span>Share on WhatsApp</span></a></p>
+    <p class="mdl__note">Menu as listed by MiHa on Dineplan (July 2025). Dishes and prices may change; ask your server for today’s specials.</p>
+  </div>
+</div></section>
 ${orderOnline()}
 ${next('whats-on.html', 'What’s On')}
 </main>
@@ -452,33 +489,102 @@ const buffetCard = (b, label) => `
     <div class="buffet__actions"><a class="btn btn--gold mag" href="reserve.html?branch=${b.branch}#book"><span>Book this buffet</span></a><a class="link-arrow" href="tel:+27607489464">Call 060 748 9464</a></div>
   </div>
 </article>`;
-const whatson = `${head('What’s On · Buffets at MiHa', 'Friday Night Dinner Buffet and Weekend Breakfast Buffet at MiHa Melrose Arch. Prices, times and bookings.', I('g-curry'))}
+const whatson = `${head('What’s On · Buffets at MiHa', 'Friday Night Dinner Buffet and Weekend Breakfast Buffet at MiHa Melrose Arch. Prices, times, a live countdown and bookings.')}
 ${nav()}
 <main id="main">
-${phero({ crumb: 'What’s On', title: '<span class="line"><span>Buffet</span></span><span class="line"><span><em>nights.</em></span></span>', lead: 'Friday dinners and weekend breakfasts at MiHa Melrose Arch. Come hungry; bookings are essential.', img: 'g-curry', cta: '<a class="btn btn--gold btn--lg mag" href="reserve.html?branch=jhb#book"><span>Book a buffet</span></a>' })}
-<section class="sec"><div class="wrap">
-  <div class="next-buffet" data-next-buffet><p class="eyebrow"><span class="dot"></span> Next buffet</p><p class="next-buffet__txt">Checking the calendar…</p></div>
-  <p class="eyebrow" style="margin-top:56px"><span class="num">01</span> This week</p>
-  <h2 class="h2">Your week at <em>MiHa.</em></h2>
-  ${weekStrip()}
-</div></section>
-<section class="sec sec--line"><div class="wrap">
-  <p class="eyebrow"><span class="num">02</span> The buffets</p>
-  <h2 class="h2">Pull up <em>a chair.</em></h2>
-  <div class="buffets">
-    ${buffetCard(BUFFETS[0], 'Every Friday')}
-    ${buffetCard(BUFFETS[1], 'Every Saturday &amp; Sunday')}
+
+<section class="shero">
+  <div class="wrap shero__grid">
+    <div class="shero__copy">
+      <p class="crumbs"><a href="index.html">MiHa</a> &nbsp;/&nbsp; What’s On</p>
+      <h1 class="display phero__title"><span class="line"><span>Buffet</span></span><span class="line"><span><em>nights.</em></span></span></h1>
+      <p class="lead">Friday dinners and weekend breakfasts at MiHa Melrose Arch. Come hungry; bookings are essential.</p>
+      <p class="cat-hero__ctas"><a class="btn btn--gold btn--lg mag" href="reserve.html?branch=jhb#book"><span>Book a buffet</span></a><a class="btn btn--ghost btn--lg mag" href="#buffets"><span>See the buffets</span></a></p>
+    </div>
+    <div class="shero__arches">
+      <figure class="arch arch--tall" data-clip><img src="${I('g-curry')}" alt="A MiHa curry from the dinner buffet" loading="lazy"></figure>
+      <figure class="arch arch--small" data-clip><img src="${I('g-crepe')}" alt="A MiHa breakfast crepe" loading="lazy"></figure>
+    </div>
   </div>
-</div></section>
-<section class="sec sec--line"><div class="wrap split">
-  <figure class="split__img" data-clip><img src="${I('g-tart')}" alt="A MiHa chocolate dessert" loading="lazy"></figure>
-  <div class="split__txt">
-    <p class="eyebrow"><span class="num">03</span> Seasonal</p>
-    <h2 class="h2">Ramadan, Eid <em>&amp; special days.</em></h2>
-    <p>MiHa hosts Iftaar buffets during Ramadan and special menus for Eid, Mother’s Day, Father’s Day and more. Dates and prices are announced on Instagram first.</p>
-    <p><a class="btn btn--ghost mag" href="https://www.instagram.com/mihasouthafrica/" target="_blank" rel="noopener"><span>Follow @mihasouthafrica</span></a></p>
+</section>
+
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="cdown" data-countdown>
+      <div class="cdown__led" aria-hidden="true"></div>
+      <p class="eyebrow"><span class="dot"></span> Next buffet</p>
+      <h2 class="cdown__name">Checking the calendar…</h2>
+      <p class="cdown__when muted"></p>
+      <div class="cdown__clock" aria-live="off">
+        <div><b data-u="d">0</b><span>Days</span></div><div><b data-u="h">00</b><span>Hours</span></div><div><b data-u="m">00</b><span>Minutes</span></div><div><b data-u="s">00</b><span>Seconds</span></div>
+      </div>
+      <p class="cdown__ctas"><a class="btn btn--gold mag" href="reserve.html?branch=jhb#book"><span>Book this buffet</span></a><button class="btn btn--ghost mag cdown__ics" type="button"><span>Add to my calendar</span></button></p>
+    </div>
   </div>
-</div></section>
+</section>
+
+<section class="sec sec--line">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">01</span> This week</p>
+    <h2 class="h2">Your week at <em>MiHa.</em></h2>
+    ${weekStrip()}
+  </div>
+</section>
+
+<section class="sec sec--line" id="buffets">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">02</span> The buffets</p>
+    <h2 class="h2">Pull up <em>a chair.</em></h2>
+    <div class="wbuf">
+      <article class="wbuf__card" data-reveal>
+        <figure class="arch" data-clip><img src="${I('g-curry')}" alt="" loading="lazy"></figure>
+        <div class="wbuf__body">
+          <p class="eyebrow">Every Friday · 18:30–21:00</p>
+          <h3>Friday Night <em>Dinner Buffet</em></h3>
+          <p>Gather the family, bring your friends: comforting favourites, hearty mains, sides and something sweet to finish.</p>
+          <ul class="wbuf__price"><li><b>R250</b><span>per adult</span></li><li><b>R125</b><span>kids 6–12</span></li></ul>
+          <ul class="ticks"><li>Comforting favourites</li><li>Hearty mains &amp; sides</li><li>Something sweet</li><li>MiHa Melrose Arch</li></ul>
+          <p class="wbuf__ctas"><a class="btn btn--gold mag" href="reserve.html?branch=jhb#book"><span>Book Friday</span></a><button class="link-arrow wbuf__ics" type="button" data-day="5" data-start="18:30" data-end="21:00" data-name="Friday Night Dinner Buffet">Add to calendar ↗</button></p>
+        </div>
+      </article>
+      <article class="wbuf__card" data-reveal>
+        <figure class="arch" data-clip><img src="${I('g-crepe')}" alt="" loading="lazy"></figure>
+        <div class="wbuf__body">
+          <p class="eyebrow">Saturday &amp; Sunday · 09:30–12:00</p>
+          <h3>Weekend <em>Breakfast Buffet</em></h3>
+          <p>The slow, generous weekend breakfast: everything you love about the first meal of the day, at MiHa.</p>
+          <ul class="wbuf__price"><li><b>R199</b><span>per person</span></li></ul>
+          <ul class="ticks"><li>Every Saturday</li><li>Every Sunday</li><li>From 09:30</li><li>MiHa Melrose Arch</li></ul>
+          <p class="wbuf__ctas"><a class="btn btn--gold mag" href="reserve.html?branch=jhb#book"><span>Book the weekend</span></a><button class="link-arrow wbuf__ics" type="button" data-day="6" data-start="09:30" data-end="12:00" data-name="Weekend Breakfast Buffet">Add to calendar ↗</button></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="bleed bleed--led" aria-label="Come hungry">
+  <div class="led led--top" aria-hidden="true"></div>
+  <p class="bleed__quote wrap"><span>Come hungry.</span><span><em>Go back for seconds.</em></span></p>
+  <div class="led led--bottom" aria-hidden="true"></div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">03</span> Celebrated at MiHa</p>
+    <h2 class="h2">Special days, <em>special tables.</em></h2>
+    <p class="lead" style="margin-top:18px">Through the year MiHa hosts menus and buffets for the moments that matter. Dates and prices are announced on Instagram first.</p>
+    <div class="celebs">
+      <div class="celeb" data-reveal><span class="celeb__ic">☾</span><h3>Ramadan Iftaar</h3><p>Iftaar buffets to break the fast together.</p></div>
+      <div class="celeb" data-reveal><span class="celeb__ic">✦</span><h3>Eid</h3><p>Festive bookings and celebratory menus.</p></div>
+      <div class="celeb" data-reveal><span class="celeb__ic">♡</span><h3>Valentine’s</h3><p>Breakfast buffets and dinners for two.</p></div>
+      <div class="celeb" data-reveal><span class="celeb__ic">❀</span><h3>Mother’s Day</h3><p>Breakfast and lunch for the queen of the table.</p></div>
+      <div class="celeb" data-reveal><span class="celeb__ic">◆</span><h3>Father’s Day</h3><p>Lunch and dinner, with the grill in charge.</p></div>
+      <div class="celeb" data-reveal><span class="celeb__ic">★</span><h3>Graduations</h3><p>Celebrate the milestone with family.</p></div>
+    </div>
+    <p style="margin-top:44px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn btn--ghost btn--lg mag" href="https://www.instagram.com/mihasouthafrica/" target="_blank" rel="noopener"><span>Follow @mihasouthafrica</span></a><a class="btn btn--gold btn--lg mag" href="events.html#enquire"><span>Plan a group booking</span></a></p>
+  </div>
+</section>
+
 ${next('events.html', 'Host an Event')}
 </main>
 ${footer()}`;
@@ -889,9 +995,9 @@ ${nav()}
 ${phero({ crumb: 'Contact', title: '<span class="line"><span>Say</span></span><span class="line"><span><em>hello.</em></span></span>', lead: 'Questions, bookings, events or feedback. Call your MiHa, send us a message or find us on the map.', img: 'g-dessert-choc', cta: '<a class="btn btn--gold btn--lg mag" href="#message"><span>Send a message</span></a>' })}
 <section class="sec" style="padding-top:60px"><div class="wrap">
   <div class="cquick">
-    <a class="cquick__item" href="tel:+27607489464"><span>Melrose Arch</span><b><a href="tel:+27607489464">060 748 9464</a></b></a>
-    <a class="cquick__item" href="tel:+27780059386"><span>Centurion</span><b><a href="tel:+27780059386">078 005 9386</a></b></a>
-    <a class="cquick__item" href="tel:+27616014332"><span>MiHa X Lenasia</span><b><a href="tel:+27616014332">061 601 4332</a></b></a>
+    <a class="cquick__item" href="tel:+27607489464"><span>Melrose Arch</span><b>060 748 9464</b></a>
+    <a class="cquick__item" href="tel:+27780059386"><span>Centurion</span><b>078 005 9386</b></a>
+    <a class="cquick__item" href="tel:+27616014332"><span>MiHa X Lenasia</span><b>061 601 4332</b></a>
     <a class="cquick__item" href="mailto:yasin@miha.co.za"><span>Email</span><b>yasin@miha.co.za</b></a>
   </div>
 </div></section>

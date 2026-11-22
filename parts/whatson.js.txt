@@ -1,0 +1,100 @@
+const whatson = `${head('What’s On · Buffets at MiHa', 'Friday Night Dinner Buffet and Weekend Breakfast Buffet at MiHa Melrose Arch. Prices, times, a live countdown and bookings.')}
+${nav()}
+<main id="main">
+
+<section class="shero">
+  <div class="wrap shero__grid">
+    <div class="shero__copy">
+      <p class="crumbs"><a href="index.html">MiHa</a> &nbsp;/&nbsp; What’s On</p>
+      <h1 class="display phero__title"><span class="line"><span>Buffet</span></span><span class="line"><span><em>nights.</em></span></span></h1>
+      <p class="lead">Friday dinners and weekend breakfasts at MiHa Melrose Arch. Come hungry; bookings are essential.</p>
+      <p class="cat-hero__ctas"><a class="btn btn--gold btn--lg mag" href="reserve.html?branch=jhb#book"><span>Book a buffet</span></a><a class="btn btn--ghost btn--lg mag" href="#buffets"><span>See the buffets</span></a></p>
+    </div>
+    <div class="shero__arches">
+      <figure class="arch arch--tall" data-clip><img src="${I('g-curry')}" alt="A MiHa curry from the dinner buffet" loading="lazy"></figure>
+      <figure class="arch arch--small" data-clip><img src="${I('g-crepe')}" alt="A MiHa breakfast crepe" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="cdown" data-countdown>
+      <div class="cdown__led" aria-hidden="true"></div>
+      <p class="eyebrow"><span class="dot"></span> Next buffet</p>
+      <h2 class="cdown__name">Checking the calendar…</h2>
+      <p class="cdown__when muted"></p>
+      <div class="cdown__clock" aria-live="off">
+        <div><b data-u="d">0</b><span>Days</span></div><div><b data-u="h">00</b><span>Hours</span></div><div><b data-u="m">00</b><span>Minutes</span></div><div><b data-u="s">00</b><span>Seconds</span></div>
+      </div>
+      <p class="cdown__ctas"><a class="btn btn--gold mag" href="reserve.html?branch=jhb#book"><span>Book this buffet</span></a><button class="btn btn--ghost mag cdown__ics" type="button"><span>Add to my calendar</span></button></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--line">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">01</span> This week</p>
+    <h2 class="h2">Your week at <em>MiHa.</em></h2>
+    ${weekStrip()}
+  </div>
+</section>
+
+<section class="sec sec--line" id="buffets">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">02</span> The buffets</p>
+    <h2 class="h2">Pull up <em>a chair.</em></h2>
+    <div class="wbuf">
+      <article class="wbuf__card" data-reveal>
+        <figure class="arch" data-clip><img src="${I('g-curry')}" alt="" loading="lazy"></figure>
+        <div class="wbuf__body">
+          <p class="eyebrow">Every Friday · 18:30–21:00</p>
+          <h3>Friday Night <em>Dinner Buffet</em></h3>
+          <p>Gather the family, bring your friends: comforting favourites, hearty mains, sides and something sweet to finish.</p>
+          <ul class="wbuf__price"><li><b>R250</b><span>per adult</span></li><li><b>R125</b><span>kids 6–12</span></li></ul>
+          <ul class="ticks"><li>Comforting favourites</li><li>Hearty mains &amp; sides</li><li>Something sweet</li><li>MiHa Melrose Arch</li></ul>
+          <p class="wbuf__ctas"><a class="btn btn--gold mag" href="reserve.html?branch=jhb#book"><span>Book Friday</span></a><button class="link-arrow wbuf__ics" type="button" data-day="5" data-start="18:30" data-end="21:00" data-name="Friday Night Dinner Buffet">Add to calendar ↗</button></p>
+        </div>
+      </article>
+      <article class="wbuf__card" data-reveal>
+        <figure class="arch" data-clip><img src="${I('g-crepe')}" alt="" loading="lazy"></figure>
+        <div class="wbuf__body">
+          <p class="eyebrow">Saturday &amp; Sunday · 09:30–12:00</p>
+          <h3>Weekend <em>Breakfast Buffet</em></h3>
+          <p>The slow, generous weekend breakfast: everything you love about the first meal of the day, at MiHa.</p>
+          <ul class="wbuf__price"><li><b>R199</b><span>per person</span></li></ul>
+          <ul class="ticks"><li>Every Saturday</li><li>Every Sunday</li><li>From 09:30</li><li>MiHa Melrose Arch</li></ul>
+          <p class="wbuf__ctas"><a class="btn btn--gold mag" href="reserve.html?branch=jhb#book"><span>Book the weekend</span></a><button class="link-arrow wbuf__ics" type="button" data-day="6" data-start="09:30" data-end="12:00" data-name="Weekend Breakfast Buffet">Add to calendar ↗</button></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="bleed bleed--led" aria-label="Come hungry">
+  <div class="led led--top" aria-hidden="true"></div>
+  <p class="bleed__quote wrap"><span>Come hungry.</span><span><em>Go back for seconds.</em></span></p>
+  <div class="led led--bottom" aria-hidden="true"></div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">03</span> Celebrated at MiHa</p>
+    <h2 class="h2">Special days, <em>special tables.</em></h2>
+    <p class="lead" style="margin-top:18px">Through the year MiHa hosts menus and buffets for the moments that matter. Dates and prices are announced on Instagram first.</p>
+    <div class="celebs">
+      <div class="celeb" data-reveal><span class="celeb__ic">☾</span><h3>Ramadan Iftaar</h3><p>Iftaar buffets to break the fast together.</p></div>
+      <div class="celeb" data-reveal><span class="celeb__ic">✦</span><h3>Eid</h3><p>Festive bookings and celebratory menus.</p></div>
+      <div class="celeb" data-reveal><span class="celeb__ic">♡</span><h3>Valentine’s</h3><p>Breakfast buffets and dinners for two.</p></div>
+      <div class="celeb" data-reveal><span class="celeb__ic">❀</span><h3>Mother’s Day</h3><p>Breakfast and lunch for the queen of the table.</p></div>
+      <div class="celeb" data-reveal><span class="celeb__ic">◆</span><h3>Father’s Day</h3><p>Lunch and dinner, with the grill in charge.</p></div>
+      <div class="celeb" data-reveal><span class="celeb__ic">★</span><h3>Graduations</h3><p>Celebrate the milestone with family.</p></div>
+    </div>
+    <p style="margin-top:44px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn btn--ghost btn--lg mag" href="https://www.instagram.com/mihasouthafrica/" target="_blank" rel="noopener"><span>Follow @mihasouthafrica</span></a><a class="btn btn--gold btn--lg mag" href="events.html#enquire"><span>Plan a group booking</span></a></p>
+  </div>
+</section>
+
+${next('events.html', 'Host an Event')}
+</main>
+${footer()}`;
+
