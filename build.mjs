@@ -1,15 +1,15 @@
 // Builds the MiHa multi-page site from shared parts. Run: node build.mjs
 import { writeFileSync, readFileSync } from 'node:fs';
 import { MENU, BUFFETS, EXTRAS, SIGNATURES } from './content.mjs';
+const V = Date.now().toString(36); // cache-busting version, changes every build
 
 const MARK = (cls="") => `<svg class="mh ${cls}" viewBox="40 50 440 430" fill="none" stroke="currentColor" stroke-width="46" aria-hidden="true"><path pathLength="1" d="M73 470V300a79.5 70 0 0 1 159 0v170"/><path pathLength="1" d="M232 300a62 68 0 0 1 72-67"/><path pathLength="1" d="M354 64v406"/><path pathLength="1" d="M354 300a44.5 67 0 0 1 89 0v170"/></svg>`;
 const HI = {"imgs-24-of-118":"g-prawns","imgs-12-of-118":"g-dessert-choc","imgs-110-of-118":"g-mojito","imgs-35-of-118":"g-platter","img-141-of-163":"g-crepe","imgs-18-of-118":"g-prawns","imgs-99-of-118":"g-platter","imgs-89-of-118":"g-burger","img-131-of-163":"g-crepe","imgs-15-of-118":"g-curry","img-135-of-163":"g-tart","img-161-of-163":"g-dessert-choc","imgs-62-of-118":"g-mojito","img-139-of-163":"g-tart","imgs-1-of-118":"g-burger-board","imgs-29-of-118":"g-prawns","imgs-44-of-118":"g-penne","imgs-88-of-118":"g-burger","img-155-of-163":"g-tart","imgs-57-of-118":"g-fish","imgs-23-of-118":"g-sushi","img-157-of-163":"g-dessert-choc","imgs-41-of-118":"g-pizza","img-98-of-163":"g-bagel","img-163-of-163":"g-curry","imgs-33-of-118":"g-curry","imgs-56-of-118":"g-fish","Clenergy-Breads-3-1":"g-bagel","Clenergy-Breads-3-3":"g-crepe","img-142-of-163":"g-dessert-choc","img-138-of-163":"g-tart","img-144-of-163":"g-crepe","img-160-of-163":"g-dessert-choc","img-127-of-163":"g-bagel","imgs-17-of-118":"g-platter","imgs-77-of-118":"g-mojito"};
 const I = n => `img/miha/${HI[n] || n}.jpg`; // MiHa's own photography (miha.co.za media library)
 const DINE_JHB = 'https://www.dineplan.com/restaurants/miha';
 const DINE_PTA = 'https://www.dineplan.com/restaurants/miha-pretoria';
-const PDF = 'MiHa-Menu.pdf'; // generated from content.mjs (menu-print.html)
+const PDF = 'MiHa-Menu.pdf?v=' + V; // generated from content.mjs (menu-print.html)
 
-const V = Date.now().toString(36); // cache-busting version, changes every build
 const pages = [
   ['index.html', 'Home'], ['menu.html', 'Menu'], ['story.html', 'Our Story'],
   ['drinks.html', 'Drinks'], ['catering.html', 'Catering'], ['bakery.html', 'Bakery'], ['reserve.html', 'Reserve']
@@ -419,7 +419,7 @@ const orderOnline = () => `
 const menu = `${head('Menu · MiHa Eatery', 'MiHa’s menu: signature 28-day aged steaks, Portuguese prawns, sushi platters, stone-fired pizza, burgers and desserts. Strictly Halaal.', I('g-prawns'))}
 ${nav()}
 <main id="main">
-${phero({ crumb: 'Menu', title: '<span class="line"><span>Taste &amp;</span></span><span class="line"><span><em>variety.</em></span></span>', lead: 'From 28-day aged steaks to sushi platters and stone-fired pizza. Every dish strictly Halaal.', img: 'g-prawns', cta: '<span class="phero__ctas"><a class="btn btn--gold btn--lg mag" href="reserve.html#book"><span>Book a table</span></a><a class="btn btn--ghost btn--lg mag" href="MiHa-Menu.pdf" download><span>Download menu (PDF)</span></a></span>' })}
+${phero({ crumb: 'Menu', title: '<span class="line"><span>Taste &amp;</span></span><span class="line"><span><em>variety.</em></span></span>', lead: 'From 28-day aged steaks to sushi platters and stone-fired pizza. Every dish strictly Halaal.', img: 'g-prawns', cta: '<span class="phero__ctas"><a class="btn btn--gold btn--lg mag" href="reserve.html#book"><span>Book a table</span></a><a class="btn btn--ghost btn--lg mag" href="MiHa-Menu.pdf?v=${V}" target="_blank" rel="noopener"><span>Download menu (PDF)</span></a></span>' })}
 <section class="sec msig"><div class="wrap"><p class="eyebrow"><span class="num">—</span> Chef’s signatures</p><h2 class="h2">Start with <em>the favourites.</em></h2><div class="msig__grid">${SIGNATURES.map(sigCard).join('')}</div></div></section>
 <nav class="mtabs" aria-label="Menu sections"><div class="wrap mtabs__in">
   ${MENU.concat(EXTRAS).map(s => `<a href="#${s.id}">${s.title.replace(/<[^>]+>/g, '').replace('&amp;', '&')}</a>`).join('')}
@@ -889,9 +889,9 @@ ${nav()}
 ${phero({ crumb: 'Contact', title: '<span class="line"><span>Say</span></span><span class="line"><span><em>hello.</em></span></span>', lead: 'Questions, bookings, events or feedback. Call your MiHa, send us a message or find us on the map.', img: 'g-dessert-choc', cta: '<a class="btn btn--gold btn--lg mag" href="#message"><span>Send a message</span></a>' })}
 <section class="sec" style="padding-top:60px"><div class="wrap">
   <div class="cquick">
-    <a class="cquick__item" href="tel:+27607489464"><span>Melrose Arch</span><b>060 748 9464</b></a>
-    <a class="cquick__item" href="tel:+27780059386"><span>Centurion</span><b>078 005 9386</b></a>
-    <a class="cquick__item" href="tel:+27616014332"><span>MiHa X Lenasia</span><b>061 601 4332</b></a>
+    <a class="cquick__item" href="tel:+27607489464"><span>Melrose Arch</span><b><a href="tel:+27607489464">060 748 9464</a></b></a>
+    <a class="cquick__item" href="tel:+27780059386"><span>Centurion</span><b><a href="tel:+27780059386">078 005 9386</a></b></a>
+    <a class="cquick__item" href="tel:+27616014332"><span>MiHa X Lenasia</span><b><a href="tel:+27616014332">061 601 4332</a></b></a>
     <a class="cquick__item" href="mailto:yasin@miha.co.za"><span>Email</span><b>yasin@miha.co.za</b></a>
   </div>
 </div></section>
@@ -975,6 +975,9 @@ body{background:#0d0b09;color:#efe8dd;font-family:Geist,sans-serif}
 .back .note{margin-top:14mm;font:300 7.4pt/1.6 Geist,sans-serif;color:#8f877c;max-width:150mm}
 .back .web{margin-top:6mm;font:500 7.4pt Geist,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#c9a46a}
 .back .led{position:absolute;left:20mm;right:20mm;bottom:22mm}
+.back a{color:inherit;text-decoration:none}
+.home p a{border-bottom:.4px dotted rgba(201,164,106,.6)}
+.back .web a{border-bottom:.5px solid rgba(201,164,106,.5)}
 .pg__led--b{top:auto;bottom:15mm;opacity:.7}
 .pg__foot{bottom:7mm}
 .pg__mark{display:inline-flex;align-items:center;gap:2mm}
@@ -1033,12 +1036,12 @@ ${pdfPage([byId('sushi'), byId('burgers')], 'g-sushi', '05')}
 ${pdfPage([byId('sweet'), EXTRAS[0], Object.assign({ compact: true }, EXTRAS[1])], 'g-dessert-choc', '06')}
 <div class="pg back"><h2>Visit <em>MiHa.</em></h2>
 <div class="homes">
-<div class="home"><h3>Melrose Arch</h3><p>Shop HL48, Melrose Arch<br>Johannesburg</p><p>Mon–Thu 11:00–21:30<br>Fri 11:00–22:00<br>Sat 09:00–22:00 · Sun 09:00–21:30</p><b>060 748 9464</b></div>
-<div class="home"><h3>Centurion</h3><p>134 Baard Rd, Raslouw<br>Pretoria</p><p>Mon 18:00–21:30<br>Tue–Fri 12:00–21:30<br>Sat 09:00–22:00 · Sun 09:00–21:30</p><b>078 005 9386</b></div>
-<div class="home"><h3>MiHa X</h3><p>Trade Route Mall<br>Lenasia</p><p>Gourmet food meets<br>exceptional value</p><b>061 601 4332</b></div>
+<div class="home"><h3>Melrose Arch</h3><p><a href="https://www.google.com/maps/search/?api=1&amp;query=MiHa+Eatery+Melrose+Arch">Shop HL48, Melrose Arch<br>Johannesburg ↗</a></p><p>Mon–Thu 11:00–21:30<br>Fri 11:00–22:00<br>Sat 09:00–22:00 · Sun 09:00–21:30</p><b><a href="tel:+27607489464">060 748 9464</a></b></div>
+<div class="home"><h3>Centurion</h3><p><a href="https://www.google.com/maps/search/?api=1&amp;query=MiHa+Eatery+134+Baard+Rd+Raslouw">134 Baard Rd, Raslouw<br>Pretoria ↗</a></p><p>Mon 18:00–21:30<br>Tue–Fri 12:00–21:30<br>Sat 09:00–22:00 · Sun 09:00–21:30</p><b><a href="tel:+27780059386">078 005 9386</a></b></div>
+<div class="home"><h3>MiHa X</h3><p><a href="https://www.google.com/maps/search/?api=1&amp;query=Trade+Route+Mall+Lenasia">Trade Route Mall<br>Lenasia ↗</a></p><p>Gourmet food meets<br>exceptional value</p><b><a href="tel:+27616014332">061 601 4332</a></b></div>
 </div>
 <p class="note">All food is strictly Halaal. For religious reasons, no alcohol is served or allowed on the premises. Menu as listed by MiHa on Dineplan (July 2025); dishes and prices may change, so please confirm with your server. V = vegetarian.</p>
-<p class="web">onlinepixelcode-collab.github.io/miha-website · @mihasouthafrica</p>
+<p class="web"><a href="https://onlinepixelcode-collab.github.io/miha-website/">Book online</a> · <a href="https://www.instagram.com/mihasouthafrica/">@mihasouthafrica</a> · <a href="mailto:yasin@miha.co.za">yasin@miha.co.za</a></p>
 <div class="led"></div></div>
 </body></html>`;
 

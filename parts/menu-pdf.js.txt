@@ -54,6 +54,9 @@ body{background:#0d0b09;color:#efe8dd;font-family:Geist,sans-serif}
 .back .note{margin-top:14mm;font:300 7.4pt/1.6 Geist,sans-serif;color:#8f877c;max-width:150mm}
 .back .web{margin-top:6mm;font:500 7.4pt Geist,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#c9a46a}
 .back .led{position:absolute;left:20mm;right:20mm;bottom:22mm}
+.back a{color:inherit;text-decoration:none}
+.home p a{border-bottom:.4px dotted rgba(201,164,106,.6)}
+.back .web a{border-bottom:.5px solid rgba(201,164,106,.5)}
 .pg__led--b{top:auto;bottom:15mm;opacity:.7}
 .pg__foot{bottom:7mm}
 .pg__mark{display:inline-flex;align-items:center;gap:2mm}
@@ -112,12 +115,12 @@ ${pdfPage([byId('sushi'), byId('burgers')], 'g-sushi', '05')}
 ${pdfPage([byId('sweet'), EXTRAS[0], Object.assign({ compact: true }, EXTRAS[1])], 'g-dessert-choc', '06')}
 <div class="pg back"><h2>Visit <em>MiHa.</em></h2>
 <div class="homes">
-<div class="home"><h3>Melrose Arch</h3><p>Shop HL48, Melrose Arch<br>Johannesburg</p><p>Mon–Thu 11:00–21:30<br>Fri 11:00–22:00<br>Sat 09:00–22:00 · Sun 09:00–21:30</p><b>060 748 9464</b></div>
-<div class="home"><h3>Centurion</h3><p>134 Baard Rd, Raslouw<br>Pretoria</p><p>Mon 18:00–21:30<br>Tue–Fri 12:00–21:30<br>Sat 09:00–22:00 · Sun 09:00–21:30</p><b>078 005 9386</b></div>
-<div class="home"><h3>MiHa X</h3><p>Trade Route Mall<br>Lenasia</p><p>Gourmet food meets<br>exceptional value</p><b>061 601 4332</b></div>
+<div class="home"><h3>Melrose Arch</h3><p><a href="https://www.google.com/maps/search/?api=1&amp;query=MiHa+Eatery+Melrose+Arch">Shop HL48, Melrose Arch<br>Johannesburg ↗</a></p><p>Mon–Thu 11:00–21:30<br>Fri 11:00–22:00<br>Sat 09:00–22:00 · Sun 09:00–21:30</p><b><a href="tel:+27607489464">060 748 9464</a></b></div>
+<div class="home"><h3>Centurion</h3><p><a href="https://www.google.com/maps/search/?api=1&amp;query=MiHa+Eatery+134+Baard+Rd+Raslouw">134 Baard Rd, Raslouw<br>Pretoria ↗</a></p><p>Mon 18:00–21:30<br>Tue–Fri 12:00–21:30<br>Sat 09:00–22:00 · Sun 09:00–21:30</p><b><a href="tel:+27780059386">078 005 9386</a></b></div>
+<div class="home"><h3>MiHa X</h3><p><a href="https://www.google.com/maps/search/?api=1&amp;query=Trade+Route+Mall+Lenasia">Trade Route Mall<br>Lenasia ↗</a></p><p>Gourmet food meets<br>exceptional value</p><b><a href="tel:+27616014332">061 601 4332</a></b></div>
 </div>
 <p class="note">All food is strictly Halaal. For religious reasons, no alcohol is served or allowed on the premises. Menu as listed by MiHa on Dineplan (July 2025); dishes and prices may change, so please confirm with your server. V = vegetarian.</p>
-<p class="web">onlinepixelcode-collab.github.io/miha-website · @mihasouthafrica</p>
+<p class="web"><a href="https://onlinepixelcode-collab.github.io/miha-website/">Book online</a> · <a href="https://www.instagram.com/mihasouthafrica/">@mihasouthafrica</a> · <a href="mailto:yasin@miha.co.za">yasin@miha.co.za</a></p>
 <div class="led"></div></div>
 </body></html>`;
 
