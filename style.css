@@ -1212,3 +1212,7 @@ html[data-theme="light"] .btn--gold:hover,html[data-theme="light"] .btn--ghost:h
   .picks{bottom:140px;max-height:calc(100svh - 160px)}
 }
 .picks-pill{color:#efe8dd}
+/* a closed My picks panel must never sit over the page and swallow clicks */
+.picks[hidden]{display:none!important}
+.picks:not(.is-open){pointer-events:none}
+.picks-pill[hidden]{display:none!important}
