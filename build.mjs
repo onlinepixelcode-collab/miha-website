@@ -63,6 +63,7 @@ const nav = () => `
     <a href="story.html">Our Story</a>
     <a href="bar.html">The Bar</a>
     <a href="catering.html">Catering</a>
+    <a href="contact.html">Contact</a>
   </nav>
   <div class="nav__right">
     <span class="nav__badge">Strictly Halaal</span>
@@ -81,7 +82,8 @@ const nav = () => `
     <a href="bar.html"><small>06</small>The Bar</a>
     <a href="catering.html"><small>07</small>Catering</a>
     <a href="bakery.html"><small>08</small>Bakery</a>
-    <a href="reserve.html#book"><small>09</small>Reserve</a>
+    <a href="contact.html"><small>09</small>Contact</a>
+    <a href="reserve.html#book"><small>10</small>Reserve</a>
   </nav>
   <p class="drawer__foot">Melrose Arch · Centurion<br>Strictly Halaal · Alcohol-free</p>
 </div>`;
@@ -119,7 +121,7 @@ const footer = () => `${join()}
     <div class="footer__grid">
       <div><h3>Visit us</h3><p><b>Melrose Arch</b><br>Shop HL48, Melrose Arch, Johannesburg<br><a href="tel:+27607489464">060 748 9464</a></p><p><b>Centurion</b><br>134 Baard Rd, Raslouw, Pretoria<br><a href="tel:+27780059386">078 005 9386</a></p><p><b>MiHa X</b><br>Trade Route Mall, Lenasia<br><a href="tel:+27616014332">061 601 4332</a></p></div>
       <div><h3>Order online</h3><p><a href="${UBER}" target="_blank" rel="noopener">Uber Eats</a></p><p><a href="${MRD}" target="_blank" rel="noopener">Mr D</a></p><p><a href="reserve.html#book">Book a table</a></p></div>
-      <div><h3>Explore</h3><p><a href="menu.html">Menu</a></p><p><a href="whats-on.html">What’s On</a></p><p><a href="events.html">Events</a></p><p><a href="story.html">Our Story</a></p><p><a href="bar.html">The Bar</a></p><p><a href="catering.html">Catering</a></p><p><a href="bakery.html">Clenergy Bakery</a></p></div>
+      <div><h3>Explore</h3><p><a href="menu.html">Menu</a></p><p><a href="whats-on.html">What’s On</a></p><p><a href="events.html">Events</a></p><p><a href="story.html">Our Story</a></p><p><a href="bar.html">The Bar</a></p><p><a href="catering.html">Catering</a></p><p><a href="bakery.html">Clenergy Bakery</a></p><p><a href="contact.html">Contact</a></p></div>
       <div><h3>Say hello</h3><p><a href="mailto:yasin@miha.co.za">yasin@miha.co.za</a></p><p><a href="https://www.instagram.com/mihasouthafrica/" target="_blank" rel="noopener">Instagram</a></p><p><a href="https://www.tiktok.com/@mihasouthafrica" target="_blank" rel="noopener">TikTok</a></p><p><a href="https://g.page/r/CccsfAQ77eEuEBM/review" target="_blank" rel="noopener">Leave a Google review</a></p></div>
     </div>
     <div class="footer__lockup sign" aria-hidden="true"><div class="sign__in">${MARK()}<p>MiHa</p></div></div>
@@ -527,53 +529,113 @@ ${next('catering.html', 'Office Catering')}
 ${footer()}`;
 
 /* =========================== STORY =========================== */
-const story = `${head('Our Story · MiHa Eatery', 'MiHa is the coming together of the Miya and Hassim families: a casual café and a classic dining experience in one.', I('imgs-12-of-118'))}
+const arch = (img, alt, cls = '') => `<figure class="arch ${cls}" data-clip><img src="${I(img)}" alt="${alt}" loading="lazy"></figure>`;
+const story = `${head('Our Story · MiHa Eatery', 'MiHa is the coming together of the Miya and Hassim families: a casual café and a classic dining experience in one, strictly Halaal and alcohol-free.')}
 ${nav()}
 <main id="main">
-${phero({ crumb: 'Our Story', title: '<span class="line"><span>Two families,</span></span><span class="line"><span><em>one table.</em></span></span>', lead: 'Fifteen years ago, the Miya and Hassim families became one. The name MiHa is a celebration of that union.', img: 'imgs-12-of-118' })}
-<section class="statement"><div class="wrap">
-  <p class="eyebrow"><span class="num">01</span> The name</p>
-  <p class="statement__text" data-words>Mi for Miya. Ha for Hassim. Said together, MiHa is also a term of endearment, which is exactly how we want every guest to feel: welcomed, fed well and part of the family.</p>
-</div></section>
-<section class="sec sec--line"><div class="wrap split">
-  <figure class="split__img" data-clip><img src="${I('imgs-57-of-118')}" alt="A MiHa grilled wrap with fresh tomato" loading="lazy"></figure>
-  <div class="split__txt">
-    <p class="eyebrow"><span class="num">02</span> The idea</p>
-    <h2 class="h2">The simple <em>&amp;</em> the sumptuous.</h2>
-    <p>MiHa is the coming together of a casual café and a classic dining experience. From a quick grab-and-go to a decadent celebratory feast, we bring the two together under one roof.</p>
-    <p>Our menu is international, with flavours from near and far and our own South African touch.</p>
+
+<section class="shero">
+  <div class="wrap shero__grid">
+    <div class="shero__copy">
+      <p class="crumbs"><a href="index.html">MiHa</a> &nbsp;/&nbsp; Our Story</p>
+      <h1 class="display phero__title"><span class="line"><span>Two families,</span></span><span class="line"><span><em>one table.</em></span></span></h1>
+      <p class="lead">Fifteen years ago, the Miya and Hassim families became one. MiHa is a celebration of that union, and of the table it built.</p>
+    </div>
+    <div class="shero__arches">
+      ${arch('g-prawns', 'MiHa Signature Portuguese Prawns with chips and charred lemon', 'arch--tall')}
+      ${arch('g-tart', 'A MiHa chocolate dessert', 'arch--small')}
+    </div>
   </div>
-</div></section>
-<section class="sec sec--line"><div class="wrap split split--rev">
-  <figure class="split__img" data-clip><img src="${I('img-107-of-163')}" alt="A strawberry and lemon mocktail" loading="lazy"></figure>
-  <div class="split__txt">
-    <p class="eyebrow"><span class="num">03</span> Our promise</p>
-    <h2 class="h2">Halaal, <em>always.</em></h2>
-    <p>All food at MiHa is strictly Halaal. For religious reasons, no alcohol is served or allowed on the premises, so our bar pours mocktails, shakes, fresh juices and coffee instead.</p>
-    <p>It means everyone can sit at the same table, and nobody has to ask.</p>
+</section>
+
+<section class="sname">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">01</span> The name</p>
+    <div class="sname__word" aria-label="Mi for Miya, Ha for Hassim">
+      <div class="sname__half"><b>Mi</b><span>Miya</span></div>
+      <div class="led sname__led" aria-hidden="true"></div>
+      <div class="sname__half sname__half--r"><b><em>Ha</em></b><span>Hassim</span></div>
+    </div>
+    <p class="statement__text" data-words>Said together, MiHa is also a term of endearment, which is exactly how we want every guest to feel: welcomed, fed well and part of the family.</p>
   </div>
-</div></section>
-<section class="sec sec--line"><div class="wrap">
-  <p class="eyebrow"><span class="num">04</span> The journey</p>
-  <h2 class="h2">How MiHa <em>grew.</em></h2>
-  <div class="timeline">
-    <div class="tl" data-reveal><b>01</b><h3>Two families become one</h3><p>The Miya and Hassim families come together, and the name MiHa is born.</p></div>
-    <div class="tl" data-reveal><b>02</b><h3>Melrose Arch</h3><p>MiHa opens its doors in the heart of Johannesburg's Melrose Arch.</p></div>
-    <div class="tl" data-reveal><b>03</b><h3>Centurion</h3><p>A second home opens on Baard Road in Raslouw, Pretoria.</p></div>
-    <div class="tl" data-reveal><b>04</b><h3>Clenergy Bakery &amp; catering</h3><p>Our own bakery, corporate catering and staff lunches bring MiHa beyond the table.</p></div>
+</section>
+
+<section class="sec sec--line">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">02</span> What we believe</p>
+    <h2 class="h2">Three promises, <em>every visit.</em></h2>
+    <div class="beliefs">
+      <article class="belief" data-reveal>${arch('g-curry', 'A MiHa curry')}<h3>Strictly Halaal</h3><p>Every dish from every MiHa kitchen is strictly Halaal. No exceptions, no need to ask.</p></article>
+      <article class="belief" data-reveal>${arch('g-crepe', 'A MiHa pancake dessert with chocolate drizzle')}<h3>Alcohol-free, always</h3><p>For religious reasons no alcohol is served or allowed, so the whole family can share one table.</p></article>
+      <article class="belief" data-reveal>${arch('g-bagel', 'A MiHa salmon bagel')}<h3>Made around you</h3><p>A quick grab-and-go or a decadent celebratory feast: the simple and the sumptuous, under one roof.</p></article>
+    </div>
   </div>
-</div></section>
-<section class="sec sec--line"><div class="wrap">
-  <p class="eyebrow"><span class="num">05</span> At the table</p>
-  <h2 class="h2">A taste of <em>MiHa.</em></h2>
-  <div class="gallery">
-    <figure class="g1" data-clip><img src="${I('imgs-23-of-118')}" alt="MiHa peri-peri prawns with savoury rice" loading="lazy"></figure>
-    <figure class="g2" data-clip><img src="${I('img-157-of-163')}" alt="A meringue dessert with strawberries" loading="lazy"></figure>
-    <figure class="g3" data-clip><img src="${I('imgs-41-of-118')}" alt="Penne arrabbiata" loading="lazy"></figure>
-    <figure class="g4" data-clip><img src="${I('img-98-of-163')}" alt="A fresh MiHa salad" loading="lazy"></figure>
-    <figure class="g5" data-clip><img src="${I('img-163-of-163')}" alt="Tiramisu" loading="lazy"></figure>
+</section>
+
+<section class="sec sec--line">
+  <div class="wrap scraft">
+    <div class="scraft__arch">${arch('g-sushi', 'MiHa sushi rolls', 'arch--tall')}</div>
+    <div>
+      <p class="eyebrow"><span class="num">03</span> From our kitchen</p>
+      <h2 class="h2">International flavours, <em>a South African heart.</em></h2>
+      <ul class="crafts">
+        <li data-reveal><b>28</b><div><h3>Day-aged steaks</h3><p>Rump, fillet and ribeye, flame-grilled in MiHa’s signature basting.</p></div></li>
+        <li data-reveal><b>Stone</b><div><h3>Fired pizza</h3><p>Every pizza is baked in our stone-fired oven, from Margherita to chicken tikka.</p></div></li>
+        <li data-reveal><b>Rolled</b><div><h3>Sushi, in-house</h3><p>From California rolls to the Okinawa Tempura Platter, made to order.</p></div></li>
+        <li data-reveal><b>Clenergy</b><div><h3>Healthy bakes</h3><p>Our own bakery: high-protein bread, sugar-free low-carb loaves and gluten-free rotis.</p></div></li>
+      </ul>
+    </div>
   </div>
-</div></section>
+</section>
+
+<section class="sec sec--line">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">04</span> The journey</p>
+    <h2 class="h2">How MiHa <em>grew.</em></h2>
+    <ol class="chapters">
+      <li class="chapter" data-reveal>${arch('g-platter', 'A MiHa sharing platter')}<span>Chapter I</span><h3>Two families become one</h3><p>The Miya and Hassim families come together, and the name MiHa is born.</p></li>
+      <li class="chapter" data-reveal>${arch('g-prawns', 'MiHa prawns')}<span>Chapter II</span><h3>Melrose Arch</h3><p>MiHa opens on the piazza at Melrose Arch, in the heart of Johannesburg.</p></li>
+      <li class="chapter" data-reveal>${arch('g-pizza', 'A stone-fired MiHa pizza')}<span>Chapter III</span><h3>Centurion</h3><p>A second home opens at Golden Point Padel on Baard Road, Raslouw.</p></li>
+      <li class="chapter" data-reveal>${arch('g-bagel', 'A MiHa bagel')}<span>Chapter IV</span><h3>Clenergy &amp; catering</h3><p>Our own bakery, corporate catering, events and staff lunches take MiHa beyond the table.</p></li>
+      <li class="chapter" data-reveal>${arch('g-burger', 'A MiHa burger')}<span>Chapter V</span><h3>MiHa X Lenasia</h3><p>The newest chapter: gourmet food at exceptional value, at Trade Route Mall.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec sec--line">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">05</span> MiHa today</p>
+    <h2 class="h2">A family that <em>keeps growing.</em></h2>
+    <dl class="snums">
+      <div data-reveal><dd><span data-count="15">15</span></dd><dt>Years since the union</dt></div>
+      <div data-reveal><dd><span data-count="3">3</span></dd><dt>MiHa homes</dt></div>
+      <div data-reveal><dd>29.9K</dd><dt>Instagram family</dt></div>
+      <div data-reveal><dd>4.4<small>★</small></dd><dt>Uber Eats, 1,000+ ratings</dt></div>
+      <div data-reveal><dd><span data-count="100">100</span>%</dd><dt>Halaal</dt></div>
+    </dl>
+  </div>
+</section>
+
+<section class="bleed bleed--led" aria-label="Welcome to MiHa">
+  <div class="led led--top" aria-hidden="true"></div>
+  <p class="bleed__quote wrap"><span>“Welcome to MiHa.</span><span><em>We hope you enjoy your time with us.”</em></span></p>
+  <div class="led led--bottom" aria-hidden="true"></div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow"><span class="num">06</span> At the table</p>
+    <h2 class="h2">A taste of <em>MiHa.</em></h2>
+    <div class="sgallery">
+      ${arch('g-sushi', 'MiHa sushi')}
+      ${arch('g-dessert-choc', 'MiHa’s decadent brownies')}
+      ${arch('g-pizza', 'A stone-fired MiHa pizza')}
+      ${arch('g-prawns', 'MiHa Portuguese prawns')}
+    </div>
+    <p style="margin-top:48px;display:flex;gap:14px;flex-wrap:wrap"><a class="btn btn--gold btn--lg mag" href="reserve.html#book"><span>Book a table</span></a><a class="btn btn--ghost btn--lg mag" href="menu.html"><span>See the menu</span></a></p>
+  </div>
+</section>
+
 ${next('bar.html', 'The Bar')}
 </main>
 ${footer()}`;
@@ -706,6 +768,43 @@ ${next('reserve.html', 'Reserve a table')}
 </main>
 ${footer()}`;
 
+/* =========================== CONTACT =========================== */
+const contact = `${head('Contact · MiHa Eatery', 'Contact MiHa Melrose Arch, MiHa Centurion and MiHa X Lenasia: phone numbers, email, trading hours and directions.')}
+${nav()}
+<main id="main">
+${phero({ crumb: 'Contact', title: '<span class="line"><span>Say</span></span><span class="line"><span><em>hello.</em></span></span>', lead: 'Questions, bookings, events or feedback. Call your MiHa, send us a message or find us on the map.', img: 'g-dessert-choc', cta: '<a class="btn btn--gold btn--lg mag" href="#message"><span>Send a message</span></a>' })}
+<section class="sec" style="padding-top:60px"><div class="wrap">
+  <div class="cquick">
+    <a class="cquick__item" href="tel:+27607489464"><span>Melrose Arch</span><b>060 748 9464</b></a>
+    <a class="cquick__item" href="tel:+27780059386"><span>Centurion</span><b>078 005 9386</b></a>
+    <a class="cquick__item" href="tel:+27616014332"><span>MiHa X Lenasia</span><b>061 601 4332</b></a>
+    <a class="cquick__item" href="mailto:yasin@miha.co.za"><span>Email</span><b>yasin@miha.co.za</b></a>
+  </div>
+</div></section>
+${branches()}
+<section class="sec sec--line" id="message"><div class="wrap split">
+  <div class="split__txt split__txt--form">
+    <p class="eyebrow"><span class="num">—</span> Message us</p>
+    <h2 class="h2">We’d love to <em>hear from you.</em></h2>
+    <p>For bookings, the quickest way is our <a class="link-arrow" href="reserve.html#book">step-by-step booking</a>. For events, use the <a class="link-arrow" href="events.html#enquire">events enquiry</a>.</p>
+    <p class="cside"><a class="link-arrow" href="https://www.instagram.com/mihasouthafrica/" target="_blank" rel="noopener">Instagram ↗</a><a class="link-arrow" href="https://www.tiktok.com/@mihasouthafrica" target="_blank" rel="noopener">TikTok ↗</a><a class="link-arrow" href="https://g.page/r/CccsfAQ77eEuEBM/review" target="_blank" rel="noopener">Google review ↗</a></p>
+  </div>
+  <form class="form split__form" data-mailto="yasin@miha.co.za" data-subject="Website message">
+    <div class="field"><label for="m-name">Name</label><input id="m-name" name="name" required autocomplete="name"></div>
+    <div class="field"><label for="m-phone">Mobile</label><input id="m-phone" name="phone" type="tel" autocomplete="tel"></div>
+    <div class="field"><label for="m-email">Email</label><input id="m-email" name="email" type="email" required autocomplete="email"></div>
+    <div class="field"><label for="m-branch">Branch</label><select id="m-branch" name="branch"><option>Melrose Arch</option><option>Centurion</option><option>MiHa X Lenasia</option><option>General</option></select></div>
+    <div class="field field--full"><label for="m-topic">Topic</label><select id="m-topic" name="topic"><option>General question</option><option>Booking</option><option>Event or function</option><option>Catering</option><option>Feedback</option></select></div>
+    <div class="field field--full"><label for="m-msg">Message</label><textarea id="m-msg" name="message" required></textarea></div>
+    <p class="form__note">Sending opens your email app with your message addressed to MiHa.</p>
+    <p><button class="btn btn--gold btn--lg mag" type="submit"><span>Send message</span></button></p>
+    <p class="form__ok" hidden>Thank you. Your email app should now be open with your message ready to send.</p>
+  </form>
+</div></section>
+${next('reserve.html', 'Book a table')}
+</main>
+${footer()}`;
+
 /* =========================== RESERVE =========================== */
 const reserve = `${head('Reserve a Table · MiHa Eatery', 'Book a table at MiHa Melrose Arch or MiHa Centurion. Trading hours, directions and contact details.', I('g-tart'))}
 ${nav()}
@@ -736,7 +835,7 @@ ${next('menu.html', 'See the Menu')}
 </main>
 ${footer()}`;
 
-const out = { 'index.html': home, 'menu.html': menu, 'whats-on.html': whatson, 'events.html': events, 'story.html': story, 'bar.html': bar, 'catering.html': catering, 'bakery.html': bakery, 'reserve.html': reserve };
+const out = { 'index.html': home, 'menu.html': menu, 'whats-on.html': whatson, 'events.html': events, 'story.html': story, 'bar.html': bar, 'catering.html': catering, 'bakery.html': bakery, 'reserve.html': reserve, 'contact.html': contact };
 for (const [f, html] of Object.entries(out)) writeFileSync(new URL(f, import.meta.url), html);
 
 // list of MiHa images the pages use

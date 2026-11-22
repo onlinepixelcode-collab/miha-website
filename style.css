@@ -852,3 +852,101 @@ html[data-theme="light"] .bleed--led{--ink:#f7f2ea;--bone:#1b1713;--gold-2:#8a64
 @keyframes heart{0%,100%{transform:scale(1)}12%{transform:scale(1.18)}24%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){.credit__heart{animation:none}}
 @media (min-width:901px){.footer__base{padding-right:190px}}
+
+/* =========================================================
+   OUR STORY — every image in an arch, like MiHa's portal
+   ========================================================= */
+.arch{margin:0;position:relative;overflow:hidden;border-radius:999px 999px 14px 14px;aspect-ratio:3/4;background:var(--ink-2);box-shadow:0 40px 80px -36px rgba(0,0,0,.8)}
+.arch img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.arch:hover img{transform:scale(1.04)}
+/* hero */
+.shero{padding:150px 0 90px;min-height:100svh;display:flex;align-items:center}
+.shero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,90px);align-items:center;width:100%}
+.shero__copy .lead{margin-top:6px}
+.shero__arches{position:relative;justify-self:end;width:min(100%,500px);aspect-ratio:1/1.12}
+.shero__arches .arch--tall{position:absolute;right:0;top:0;width:72%;aspect-ratio:3/4.1}
+.shero__arches .arch--small{position:absolute;left:0;bottom:0;width:44%;aspect-ratio:3/4;border:6px solid var(--ink)}
+/* the name */
+.sname{padding:clamp(110px,13vw,190px) 0}
+.sname__word{display:grid;grid-template-columns:1fr minmax(60px,180px) 1fr;align-items:center;gap:clamp(16px,3vw,40px);margin:48px 0 64px}
+.sname__half{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.sname__half--r{align-items:flex-start}
+.sname__half b{font:300 clamp(110px,18vw,280px)/.8 var(--serif);letter-spacing:-.04em;color:var(--bone)}
+.sname__half b em{color:var(--gold-2)}
+.sname__half span{font:500 13px var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.sname__led{height:2px}
+.sname .statement__text{max-width:30ch*2;text-align:center;margin:0 auto}
+/* beliefs */
+.beliefs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);margin-top:64px}
+.belief .arch{aspect-ratio:3/3.6;margin-bottom:24px}
+.belief h3{font:400 32px/1.1 var(--serif);margin-bottom:10px}
+.belief p{color:var(--muted)}
+/* kitchen craft */
+.scraft{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,5vw,96px);align-items:center}
+.scraft__arch .arch{aspect-ratio:3/4.2}
+.crafts{list-style:none;padding:0;margin:40px 0 0;border-top:1px solid var(--line)}
+.crafts li{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line)}
+.crafts b{font:300 clamp(38px,4vw,56px)/1 var(--serif);color:var(--gold-2);letter-spacing:-.02em}
+.crafts h3{font:400 26px/1.15 var(--serif);margin-bottom:4px}
+.crafts p{color:var(--muted)}
+/* chapters */
+.chapters{list-style:none;padding:0;margin:64px 0 0;display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,2vw,28px)}
+.chapter .arch{aspect-ratio:3/3.8;margin-bottom:20px}
+.chapter span{font:italic 300 18px var(--serif);color:var(--gold)}
+.chapter h3{font:400 26px/1.15 var(--serif);margin:6px 0 8px}
+.chapter p{color:var(--muted);font-size:15px}
+.chapter:nth-child(even){margin-top:56px}
+/* numbers */
+.snums{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin:56px 0 0}
+.snums div{display:flex;flex-direction:column-reverse;gap:8px;padding:26px 22px;border:1px solid var(--line);border-radius:999px 999px 14px 14px;text-align:center;background:var(--ink-2)}
+.snums dd{margin:0;font:300 clamp(44px,4.6vw,68px)/1 var(--serif);color:var(--gold-2);letter-spacing:-.03em;padding-top:18px}
+.snums dd small{font-size:.5em;vertical-align:super}
+.snums dt{font:500 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+/* gallery of arches */
+.sgallery{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,28px);margin-top:56px;align-items:end}
+.sgallery .arch:nth-child(odd){aspect-ratio:3/4.4}
+.sgallery .arch:nth-child(even){aspect-ratio:3/3.6}
+@media (max-width:1100px){.chapters{grid-template-columns:repeat(3,1fr)}.chapter:nth-child(even){margin-top:0}.snums{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:900px){
+  .shero{padding:120px 0 70px;min-height:0}
+  .shero__grid,.scraft{grid-template-columns:1fr}
+  .shero__arches{justify-self:center;width:min(100%,420px)}
+  .beliefs{grid-template-columns:1fr}
+  .belief{display:grid;grid-template-columns:120px 1fr;gap:6px 20px;align-items:center}
+  .belief .arch{grid-row:span 2;margin:0;aspect-ratio:3/3.8}
+  .scraft__arch{max-width:420px}
+  .crafts li{grid-template-columns:1fr;gap:6px}
+  .chapters{grid-template-columns:1fr 1fr}
+  .sgallery{grid-template-columns:1fr 1fr}
+  .snums{grid-template-columns:1fr 1fr}
+  .snums div:last-child{grid-column:1/-1}
+  .sname__word{grid-template-columns:1fr 40px 1fr;margin:36px 0 48px}
+}
+@media (max-width:560px){.chapters{grid-template-columns:1fr}.chapter{display:grid;grid-template-columns:110px 1fr;gap:4px 18px;align-items:center}.chapter .arch{grid-row:span 3;margin:0}.belief{grid-template-columns:96px 1fr}}
+
+/* contact page + header fit */
+.cquick{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cquick__item{display:flex;flex-direction:column;gap:8px;padding:24px;border:1px solid var(--line);border-radius:999px 999px 14px 14px;text-align:center;padding-top:40px;background:var(--ink-2);transition:border-color .4s,transform .5s var(--ease)}
+.cquick__item:hover{border-color:var(--gold);transform:translateY(-3px)}
+.cquick__item span{font:500 11px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.cquick__item b{font:400 clamp(20px,1.8vw,26px) var(--serif);color:var(--gold-2);overflow-wrap:anywhere}
+.cside{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px}
+.nav__links{gap:clamp(18px,2vw,32px)}
+@media (max-width:1400px){.nav__badge{display:none}}
+@media (max-width:900px){.cquick{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.cquick{grid-template-columns:1fr}}
+
+/* footer sign: LED ring around the disc, like the lit rim of MiHa's moon portal */
+@property --ledA{syntax:"<angle>";inherits:false;initial-value:0deg}
+.footer__lockup.sign{overflow:visible}
+.footer__lockup.sign::before{content:"";position:absolute;inset:-10px;border-radius:50%;border:2px solid #ffe6c2;box-shadow:0 0 6px 1px rgba(255,222,170,.85),0 0 24px 4px rgba(255,196,120,.4),0 0 70px 14px rgba(255,170,90,.14),inset 0 0 12px 1px rgba(255,214,160,.35);pointer-events:none}
+.footer__lockup.sign::after{content:"";position:absolute;inset:-12px;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from var(--ledA),transparent 0deg,rgba(255,255,255,.95) 18deg,transparent 40deg,transparent 360deg);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px),#000 100%);mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px),#000 100%);
+  animation:ledSpin 7s linear infinite;filter:blur(.5px)}
+@keyframes ledSpin{to{--ledA:360deg}}
+html[data-theme="light"] .footer__lockup.sign::before{border-color:#e9c48a}
+@media (prefers-reduced-motion:reduce){.footer__lockup.sign::after{animation:none;display:none}}
+.crafts li{grid-template-columns:minmax(150px,210px) 1fr}
+.crafts b{font-size:clamp(32px,3.2vw,48px);white-space:nowrap}
+@media (max-width:900px){.crafts li{grid-template-columns:1fr}}
