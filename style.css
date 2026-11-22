@@ -1216,3 +1216,12 @@ html[data-theme="light"] .btn--gold:hover,html[data-theme="light"] .btn--ghost:h
 .picks[hidden]{display:none!important}
 .picks:not(.is-open){pointer-events:none}
 .picks-pill[hidden]{display:none!important}
+
+/* shorter laptop screens: keep banner buttons fully in view, clear of the floating pill */
+@media (max-height:820px) and (min-width:901px){
+  .phero{padding:110px 0 96px}
+  .phero .display,.shero .display{font-size:clamp(56px,8.4vh,112px)}
+  .phero__title{margin:14px 0 18px}
+  .shero{padding:120px 0 80px}
+}
+.phero__row{position:relative;z-index:3}
