@@ -63,3 +63,29 @@ export const BUFFETS = [
   { day: 6, name: 'Weekend Breakfast Buffet', where: 'MiHa Melrose Arch', time: '09:30 – 12:00', start: '09:30', price: 'R199 per person', note: 'Every Saturday and Sunday morning.', img: 'g-crepe', branch: 'jhb' },
   { day: 0, name: 'Weekend Breakfast Buffet', where: 'MiHa Melrose Arch', time: '09:30 – 12:00', start: '09:30', price: 'R199 per person', note: 'Every Saturday and Sunday morning.', img: 'g-bagel', branch: 'jhb' },
 ];
+
+// Compact sections (no photo), from the same Dineplan menu
+export const EXTRAS = [
+  { id: 'kids', title: 'Little <em>ones</em>', items: [
+    ['Macon, Eggs &amp; Toast', 'Scrambled eggs and macon on toast.', 'R 59', ''],
+    ['French Toast', 'Cinnamon ciabatta with syrup.', 'R 49', 'veg'],
+    ['Slider Burger', 'Beef or chicken patty on a slider roll.', 'R 59', ''],
+    ['Margherita Pizza', 'Neapolitan sauce and cheese.', 'R 79', 'veg'],
+    ['Chicken Strips', '3 crumbed strips.', 'R 59', ''],
+    ['Creamy Pasta', 'Penne in a cream sauce.', 'R 99', 'veg'],
+  ]},
+  { id: 'sides', title: 'On the <em>side</em>', items: [
+    ['Chips', '', 'R 29', 'veg'],
+    ['Onion Rings', '', 'R 40', 'veg'],
+    ['Spicy Rice', '', 'R 55', 'veg spicy'],
+    ['Roasted Vegetables', '', 'R 59', 'veg'],
+    ['Side Greek Salad', '', 'R 75', 'veg'],
+  ]},
+];
+
+export const SIGNATURES = [
+  ['MiHa Signature Portuguese Prawns', 'Butterflied queen prawns in MiHa’s peri-peri rub.', 'R 279', 'g-prawns'],
+  ['Tapas Board for 2', 'Falafel, sheesh kebab, halloumi and dips with laffa.', 'R 299', 'g-platter'],
+  ['Okinawa Tempura Platter', 'Tempura crunch, prawn sushi, sumo and tiger rolls.', 'R 780', 'g-sushi'],
+  ['Chocolate Fondant', 'MiHa’s signature dessert with an oozing centre.', 'R 129', 'g-dessert-choc'],
+];

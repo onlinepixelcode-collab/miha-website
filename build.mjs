@@ -1,18 +1,18 @@
 // Builds the MiHa multi-page site from shared parts. Run: node build.mjs
 import { writeFileSync, readFileSync } from 'node:fs';
-import { MENU, BUFFETS } from './content.mjs';
+import { MENU, BUFFETS, EXTRAS, SIGNATURES } from './content.mjs';
 
 const MARK = (cls="") => `<svg class="mh ${cls}" viewBox="40 50 440 430" fill="none" stroke="currentColor" stroke-width="46" aria-hidden="true"><path pathLength="1" d="M73 470V300a79.5 70 0 0 1 159 0v170"/><path pathLength="1" d="M232 300a62 68 0 0 1 72-67"/><path pathLength="1" d="M354 64v406"/><path pathLength="1" d="M354 300a44.5 67 0 0 1 89 0v170"/></svg>`;
 const HI = {"imgs-24-of-118":"g-prawns","imgs-12-of-118":"g-dessert-choc","imgs-110-of-118":"g-mojito","imgs-35-of-118":"g-platter","img-141-of-163":"g-crepe","imgs-18-of-118":"g-prawns","imgs-99-of-118":"g-platter","imgs-89-of-118":"g-burger","img-131-of-163":"g-crepe","imgs-15-of-118":"g-curry","img-135-of-163":"g-tart","img-161-of-163":"g-dessert-choc","imgs-62-of-118":"g-mojito","img-139-of-163":"g-tart","imgs-1-of-118":"g-burger-board","imgs-29-of-118":"g-prawns","imgs-44-of-118":"g-penne","imgs-88-of-118":"g-burger","img-155-of-163":"g-tart","imgs-57-of-118":"g-fish","imgs-23-of-118":"g-sushi","img-157-of-163":"g-dessert-choc","imgs-41-of-118":"g-pizza","img-98-of-163":"g-bagel","img-163-of-163":"g-curry","imgs-33-of-118":"g-curry","imgs-56-of-118":"g-fish","Clenergy-Breads-3-1":"g-bagel","Clenergy-Breads-3-3":"g-crepe","img-142-of-163":"g-dessert-choc","img-138-of-163":"g-tart","img-144-of-163":"g-crepe","img-160-of-163":"g-dessert-choc","img-127-of-163":"g-bagel","imgs-17-of-118":"g-platter","imgs-77-of-118":"g-mojito"};
 const I = n => `img/miha/${HI[n] || n}.jpg`; // MiHa's own photography (miha.co.za media library)
 const DINE_JHB = 'https://www.dineplan.com/restaurants/miha';
 const DINE_PTA = 'https://www.dineplan.com/restaurants/miha-pretoria';
-const PDF = 'https://www.miha.co.za/wp-content/uploads/2026/10/Melrose-Arch-Main-Menu-A3.pdf';
+const PDF = 'MiHa-Menu.pdf'; // MiHa’s menu, designed by Pixel Code (generated from content.mjs)
 
 const V = Date.now().toString(36); // cache-busting version, changes every build
 const pages = [
   ['index.html', 'Home'], ['menu.html', 'Menu'], ['story.html', 'Our Story'],
-  ['bar.html', 'The Bar'], ['catering.html', 'Catering'], ['bakery.html', 'Bakery'], ['reserve.html', 'Reserve']
+  ['drinks.html', 'Drinks'], ['catering.html', 'Catering'], ['bakery.html', 'Bakery'], ['reserve.html', 'Reserve']
 ];
 
 const SITE = 'https://onlinepixelcode-collab.github.io/miha-website/'; // live address, used for link previews
@@ -61,7 +61,7 @@ const nav = () => `
     <a href="whats-on.html">What’s On</a>
     <a href="events.html">Events</a>
     <a href="story.html">Our Story</a>
-    <a href="bar.html">The Bar</a>
+    <a href="drinks.html">Drinks</a>
     <a href="catering.html">Catering</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -79,7 +79,7 @@ const nav = () => `
     <a href="whats-on.html"><small>03</small>What’s On</a>
     <a href="events.html"><small>04</small>Events</a>
     <a href="story.html"><small>05</small>Our Story</a>
-    <a href="bar.html"><small>06</small>The Bar</a>
+    <a href="drinks.html"><small>06</small>Drinks</a>
     <a href="catering.html"><small>07</small>Catering</a>
     <a href="bakery.html"><small>08</small>Bakery</a>
     <a href="contact.html"><small>09</small>Contact</a>
@@ -121,7 +121,7 @@ const footer = () => `${join()}
     <div class="footer__grid">
       <div><h3>Visit us</h3><p><b>Melrose Arch</b><br>Shop HL48, Melrose Arch, Johannesburg<br><a href="tel:+27607489464">060 748 9464</a></p><p><b>Centurion</b><br>134 Baard Rd, Raslouw, Pretoria<br><a href="tel:+27780059386">078 005 9386</a></p><p><b>MiHa X</b><br>Trade Route Mall, Lenasia<br><a href="tel:+27616014332">061 601 4332</a></p></div>
       <div><h3>Order online</h3><p><a href="${UBER}" target="_blank" rel="noopener">Uber Eats</a></p><p><a href="${MRD}" target="_blank" rel="noopener">Mr D</a></p><p><a href="reserve.html#book">Book a table</a></p></div>
-      <div><h3>Explore</h3><p><a href="menu.html">Menu</a></p><p><a href="whats-on.html">What’s On</a></p><p><a href="events.html">Events</a></p><p><a href="story.html">Our Story</a></p><p><a href="bar.html">The Bar</a></p><p><a href="catering.html">Catering</a></p><p><a href="bakery.html">Clenergy Bakery</a></p><p><a href="contact.html">Contact</a></p></div>
+      <div><h3>Explore</h3><p><a href="menu.html">Menu</a></p><p><a href="whats-on.html">What’s On</a></p><p><a href="events.html">Events</a></p><p><a href="story.html">Our Story</a></p><p><a href="drinks.html">Drinks</a></p><p><a href="catering.html">Catering</a></p><p><a href="bakery.html">Clenergy Bakery</a></p><p><a href="contact.html">Contact</a></p></div>
       <div><h3>Say hello</h3><p><a href="mailto:yasin@miha.co.za">yasin@miha.co.za</a></p><p><a href="https://www.instagram.com/mihasouthafrica/" target="_blank" rel="noopener">Instagram</a></p><p><a href="https://www.tiktok.com/@mihasouthafrica" target="_blank" rel="noopener">TikTok</a></p><p><a href="https://g.page/r/CccsfAQ77eEuEBM/review" target="_blank" rel="noopener">Leave a Google review</a></p></div>
     </div>
     <div class="footer__lockup sign" aria-hidden="true"><div class="sign__in">${MARK()}<p>MiHa</p></div></div>
@@ -138,6 +138,7 @@ const footer = () => `${join()}
 <script src="main.js?v=${V}"></script>
 <script src="concierge.js?v=${V}"></script>
 <script src="booking.js?v=${V}"></script>
+<script src="picks.js?v=${V}"></script>
 </body>
 </html>`;
 
@@ -232,7 +233,7 @@ ${nav()}
     <p class="statement__text" data-words>From a quick flat white on the way to work to a long celebration dinner with everyone you love, MiHa is where a casual café meets classic dining. Every plate is strictly Halaal, every glass alcohol-free, and every guest family.</p>
     <div class="statement__pills">
       <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg><span><b>Strictly Halaal</b>Every kitchen, every dish</span></div>
-      <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10l-1 7a4 4 0 01-8 0zM12 14v7M8 21h8"/><path d="M4 4l16 16"/></svg><span><b>Alcohol-free</b>A bar built on mocktails</span></div>
+      <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10l-1 7a4 4 0 01-8 0zM12 14v7M8 21h8"/><path d="M4 4l16 16"/></svg><span><b>Alcohol-free</b>Mocktails, shakes and coffee</span></div>
       <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.6-7 10-7 10z"/></svg><span><b>Made around you</b>Taste and variety, your way</span></div>
     </div>
   </div>
@@ -308,7 +309,7 @@ ${nav()}
   <div class="wrap">
     <div class="beyond__head"><p class="eyebrow"><span class="num">05</span> Explore MiHa</p><h2 class="h2">More than a <em>meal.</em></h2></div>
     <div class="beyond__grid">
-      <a class="bcard" href="bar.html" data-cursor="Explore"><figure><img src="${I('imgs-62-of-118')}" alt="A tall MiHa mocktail with golden garnish" loading="lazy"></figure><div><h3>The alcohol-free bar</h3><p>Mocktails, shakes and coffee worth crossing town for.</p><span class="link-arrow">Visit the bar →</span></div></a>
+      <a class="bcard" href="drinks.html" data-cursor="Explore"><figure><img src="${I('imgs-62-of-118')}" alt="A tall MiHa mocktail with golden garnish" loading="lazy"></figure><div><h3>Mocktails &amp; shakes</h3><p>Mocktails, shakes and coffee worth crossing town for.</p><span class="link-arrow">See the drinks →</span></div></a>
       <a class="bcard" href="catering.html" data-cursor="Explore"><figure><img src="${I('imgs-35-of-118')}" alt="A MiHa peri-peri chicken platter" loading="lazy"></figure><div><h3>Catering &amp; staff lunches</h3><p>Boardroom lunches to year-end functions, fully Halaal.</p><span class="link-arrow">Plan an event →</span></div></a>
       <a class="bcard" href="bakery.html" data-cursor="Explore"><figure><img src="${I('img-139-of-163')}" alt="A MiHa cheesecake crowned with caramel crunch" loading="lazy"></figure><div><h3>Clenergy Bakery</h3><p>Breads, pastries and celebration cakes, baked in-house.</p><span class="link-arrow">Visit the bakery →</span></div></a>
     </div>
@@ -380,15 +381,17 @@ const dishRow = ([name, desc, price, tags]) => {
   const t = tags.split(' ').filter(Boolean);
   const badge = t.includes('sig') ? ' <span class="tag">Signature</span>' : '';
   const ic = (t.includes('spicy') ? ' <span class="ic" title="Spicy" aria-label="Spicy">🌶</span>' : '') + (t.includes('veg') ? ' <span class="ic ic--veg" title="Vegetarian" aria-label="Vegetarian">V</span>' : '');
-  return `<div class="dish" data-tags="${tags}"><h3>${name}${badge}${ic}</h3><span class="price">${price}</span><p>${desc}</p></div>`;
+  return `<div class="dish" data-tags="${tags}" data-name="${name}" data-price="${price}"><h3>${name}${badge}${ic}</h3><i class="dish__lead" aria-hidden="true"></i><span class="price">${price}</span><button class="pick" type="button" aria-label="Add ${name.replace(/&amp;/g,"and")} to my picks">＋</button>${desc ? `<p>${desc}</p>` : ""}</div>`;
 };
 const menuSec = (s, i) => `
 <section class="msec" id="${s.id}">
   <div class="wrap msec__grid${i % 2 ? ' msec__grid--rev' : ''}">
-    <figure class="msec__img" data-clip><img src="${I(s.img)}" alt="${s.alt}" loading="lazy"></figure>
+    <figure class="msec__img arch" data-clip><img src="${I(s.img)}" alt="${s.alt}" loading="lazy"></figure>
     <div><h2 class="msec__title">${s.title}</h2>${s.items.map(dishRow).join('')}</div>
   </div>
 </section>`;
+const extraSec = s => `<div class="mextra" id="${s.id}"><h2 class="msec__title">${s.title}</h2>${s.items.map(dishRow).join("")}</div>`;
+const sigCard = ([n,d,p,img]) => `<article class="sigc dish" data-tags="sig" data-name="${n}" data-price="${p}"><figure class="arch" data-clip><img src="${I(img)}" alt="${n}" loading="lazy"></figure><h3>${n}</h3><p>${d}</p><div class="sigc__row"><span class="price">${p}</span><button class="pick pick--label" type="button" aria-label="Add ${n} to my picks">＋ Add to my picks</button></div></article>`;
 const orderOnline = () => `
 <section class="order sec--line">
   <div class="wrap order__grid">
@@ -402,15 +405,17 @@ const orderOnline = () => `
 const menu = `${head('Menu · MiHa Eatery', 'MiHa’s menu: signature 28-day aged steaks, Portuguese prawns, sushi platters, stone-fired pizza, burgers and desserts. Strictly Halaal.', I('g-prawns'))}
 ${nav()}
 <main id="main">
-${phero({ crumb: 'Menu', title: '<span class="line"><span>Taste &amp;</span></span><span class="line"><span><em>variety.</em></span></span>', lead: 'From 28-day aged steaks to sushi platters and stone-fired pizza. Every dish strictly Halaal.', img: 'g-prawns', cta: '<a class="btn btn--gold btn--lg mag" href="reserve.html#book"><span>Book a table</span></a>' })}
+${phero({ crumb: 'Menu', title: '<span class="line"><span>Taste &amp;</span></span><span class="line"><span><em>variety.</em></span></span>', lead: 'From 28-day aged steaks to sushi platters and stone-fired pizza. Every dish strictly Halaal.', img: 'g-prawns', cta: '<span class="phero__ctas"><a class="btn btn--gold btn--lg mag" href="reserve.html#book"><span>Book a table</span></a><a class="btn btn--ghost btn--lg mag" href="MiHa-Menu.pdf" download><span>Download menu (PDF)</span></a></span>' })}
+<section class="sec msig"><div class="wrap"><p class="eyebrow"><span class="num">—</span> Chef’s signatures</p><h2 class="h2">Start with <em>the favourites.</em></h2><div class="msig__grid">${SIGNATURES.map(sigCard).join('')}</div></div></section>
 <nav class="mtabs" aria-label="Menu sections"><div class="wrap mtabs__in">
-  ${MENU.map(s => `<a href="#${s.id}">${s.title.replace(/<[^>]+>/g, '').replace('&amp;', '&')}</a>`).join('')}
+  ${MENU.concat(EXTRAS).map(s => `<a href="#${s.id}">${s.title.replace(/<[^>]+>/g, '').replace('&amp;', '&')}</a>`).join('')}
 </div></nav>
-<div class="wrap"><div class="mfilters" role="group" aria-label="Filter dishes">
+<div class="wrap mtools"><div class="msearch"><label for="msearch" class="msearch__label">Search the menu</label><input id="msearch" type="search" placeholder="Search dishes, e.g. prawns, vegan, pizza" autocomplete="off"><p class="msearch__empty" hidden>No dishes match. Try another word.</p></div><div class="mfilters" role="group" aria-label="Filter dishes">
   <button aria-pressed="true" data-filter="all">Everything</button><button aria-pressed="false" data-filter="sig">Signature</button><button aria-pressed="false" data-filter="spicy">Spicy</button><button aria-pressed="false" data-filter="veg">Vegetarian</button><button aria-pressed="false" data-filter="share">To share</button>
 </div></div>
 ${MENU.map(menuSec).join('')}
-<section class="sec"><div class="wrap menu__note"><p>A selection from MiHa’s menu as listed on Dineplan (July 2025). Dishes and prices may change; ask your server for today’s menu, kids’ menu and specials.</p><a class="link-arrow" href="${PDF}" target="_blank" rel="noopener">Download MiHa’s printed menu (PDF) ↗</a></div></section>
+<section class="msec"><div class="wrap mextras">${EXTRAS.map(extraSec).join('')}</div></section>
+<section class="sec"><div class="wrap menu__note"><p>A selection from MiHa’s menu as listed on Dineplan (July 2025). Dishes and prices may change; ask your server for today’s menu, kids’ menu and specials.</p><a class="link-arrow" href="${PDF}" target="_blank" rel="noopener">Download the MiHa menu (PDF) ↗</a></div></section>
 ${orderOnline()}
 ${next('whats-on.html', 'What’s On')}
 </main>
@@ -636,16 +641,16 @@ ${nav()}
   </div>
 </section>
 
-${next('bar.html', 'The Bar')}
+${next('drinks.html', 'Drinks')}
 </main>
 ${footer()}`;
 
-/* =========================== BAR =========================== */
+/* =========================== DRINKS =========================== */
 const drink = (img, name, note) => `<a class="bcard" href="reserve.html#book" data-cursor="Book"><figure><img src="${I(img)}" alt="${name}" loading="lazy"></figure><div><h3>${name}</h3><p>${note}</p></div></a>`;
-const bar = `${head('The Alcohol-free Bar · MiHa Eatery', 'MiHa\'s alcohol-free bar: signature mocktails, freakshakes, fresh juice and specialty coffee.', I('imgs-110-of-118'))}
+const bar = `${head('Drinks · MiHa Eatery', 'MiHa\'s alcohol-free drinks: signature mocktails, freakshakes, fresh juice and specialty coffee.', I('imgs-110-of-118'))}
 ${nav()}
 <main id="main">
-${phero({ crumb: 'The Bar', title: '<span class="line"><span>Zero proof.</span></span><span class="line"><span><em>Full flavour.</em></span></span>', lead: 'No alcohol, ever. Instead: layered mocktails, freakshakes, fresh juice and coffee, made with the same care as the kitchen.', img: 'imgs-110-of-118' })}
+${phero({ crumb: 'Drinks', title: '<span class="line"><span>Zero proof.</span></span><span class="line"><span><em>Full flavour.</em></span></span>', lead: 'No alcohol, ever. Instead: layered mocktails, freakshakes, fresh juice and coffee, made with the same care as the kitchen.', img: 'imgs-110-of-118' })}
 <section class="statement"><div class="wrap">
   <p class="eyebrow"><span class="num">01</span> The philosophy</p>
   <p class="statement__text" data-words>A great drink is about balance, colour and a little theatre. Ours just happen to be alcohol-free, so the whole table can raise a glass together.</p>
@@ -805,6 +810,80 @@ ${next('reserve.html', 'Book a table')}
 </main>
 ${footer()}`;
 
+/* =========================== PRINTABLE MENU (PDF source) =========================== */
+const pdfDish = ([name, desc, price, tags]) => `<div class="pd"><div class="pd__row"><h4>${name}${tags.includes('sig') ? '<i>Signature</i>' : ''}${tags.includes('veg') ? '<u>V</u>' : ''}${tags.includes('spicy') ? '<u>🌶</u>' : ''}</h4><span class="pd__lead"></span><b>${price}</b></div>${desc ? `<p>${desc}</p>` : ''}</div>`;
+const pdfSec = s => `<section class="ps"><h3>${s.title}</h3>${s.items.map(pdfDish).join('')}</section>`;
+const pdfPage = (secs, img, n) => `<div class="pg"><div class="pg__led"></div><div class="pg__grid"><figure class="pg__arch"><img src="img/miha/${img}.jpg" alt=""></figure><div class="pg__body">${secs.map(pdfSec).join('')}</div></div><footer class="pg__foot"><span>MiHa</span><span>Strictly Halaal · Alcohol-free</span><span>${n}</span></footer></div>`;
+const MKS = `<svg viewBox="40 50 440 430" fill="none" stroke="currentColor" stroke-width="46"><path d="M73 470V300a79.5 70 0 0 1 159 0v170"/><path d="M232 300a62 68 0 0 1 72-67"/><path d="M354 64v406"/><path d="M354 300a44.5 67 0 0 1 89 0v170"/></svg>`;
+const byId = id => MENU.find(s => s.id === id);
+const menuPrint = `<!doctype html><html lang="en-ZA"><head><meta charset="utf-8"><title>MiHa · The Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Geist:wght@300;400;500&display=block" rel="stylesheet">
+<style>
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:#0d0b09;color:#efe8dd;font-family:Geist,sans-serif}
+.pg{position:relative;width:210mm;height:297mm;overflow:hidden;page-break-after:always;padding:20mm 16mm 18mm;background:radial-gradient(70% 45% at 50% 0%,rgba(201,164,106,.08),transparent 70%),#0d0b09}
+.pg:last-child{page-break-after:auto}
+.led{height:1.4px;border-radius:2px;background:linear-gradient(90deg,transparent,#ffdca8 14%,#fff4e2 50%,#ffdca8 86%,transparent);box-shadow:0 0 4px 1px rgba(255,222,170,.8),0 0 14px 3px rgba(255,196,120,.32)}
+.pg__led{position:absolute;left:16mm;right:16mm;top:11mm;height:1.2px;border-radius:2px;background:linear-gradient(90deg,transparent,#ffdca8 14%,#fff4e2 50%,#ffdca8 86%,transparent);box-shadow:0 0 4px 1px rgba(255,222,170,.75),0 0 12px 2px rgba(255,196,120,.3)}
+.pg__grid{display:grid;grid-template-columns:52mm 1fr;gap:11mm;height:100%}
+.pg__arch{margin:0;height:150mm;border-radius:999px 999px 6px 6px;overflow:hidden;box-shadow:0 0 0 .6px rgba(201,164,106,.5)}
+.pg__arch img{width:100%;height:100%;object-fit:cover}
+.ps{margin-bottom:9mm}
+.ps h3{font:300 30pt/1 'Cormorant Garamond',serif;letter-spacing:-.01em;margin-bottom:5mm;padding-bottom:3mm;border-bottom:.6px solid rgba(201,164,106,.35)}
+.ps h3 em{color:#e2c48f;font-style:italic}
+.pd{padding:2.4mm 0;break-inside:avoid}
+.pd__row{display:flex;align-items:baseline;gap:3mm}
+.pd h4{font:400 13.5pt/1.2 'Cormorant Garamond',serif;color:#efe8dd;display:flex;align-items:baseline;gap:2mm;flex-wrap:wrap}
+.pd h4 i{font:500 5.6pt Geist,sans-serif;letter-spacing:.18em;text-transform:uppercase;font-style:normal;color:#c9a46a;border:.5px solid rgba(201,164,106,.6);border-radius:99px;padding:.6mm 1.6mm}
+.pd h4 u{text-decoration:none;font:500 6.5pt Geist,sans-serif;color:#a9c99b}
+.pd__lead{flex:1;border-bottom:.6px dotted rgba(239,232,221,.3);transform:translateY(-1.2mm);min-width:6mm}
+.pd b{font:400 13pt 'Cormorant Garamond',serif;color:#e2c48f;white-space:nowrap}
+.pd p{font:300 7.6pt/1.45 Geist,sans-serif;color:#a69d91;margin-top:.6mm;max-width:105mm}
+.pg__foot{position:absolute;left:16mm;right:16mm;bottom:9mm;display:flex;justify-content:space-between;font:500 6.4pt Geist,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#7f776c}
+/* cover */
+.cover{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0}
+.cover .led{position:absolute;left:20mm;right:20mm}
+.cover .led.t{top:22mm}.cover .led.b{bottom:22mm}
+.disc{position:relative;width:78mm;height:78mm;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 40% 35%,#2a2724,#161412 70%);box-shadow:inset 0 -12mm 30mm rgba(0,0,0,.6)}
+.disc::before{content:"";position:absolute;inset:-3mm;border-radius:50%;border:.8mm solid #ffe6c2;box-shadow:0 0 2mm .4mm rgba(255,222,170,.85),0 0 8mm 1.5mm rgba(255,196,120,.4),0 0 22mm 4mm rgba(255,170,90,.14)}
+.disc svg{width:36mm;color:#f0b37e;filter:drop-shadow(0 0 1.5mm rgba(240,170,110,.7))}
+.disc p{position:absolute;bottom:17mm;font:300 13pt Geist,sans-serif;letter-spacing:.42em;padding-left:.42em;color:#f3bd8a}
+.cover h1{margin-top:22mm;font:300 54pt/1 'Cormorant Garamond',serif;letter-spacing:-.02em}
+.cover h1 em{color:#e2c48f}
+.cover .tag{margin-top:6mm;font:italic 300 15pt 'Cormorant Garamond',serif;color:#d8cfc1}
+.cover .meta{margin-top:16mm;font:500 7pt Geist,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:#9d9488}
+/* back */
+.back{display:flex;flex-direction:column;justify-content:center;padding:26mm 22mm}
+.back h2{font:300 34pt/1 'Cormorant Garamond',serif;margin-bottom:12mm}
+.back h2 em{color:#e2c48f}
+.homes{display:grid;grid-template-columns:repeat(3,1fr);gap:7mm}
+.home{padding:8mm 6mm 6mm;border:.6px solid rgba(201,164,106,.35);border-radius:999px 999px 4mm 4mm;text-align:center}
+.home h3{font:400 17pt 'Cormorant Garamond',serif;margin-bottom:3mm}
+.home p{font:300 7.4pt/1.6 Geist,sans-serif;color:#b5ab9e}
+.home b{display:block;margin-top:3mm;font:400 12pt 'Cormorant Garamond',serif;color:#e2c48f}
+.back .note{margin-top:14mm;font:300 7.4pt/1.6 Geist,sans-serif;color:#8f877c;max-width:150mm}
+.back .web{margin-top:6mm;font:500 7.4pt Geist,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#c9a46a}
+.back .led{position:absolute;left:20mm;right:20mm;bottom:22mm}
+</style></head><body>
+<div class="pg cover"><div class="led t"></div><div class="disc">${MKS}<p>MiHa</p></div><h1>The <em>Menu</em></h1><p class="tag">Where casual café meets classic dining</p><p class="meta">Strictly Halaal · Alcohol-free · Melrose Arch · Centurion</p><div class="led b"></div></div>
+${pdfPage([byId('starters'), byId('steak')], 'g-platter', '01')}
+${pdfPage([byId('seafood'), byId('pizza')], 'g-prawns', '02')}
+${pdfPage([byId('sushi'), byId('burgers')], 'g-sushi', '03')}
+${pdfPage([byId('sweet')], 'g-dessert-choc', '04')}
+${pdfPage([EXTRAS[0], EXTRAS[1]], 'g-pizza', '05')}
+<div class="pg back"><h2>Visit <em>MiHa.</em></h2>
+<div class="homes">
+<div class="home"><h3>Melrose Arch</h3><p>Shop HL48, Melrose Arch<br>Johannesburg</p><p>Mon–Thu 11:00–21:30<br>Fri 11:00–22:00<br>Sat 09:00–22:00 · Sun 09:00–21:30</p><b>060 748 9464</b></div>
+<div class="home"><h3>Centurion</h3><p>134 Baard Rd, Raslouw<br>Pretoria</p><p>Mon 18:00–21:30<br>Tue–Fri 12:00–21:30<br>Sat 09:00–22:00 · Sun 09:00–21:30</p><b>078 005 9386</b></div>
+<div class="home"><h3>MiHa X</h3><p>Trade Route Mall<br>Lenasia</p><p>Gourmet food meets<br>exceptional value</p><b>061 601 4332</b></div>
+</div>
+<p class="note">All food is strictly Halaal. For religious reasons, no alcohol is served or allowed on the premises. Menu as listed by MiHa on Dineplan (July 2025); dishes and prices may change, so please confirm with your server. V = vegetarian.</p>
+<p class="web">onlinepixelcode-collab.github.io/miha-website · @mihasouthafrica</p>
+<div class="led"></div></div>
+</body></html>`;
+
 /* =========================== RESERVE =========================== */
 const reserve = `${head('Reserve a Table · MiHa Eatery', 'Book a table at MiHa Melrose Arch or MiHa Centurion. Trading hours, directions and contact details.', I('g-tart'))}
 ${nav()}
@@ -835,7 +914,7 @@ ${next('menu.html', 'See the Menu')}
 </main>
 ${footer()}`;
 
-const out = { 'index.html': home, 'menu.html': menu, 'whats-on.html': whatson, 'events.html': events, 'story.html': story, 'bar.html': bar, 'catering.html': catering, 'bakery.html': bakery, 'reserve.html': reserve, 'contact.html': contact };
+const out = { 'index.html': home, 'menu.html': menu, 'whats-on.html': whatson, 'events.html': events, 'story.html': story, 'drinks.html': bar, 'catering.html': catering, 'bakery.html': bakery, 'reserve.html': reserve, 'contact.html': contact, 'menu-print.html': menuPrint };
 for (const [f, html] of Object.entries(out)) writeFileSync(new URL(f, import.meta.url), html);
 
 // list of MiHa images the pages use

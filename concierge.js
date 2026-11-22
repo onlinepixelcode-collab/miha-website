@@ -64,8 +64,8 @@
   const MH = '<svg class="mh" viewBox="40 50 440 430" fill="none" stroke="currentColor" stroke-width="46" aria-hidden="true"><path d="M73 470V300a79.5 70 0 0 1 159 0v170"/><path d="M232 300a62 68 0 0 1 72-67"/><path d="M354 64v406"/><path d="M354 300a44.5 67 0 0 1 89 0v170"/></svg>';
   document.body.insertAdjacentHTML('beforeend', `
     <button class="cc-btn" aria-haspopup="dialog" aria-controls="cc" aria-label="Ask MiHa: chat with our concierge" data-cursor="Chat">${MH}</button><p class="cc-bubble" aria-hidden="true">Ask MiHa</p>
-    <section class="cc" id="cc" role="dialog" aria-modal="false" aria-label="MiHa concierge" hidden>
-      <header class="cc__head">${MH}<div><b>MiHa Concierge</b><span>Bookings · Menu · Hours</span></div><button class="cc__x" aria-label="Close concierge">×</button></header>
+    <section class="cc" id="cc" role="dialog" aria-modal="false" aria-label="Ask MiHa" hidden>
+      <header class="cc__head">${MH}<div><b>Ask MiHa</b></div><button class="cc__x" aria-label="Close concierge">×</button></header>
       <div class="cc__log" aria-live="polite"></div>
       <form class="cc__form"><label class="sr" for="cc-in" style="position:absolute;left:-9999px">Message</label><input id="cc-in" autocomplete="off" placeholder="Ask about a table, the menu, hours…"><button aria-label="Send">↑</button></form>
     </section>`);
@@ -93,7 +93,7 @@
     list.forEach(([label, fn]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'cc__chip'; b.textContent = label; b.onclick = () => { wrap.remove(); me(label); fn(); }; wrap.appendChild(b); });
     log.appendChild(wrap); scroll();
   };
-  const main = () => chips([['Book a table', startBooking], ['Suggest something to eat', suggest], ['Buffets', () => { input.value = 'buffet'; form.requestSubmit(); }], ['Opening hours', hours], ['Is it Halaal?', halaal], ['Directions', directions]]);
+  const main = () => chips([['Book a table', startBooking], ['Suggest something to eat', suggest], ['Order delivery', delivery], ['Buffets', () => { input.value = 'buffet'; form.requestSubmit(); }], ['Opening hours', hours], ['Is it Halaal?', halaal], ['Directions', directions]]);
 
   async function greet() {
     const h = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Johannesburg' })).getHours();
@@ -114,7 +114,7 @@
     chips([['Book a table', startBooking], ['Something else', anything]]);
   }
   async function halaal() {
-    await bot('Yes. All food at MiHa is <b>strictly Halaal</b>, and for religious reasons no alcohol is served or allowed on the premises. Our bar pours mocktails, freakshakes, fresh juice and coffee instead.');
+    await bot('Yes. All food at MiHa is <b>strictly Halaal</b>, and for religious reasons no alcohol is served or allowed on the premises. Instead we pour mocktails, freakshakes, fresh juice and coffee.');
     chips([['Suggest a drink', () => showPicks('drink')], ['Book a table', startBooking], ['Something else', anything]]);
   }
   async function directions() {
@@ -122,6 +122,17 @@
     chips([['Book a table', startBooking], ['Something else', anything]]);
   }
   async function anything() { await bot('Of course. What else can I help with?', 300); main(); }
+
+
+  /* ---------- delivery ---------- */
+  async function delivery() {
+    let picks = []; try { picks = JSON.parse(localStorage.getItem('miha-picks') || '[]'); } catch (e) {}
+    const list = picks.length ? '<br><br>Your picks from the menu:<br>' + picks.map(p => `• ${p.q} × ${esc(p.n)}`).join('<br>') + '<br>Search for these in the app to add them to your order.' : '';
+    await bot('Order MiHa to your door through our delivery partners. The order and payment are completed in their app.' + list);
+    log.insertAdjacentHTML('beforeend', `<div class="cc__sum"><b>MiHa Melrose Arch</b><br>Uber Eats · rated 4.4 by 1,000+ guests<br><a class="cc__go" href="https://www.ubereats.com/za/search?q=MiHa%20Melrose%20Arch" target="_blank" rel="noopener">Order on Uber Eats</a><br><br><b>MiHa X Lenasia</b><br>Mr D<br><a class="cc__go" href="https://www.mrdfood.com/" target="_blank" rel="noopener">Order on Mr D</a></div>`);
+    scroll();
+    chips([['Build my order from the menu', () => (location.href = 'menu.html')], ['Something else', anything]]);
+  }
 
   /* ---------- suggestions ---------- */
   async function suggest() {
@@ -199,7 +210,7 @@
     if (/buffet|friday|breakfast buffet|weekend/.test(q)) { await bot('At MiHa Melrose Arch:<br><b>Friday Night Dinner Buffet</b>: Fridays 18:30–21:00, R250 per adult, R125 for kids 6–12.<br><b>Weekend Breakfast Buffet</b>: Saturday and Sunday 09:30–12:00, R199 per person.<br>Bookings are essential. <a href="whats-on.html">See what’s on</a>.'); return chips([['Book a buffet', () => { flow = { step: 'branch', data: {} }; setBranch('jhb'); }], ['Something else', anything]]); }
     if (/wedding|engagement|graduation|birthday party|function|private|celebrat|event/.test(q)) { await bot('MiHa hosts corporate events, weddings, engagements, birthdays and graduations at Melrose Arch and Centurion, with decor, setup and Halaal catering taken care of. <a href="events.html#enquire">Plan your event</a>.'); return main(); }
     if (/lenasia|miha x|mihax|trade route/.test(q)) { await bot('<b>MiHa X Lenasia</b> is at Trade Route Mall, Lenasia: gourmet food at exceptional value. Call <a href="tel:+27616014332">061 601 4332</a> or see <a href="https://www.instagram.com/mihax_lenasia/" target="_blank" rel="noopener">@mihax_lenasia</a>.'); return main(); }
-    if (/deliver|uber|mr d|mrd|takeaway|take away|order online/.test(q)) { await bot('Order MiHa Melrose Arch on <a href="https://www.ubereats.com/za/search?q=MiHa%20Melrose%20Arch" target="_blank" rel="noopener">Uber Eats</a> (rated 4.4), and MiHa X Lenasia on <a href="https://www.mrdfood.com/" target="_blank" rel="noopener">Mr D</a>.'); return main(); }
+    if (/deliver|uber|mr d|mrd|takeaway|take away|order online|order food|place.*order/.test(q)) { return delivery(); await bot('Order MiHa Melrose Arch on <a href="https://www.ubereats.com/za/search?q=MiHa%20Melrose%20Arch" target="_blank" rel="noopener">Uber Eats</a> (rated 4.4), and MiHa X Lenasia on <a href="https://www.mrdfood.com/" target="_blank" rel="noopener">Mr D</a>.'); return main(); }
     if (/cater|office|staff|corporate/.test(q)) { await bot('We cater boardroom lunches, functions and daily staff lunches, all Halaal. <a href="catering.html">See catering and request a quote</a>.'); return main(); }
     if (/hungry|eat|food|recommend|suggest|order|menu|best|popular/.test(q)) return suggest();
     if (/bakery|bread|clenergy|birthday cake/.test(q)) { await bot('Clenergy Bakery is our own in-house bakery for breads, pastries and celebration cakes. <a href="bakery.html">Visit the bakery page</a>.'); return main(); }

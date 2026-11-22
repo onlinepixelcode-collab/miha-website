@@ -3,15 +3,17 @@ const dishRow = ([name, desc, price, tags]) => {
   const t = tags.split(' ').filter(Boolean);
   const badge = t.includes('sig') ? ' <span class="tag">Signature</span>' : '';
   const ic = (t.includes('spicy') ? ' <span class="ic" title="Spicy" aria-label="Spicy">🌶</span>' : '') + (t.includes('veg') ? ' <span class="ic ic--veg" title="Vegetarian" aria-label="Vegetarian">V</span>' : '');
-  return `<div class="dish" data-tags="${tags}"><h3>${name}${badge}${ic}</h3><span class="price">${price}</span><p>${desc}</p></div>`;
+  return `<div class="dish" data-tags="${tags}" data-name="${name}" data-price="${price}"><h3>${name}${badge}${ic}</h3><i class="dish__lead" aria-hidden="true"></i><span class="price">${price}</span><button class="pick" type="button" aria-label="Add ${name.replace(/&amp;/g,"and")} to my picks">＋</button>${desc ? `<p>${desc}</p>` : ""}</div>`;
 };
 const menuSec = (s, i) => `
 <section class="msec" id="${s.id}">
   <div class="wrap msec__grid${i % 2 ? ' msec__grid--rev' : ''}">
-    <figure class="msec__img" data-clip><img src="${I(s.img)}" alt="${s.alt}" loading="lazy"></figure>
+    <figure class="msec__img arch" data-clip><img src="${I(s.img)}" alt="${s.alt}" loading="lazy"></figure>
     <div><h2 class="msec__title">${s.title}</h2>${s.items.map(dishRow).join('')}</div>
   </div>
 </section>`;
+const extraSec = s => `<div class="mextra" id="${s.id}"><h2 class="msec__title">${s.title}</h2>${s.items.map(dishRow).join("")}</div>`;
+const sigCard = ([n,d,p,img]) => `<article class="sigc dish" data-tags="sig" data-name="${n}" data-price="${p}"><figure class="arch" data-clip><img src="${I(img)}" alt="${n}" loading="lazy"></figure><h3>${n}</h3><p>${d}</p><div class="sigc__row"><span class="price">${p}</span><button class="pick pick--label" type="button" aria-label="Add ${n} to my picks">＋ Add to my picks</button></div></article>`;
 const orderOnline = () => `
 <section class="order sec--line">
   <div class="wrap order__grid">
@@ -26,13 +28,15 @@ const menu = `${head('Menu · MiHa Eatery', 'MiHa’s menu: signature 28-day age
 ${nav()}
 <main id="main">
 ${phero({ crumb: 'Menu', title: '<span class="line"><span>Taste &amp;</span></span><span class="line"><span><em>variety.</em></span></span>', lead: 'From 28-day aged steaks to sushi platters and stone-fired pizza. Every dish strictly Halaal.', img: 'g-prawns', cta: '<a class="btn btn--gold btn--lg mag" href="reserve.html#book"><span>Book a table</span></a>' })}
+<section class="sec msig"><div class="wrap"><p class="eyebrow"><span class="num">—</span> Chef’s signatures</p><h2 class="h2">Start with <em>the favourites.</em></h2><div class="msig__grid">${SIGNATURES.map(sigCard).join('')}</div></div></section>
 <nav class="mtabs" aria-label="Menu sections"><div class="wrap mtabs__in">
-  ${MENU.map(s => `<a href="#${s.id}">${s.title.replace(/<[^>]+>/g, '').replace('&amp;', '&')}</a>`).join('')}
+  ${MENU.concat(EXTRAS).map(s => `<a href="#${s.id}">${s.title.replace(/<[^>]+>/g, '').replace('&amp;', '&')}</a>`).join('')}
 </div></nav>
-<div class="wrap"><div class="mfilters" role="group" aria-label="Filter dishes">
+<div class="wrap mtools"><div class="msearch"><label for="msearch" class="msearch__label">Search the menu</label><input id="msearch" type="search" placeholder="Search dishes, e.g. prawns, vegan, pizza" autocomplete="off"><p class="msearch__empty" hidden>No dishes match. Try another word.</p></div><div class="mfilters" role="group" aria-label="Filter dishes">
   <button aria-pressed="true" data-filter="all">Everything</button><button aria-pressed="false" data-filter="sig">Signature</button><button aria-pressed="false" data-filter="spicy">Spicy</button><button aria-pressed="false" data-filter="veg">Vegetarian</button><button aria-pressed="false" data-filter="share">To share</button>
 </div></div>
 ${MENU.map(menuSec).join('')}
+<section class="msec"><div class="wrap mextras">${EXTRAS.map(extraSec).join('')}</div></section>
 <section class="sec"><div class="wrap menu__note"><p>A selection from MiHa’s menu as listed on Dineplan (July 2025). Dishes and prices may change; ask your server for today’s menu, kids’ menu and specials.</p><a class="link-arrow" href="${PDF}" target="_blank" rel="noopener">Download MiHa’s printed menu (PDF) ↗</a></div></section>
 ${orderOnline()}
 ${next('whats-on.html', 'What’s On')}
