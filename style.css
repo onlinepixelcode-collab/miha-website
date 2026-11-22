@@ -847,3 +847,8 @@ html.no-js .curtain{display:none}
 html[data-theme="light"] .led,html[data-theme="light"] .bk::before,html[data-theme="light"] .next-buffet::before,html[data-theme="light"] .mtabs::after,html[data-theme="light"] .nav.is-scrolled::after{background:linear-gradient(90deg,transparent,#d9ae6a 20%,#f3d39c 50%,#d9ae6a 80%,transparent);box-shadow:0 0 8px 1px rgba(217,174,106,.45)}
 html[data-theme="light"] .bleed--led{--ink:#f7f2ea;--bone:#1b1713;--gold-2:#8a6427;background:var(--ink)}
 @media (prefers-reduced-motion:reduce){.led::after{display:none}}
+.credit{white-space:nowrap}
+.credit__heart{display:inline-block;animation:heart 2.4s ease-in-out infinite}
+@keyframes heart{0%,100%{transform:scale(1)}12%{transform:scale(1.18)}24%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.credit__heart{animation:none}}
+@media (min-width:901px){.footer__base{padding-right:190px}}

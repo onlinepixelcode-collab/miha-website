@@ -111,7 +111,7 @@ const footer = () => `${join()}
     <div class="footer__lockup sign" aria-hidden="true"><div class="sign__in">${MARK()}<p>MiHa</p></div></div>
     <div class="footer__base">
       <p>All food is strictly Halaal. For religious reasons, no alcohol is served or allowed on the premises.</p>
-      <p>© <span class="year">2026</span> MiHa Eatery</p>
+      <p>© <span class="year">2026</span> MiHa Eatery · <span class="credit">Made with <span class="credit__heart" aria-label="love">🤍</span> by Pixel Code</span></p>
     </div>
   </div>
 </footer>
