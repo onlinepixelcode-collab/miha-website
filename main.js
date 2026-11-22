@@ -250,7 +250,7 @@
 
   /* ---------------- bleed parallax ---------------- */
   $$('.bleed').forEach(b => {
-    gsap.fromTo($('.bleed__img', b), { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: b, start: 'top bottom', end: 'bottom top', scrub: true } });
+    $('.bleed__img', b) && gsap.fromTo($('.bleed__img', b), { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: b, start: 'top bottom', end: 'bottom top', scrub: true } });
     // lines rise into place (no sideways shift, so they never pass the screen edge)
     $$('.bleed__quote span', b).forEach((s, i) => gsap.fromTo(s, { y: 60 + i * 30, opacity: 0 }, { y: 0, opacity: 1, ease: 'none', scrollTrigger: { trigger: b, start: 'top 80%', end: 'center center', scrub: true } }));
   });

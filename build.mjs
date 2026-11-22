@@ -82,6 +82,7 @@ const UBER = 'https://www.ubereats.com/za/search?q=MiHa%20Melrose%20Arch';
 const MRD = 'https://www.mrdfood.com/';
 const join = () => `
 <section class="join" aria-labelledby="join-title">
+  <div class="led led--edge" aria-hidden="true"></div>
   <div class="wrap join__grid">
     <div>
       <p class="eyebrow"><span class="num">—</span> Join the MiHa family</p>
@@ -281,9 +282,10 @@ ${nav()}
   </div>
 </section>
 
-<section class="bleed" aria-label="The MiHa bar">
-  <figure class="bleed__img"><img src="${I('g-pizza')}" alt="A stone-fired MiHa pizza" loading="lazy"></figure>
+<section class="bleed bleed--led" aria-label="Where casual café meets classic dining">
+  <div class="led led--top" aria-hidden="true"></div>
   <p class="bleed__quote wrap"><span>“Where casual café</span><span><em>meets classic dining.”</em></span></p>
+  <div class="led led--bottom" aria-hidden="true"></div>
 </section>
 
 <section class="beyond">
@@ -584,9 +586,10 @@ ${phero({ crumb: 'The Bar', title: '<span class="line"><span>Zero proof.</span><
     ${drink('imgs-67-of-118', 'Mint cooler', 'Lime, mint and soda, as cold as it gets.')}
   </div>
 </div></section>
-<section class="bleed" aria-label="A carafe of MiHa mocktail">
-  <figure class="bleed__img"><img src="${I('imgs-99-of-118')}" alt="A carafe of violet mocktail" loading="lazy"></figure>
+<section class="bleed bleed--led" aria-label="Raise a glass, everyone">
+  <div class="led led--top" aria-hidden="true"></div>
   <p class="bleed__quote wrap"><span>Raise a glass,</span><span><em>everyone.</em></span></p>
+  <div class="led led--bottom" aria-hidden="true"></div>
 </section>
 <section class="sec"><div class="wrap">
   <p class="eyebrow"><span class="num">03</span> Shakes &amp; coffee</p>

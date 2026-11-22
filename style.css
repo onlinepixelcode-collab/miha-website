@@ -818,3 +818,32 @@ html.no-js .curtain{display:none}
 /* hero: no light ring or glow around the photo arch */
 .hero__arch{box-shadow:0 50px 100px -40px rgba(0,0,0,.85)}
 .hero,html[data-theme="light"] .hero{background:var(--ink)}
+
+/* =========================================================
+   LED LIGHT STRIPS — warm strips like the LED rims inside MiHa
+   ========================================================= */
+.led{position:relative;height:2px;border-radius:2px;pointer-events:none;
+  background:linear-gradient(90deg,transparent 0%,#ffdca8 12%,#fff4e2 50%,#ffdca8 88%,transparent 100%);
+  box-shadow:0 0 4px 1px rgba(255,222,170,.85),0 0 18px 3px rgba(255,196,120,.38),0 0 56px 10px rgba(255,170,90,.12);
+  overflow:hidden}
+.led::after{content:"";position:absolute;top:0;bottom:0;width:22%;left:-25%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),transparent);animation:ledRun 6s linear infinite}
+@keyframes ledRun{to{left:110%}}
+/* type-only banner framed by two strips */
+.bleed--led{height:auto;min-height:0;padding:clamp(90px,12vw,170px) 0;flex-direction:column;align-items:stretch;gap:clamp(56px,7vw,96px);background:radial-gradient(70% 55% at 50% 50%,rgba(255,190,120,.07),transparent 70%),var(--ink)}
+.bleed--led::after{display:none}
+.bleed--led .led{margin-inline:var(--gut)}
+.bleed--led .led--bottom::after{animation-delay:-3s;animation-direction:reverse}
+.bleed--led .bleed__quote{text-align:center}
+.bleed--led .bleed__quote span+span{padding-left:0}
+/* strip at the top edge of a section or card */
+.led--edge{position:absolute;left:0;right:0;top:0;margin:0}
+.join{position:relative}
+.bk,.next-buffet{position:relative;overflow:hidden}
+.bk::before,.next-buffet::before{content:"";position:absolute;left:8%;right:8%;top:0;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#ffdca8 20%,#fff4e2 50%,#ffdca8 80%,transparent);box-shadow:0 0 4px 1px rgba(255,222,170,.8),0 0 18px 3px rgba(255,196,120,.32)}
+.mtabs::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,#ffdca8 30%,#fff4e2 50%,#ffdca8 70%,transparent);box-shadow:0 0 10px 2px rgba(255,196,120,.3)}
+.nav.is-scrolled{border-bottom-color:transparent}
+.nav.is-scrolled::after{content:"";position:absolute;left:15%;right:15%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,220,168,.9),transparent);box-shadow:0 0 12px 2px rgba(255,196,120,.25)}
+/* light theme: softer, golden strips */
+html[data-theme="light"] .led,html[data-theme="light"] .bk::before,html[data-theme="light"] .next-buffet::before,html[data-theme="light"] .mtabs::after,html[data-theme="light"] .nav.is-scrolled::after{background:linear-gradient(90deg,transparent,#d9ae6a 20%,#f3d39c 50%,#d9ae6a 80%,transparent);box-shadow:0 0 8px 1px rgba(217,174,106,.45)}
+html[data-theme="light"] .bleed--led{--ink:#f7f2ea;--bone:#1b1713;--gold-2:#8a6427;background:var(--ink)}
+@media (prefers-reduced-motion:reduce){.led::after{display:none}}
